@@ -9,6 +9,11 @@ import '../../mainBody.dart';
 import '../page1.dart';
 
 import '../page200.dart';
+import '../page201.dart';
+import '../page202.dart';
+import '../page203.dart';
+import '../page211.dart';
+import '../page301.dart';
 import 'P202SELECTCHEMLISTvar.dart';
 
 class P202SELECTCHEMLISTmain extends StatefulWidget {
@@ -115,266 +120,65 @@ class _P202SELECTCHEMLISTmainBodyState
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.all(5.0),
-                      child: MouseRegion(
-                        onEnter: (_) {
-                          setState(() {
-                            P202SELECTCHEMLISTvar.QM1003 = true;
-                          });
-                        },
-                        onExit: (_) {
-                          setState(() {
-                            P202SELECTCHEMLISTvar.QM1003 = false;
-                          });
-                        },
-                        child: InkWell(
-                          onTap: () {
+                    for (int s = 0; s < 5; s++) ...[
+                      Padding(
+                        padding: const EdgeInsets.all(5.0),
+                        child: MouseRegion(
+                          onEnter: (_) {
                             setState(() {
-                              P202SELECTCHEMLISTvar.QM1003 = false;
+                              P202SELECTCHEMLISTvar.isHoveredList[s] = true;
                             });
-                            USERDATA.ACTION = 'INCOMING';
-                            print(USERDATA.ACTION);
-
-                            // MainBodyContext.read<ChangePage_Bloc>()
-                            //     .ChangePage_nodrower('', Page42());
                           },
-                          child: AnimatedContainer(
-                            duration: Duration(milliseconds: 100),
-                            height: P202SELECTCHEMLISTvar.QM1003 ? 75 : 70,
-                            width: P202SELECTCHEMLISTvar.QM1003 ? 420 : 430,
-                            decoration: BoxDecoration(
-                              color: P202SELECTCHEMLISTvar.QM1003
-                                  ? Colors.greenAccent
-                                  : Colors.green,
-                              border: Border.all(
-                                color: Colors.black,
-                                width: 2.0,
+                          onExit: (_) {
+                            setState(() {
+                              P202SELECTCHEMLISTvar.isHoveredList[s] = false;
+                            });
+                          },
+                          child: InkWell(
+                            onTap: () {
+                              setState(() {
+                                P202SELECTCHEMLISTvar.isHoveredList[s] = false;
+                              });
+                              if (s == 0) {
+                                MainBodyContext.read<ChangePage_Bloc>()
+                                    .ChangePage_nodrower('', Page301());
+                              }
+
+                              if (s == 1) {
+                                MainBodyContext.read<ChangePage_Bloc>()
+                                    .ChangePage_nodrower('', Page211());
+                              }
+                            },
+                            child: AnimatedContainer(
+                              duration: Duration(milliseconds: 100),
+                              height: P202SELECTCHEMLISTvar.isHoveredList[s]
+                                  ? 85
+                                  : 80,
+                              width: P202SELECTCHEMLISTvar.isHoveredList[s]
+                                  ? 420
+                                  : 430,
+                              decoration: BoxDecoration(
+                                color: P202SELECTCHEMLISTvar.isHoveredList[s]
+                                    ? Colors.greenAccent
+                                    : Colors.green,
+                                border: Border.all(
+                                  color: Colors.black,
+                                  width: 2.0,
+                                ),
+                                borderRadius: BorderRadius.circular(10),
                               ),
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            child: Center(
-                              child: Text(
-                                'QM-1003:Inbound interface result recoding for incoming inspection lot with inspection point',
-                                style: TextStyle(
-                                    color: Colors.white, fontSize: 20),
+                              child: Center(
+                                child: Text(
+                                  P202SELECTCHEMLISTvar.NameList[s],
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 20),
+                                ),
                               ),
                             ),
                           ),
                         ),
                       ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(5.0),
-                      child: MouseRegion(
-                        onEnter: (_) {
-                          setState(() {
-                            P202SELECTCHEMLISTvar.isHoveredPLANNING = true;
-                          });
-                        },
-                        onExit: (_) {
-                          setState(() {
-                            P202SELECTCHEMLISTvar.isHoveredPLANNING = false;
-                          });
-                        },
-                        child: InkWell(
-                          onTap: () {
-                            setState(() {
-                              P202SELECTCHEMLISTvar.isHoveredPLANNING = false;
-                            });
-                            USERDATA.ACTION = 'PLANNING';
-                            print(USERDATA.ACTION);
-
-                            // MainBodyContext.read<ChangePage_Bloc>()
-                            //     .ChangePage_nodrower('', Page27());
-                          },
-                          child: AnimatedContainer(
-                            duration: Duration(milliseconds: 100),
-                            height: P202SELECTCHEMLISTvar.isHoveredPLANNING
-                                ? 75
-                                : 70,
-                            width: P202SELECTCHEMLISTvar.isHoveredPLANNING
-                                ? 420
-                                : 430,
-                            decoration: BoxDecoration(
-                              color: P202SELECTCHEMLISTvar.isHoveredPLANNING
-                                  ? Colors.greenAccent
-                                  : Colors.green,
-                              border: Border.all(
-                                color: Colors.black,
-                                width: 2.0,
-                              ),
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            child: Center(
-                              child: Text(
-                                'QM-I004:Inbound Interface Usage Decision for Incoming Inspection lot and Final Inspection Lot',
-                                style: TextStyle(
-                                    color: Colors.white, fontSize: 20),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(5.0),
-                      child: MouseRegion(
-                        onEnter: (_) {
-                          setState(() {
-                            P202SELECTCHEMLISTvar.isHoveredSTATUS = true;
-                          });
-                        },
-                        onExit: (_) {
-                          setState(() {
-                            P202SELECTCHEMLISTvar.isHoveredSTATUS = false;
-                          });
-                        },
-                        child: InkWell(
-                          onTap: () {
-                            setState(() {
-                              P202SELECTCHEMLISTvar.isHoveredSTATUS = false;
-                            });
-                            USERDATA.ACTION = 'STATUS';
-                            print(USERDATA.ACTION);
-
-                            // MainBodyContext.read<ChangePage_Bloc>()
-                            //     .ChangePage_nodrower('', Page18());
-                          },
-                          child: AnimatedContainer(
-                            duration: Duration(milliseconds: 100),
-                            height:
-                                P202SELECTCHEMLISTvar.isHoveredSTATUS ? 75 : 70,
-                            width: P202SELECTCHEMLISTvar.isHoveredSTATUS
-                                ? 420
-                                : 430,
-                            decoration: BoxDecoration(
-                              color: P202SELECTCHEMLISTvar.isHoveredSTATUS
-                                  ? Colors.greenAccent
-                                  : Colors.green,
-                              border: Border.all(
-                                color: Colors.black,
-                                width: 2.0,
-                              ),
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            child: Center(
-                              child: Text(
-                                'PP-I001:Outbound Interface SAP to Automation',
-                                style: TextStyle(
-                                    color: Colors.white, fontSize: 20),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(5.0),
-                      child: MouseRegion(
-                        onEnter: (_) {
-                          setState(() {
-                            P202SELECTCHEMLISTvar.isHoveredSCADADATA = true;
-                          });
-                        },
-                        onExit: (_) {
-                          setState(() {
-                            P202SELECTCHEMLISTvar.isHoveredSCADADATA = false;
-                          });
-                        },
-                        child: InkWell(
-                          onTap: () {
-                            setState(() {
-                              P202SELECTCHEMLISTvar.isHoveredSCADADATA = false;
-                            });
-                            USERDATA.ACTION = 'PRODUCTION CONFIRMATION';
-                            print(USERDATA.ACTION);
-
-                            // MainBodyContext.read<ChangePage_Bloc>()
-                            //     .ChangePage_nodrower('', Page28());
-                          },
-                          child: AnimatedContainer(
-                            duration: Duration(milliseconds: 100),
-                            height: P202SELECTCHEMLISTvar.isHoveredSCADADATA
-                                ? 55
-                                : 50,
-                            width: P202SELECTCHEMLISTvar.isHoveredSCADADATA
-                                ? 420
-                                : 430,
-                            decoration: BoxDecoration(
-                              color: P202SELECTCHEMLISTvar.isHoveredSCADADATA
-                                  ? Colors.greenAccent
-                                  : Colors.green,
-                              border: Border.all(
-                                color: Colors.black,
-                                width: 2.0,
-                              ),
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            child: Center(
-                              child: Text(
-                                'PP-I005:Inbound interface confirmation',
-                                style: TextStyle(
-                                    color: Colors.white, fontSize: 20),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(5.0),
-                      child: MouseRegion(
-                        onEnter: (_) {
-                          setState(() {
-                            P202SELECTCHEMLISTvar.isHoveredSCADADATA2 = true;
-                          });
-                        },
-                        onExit: (_) {
-                          setState(() {
-                            P202SELECTCHEMLISTvar.isHoveredSCADADATA2 = false;
-                          });
-                        },
-                        child: InkWell(
-                          onTap: () {
-                            setState(() {
-                              P202SELECTCHEMLISTvar.isHoveredSCADADATA2 = false;
-                            });
-                            USERDATA.ACTION = 'FINISHED GOOD TRANFER';
-                            print(USERDATA.ACTION);
-
-                            // MainBodyContext.read<ChangePage_Bloc>()
-                            //     .ChangePage_nodrower('', Page29());
-                          },
-                          child: AnimatedContainer(
-                            duration: Duration(milliseconds: 100),
-                            height: P202SELECTCHEMLISTvar.isHoveredSCADADATA2
-                                ? 55
-                                : 50,
-                            width: P202SELECTCHEMLISTvar.isHoveredSCADADATA2
-                                ? 420
-                                : 430,
-                            decoration: BoxDecoration(
-                              color: P202SELECTCHEMLISTvar.isHoveredSCADADATA2
-                                  ? Colors.greenAccent
-                                  : Colors.green,
-                              border: Border.all(
-                                color: Colors.black,
-                                width: 2.0,
-                              ),
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            child: Center(
-                              child: Text(
-                                'PP-I003:Inbound Interface Post Goods Receipt',
-                                style: TextStyle(
-                                    color: Colors.white, fontSize: 20),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
+                    ],
                   ],
                 ),
               ),

@@ -10,6 +10,7 @@ import '../page1.dart';
 
 import '../page200.dart';
 import '../page203.dart';
+import '../page211.dart';
 import 'P204HANDSLISTvar.dart';
 
 class P204HANDSLISTmain extends StatefulWidget {
@@ -114,7 +115,7 @@ class _P204HANDSLISTmainBodyState extends State<P204HANDSLISTmainBody> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    for (int s = 0; s < 6; s++) ...[
+                    for (int s = 0; s < 8; s++) ...[
                       Padding(
                         padding: const EdgeInsets.all(5.0),
                         child: MouseRegion(
@@ -138,6 +139,8 @@ class _P204HANDSLISTmainBodyState extends State<P204HANDSLISTmainBody> {
 
                               // MainBodyContext.read<ChangePage_Bloc>()
                               //     .ChangePage_nodrower('', Page42());
+                              MainBodyContext.read<ChangePage_Bloc>()
+                                  .ChangePage_nodrower('', Page211());
                             },
                             child: AnimatedContainer(
                               duration: Duration(milliseconds: 100),

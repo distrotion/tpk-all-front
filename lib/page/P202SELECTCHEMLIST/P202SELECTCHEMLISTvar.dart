@@ -1,7 +1,51 @@
 class P202SELECTCHEMLISTvar {
-  static bool QM1003 = false;
-  static bool isHoveredPLANNING = false;
-  static bool isHoveredSTATUS = false;
-  static bool isHoveredSCADADATA = false;
-  static bool isHoveredSCADADATA2 = false;
+  static List<String> NameList = [
+    "QM INCOMING",
+    "Planing",
+    "Weight Record",
+    "Machine Confirm",
+    "Goods Receip",
+    "GAS",
+    "PH",
+    "ISN",
+    "PVD",
+    "PAL",
+    "DELTA",
+    "",
+    "",
+    "",
+    "",
+  ];
+
+  static List<bool> isHoveredList = [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+  ];
 }
+
+
+    // "QM-I003 : [Chemical/ H&S] Inbound interface result recoding for incoming inspection lot with inspection point",
+    // "QM-I004 : [Chemical/ H&S] Inbound Interface Usage Decision for Incoming Inspection lot and Final Inspection Lot",
+    // "PP-I001 Outbound Interface SAP to Automation",
+    // "PP-I005 - Inbound interface confirmation",
+    // "PP-I007 :Inbound interface actual RM weight record from ARM to SAP",
+    // "PP-I003 - Inbound Interface Post Goods ReceiptIf NG >> GR to NG Slocไม่มี Partial NG  ",

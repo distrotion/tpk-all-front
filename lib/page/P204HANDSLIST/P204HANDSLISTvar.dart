@@ -1,5 +1,7 @@
 class P204HANDSLISTvar {
   static List<String> NameList = [
+    "QM-I003 : [Chemical/ H&S] Inbound interface result recoding for incoming inspection lot with inspection point",
+    "QM-I004 : [Chemical/ H&S] Inbound Interface Usage Decision for Incoming Inspection lot and Final Inspection Lot",
     "PP-I002 – Outbound Process order ",
     "PP-I007 - Interface Update Status to PPIC",
     "PP-I008 - Inbound Production Confirm From TPPS System to SAP",
