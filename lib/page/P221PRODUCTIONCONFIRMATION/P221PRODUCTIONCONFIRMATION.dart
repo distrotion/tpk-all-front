@@ -46,12 +46,12 @@ class _P221PRODUCTIONCONFIRMATIONState
     super.initState();
     var now = DateTime.now();
     // P221PRODUCTIONCONFIRMATIONVAR.formattedDate = DateFormat('dd-MM-yy').format(now);
-    // P221PRODUCTIONCONFIRMATIONVAR.day = DateFormat('dd').format(now);
-    // P221PRODUCTIONCONFIRMATIONVAR.month = DateFormat('MM').format(now);
-    // P221PRODUCTIONCONFIRMATIONVAR.year = DateFormat('yyyy').format(now);
-    P221PRODUCTIONCONFIRMATIONVAR.day = "03";
-    P221PRODUCTIONCONFIRMATIONVAR.month = "03";
-    P221PRODUCTIONCONFIRMATIONVAR.year = "2025";
+    P221PRODUCTIONCONFIRMATIONVAR.day = DateFormat('dd').format(now);
+    P221PRODUCTIONCONFIRMATIONVAR.month = DateFormat('MM').format(now);
+    P221PRODUCTIONCONFIRMATIONVAR.year = DateFormat('yyyy').format(now);
+    // P221PRODUCTIONCONFIRMATIONVAR.day = "03";
+    // P221PRODUCTIONCONFIRMATIONVAR.month = "03";
+    // P221PRODUCTIONCONFIRMATIONVAR.year = "2025";
 
     P221PRODUCTIONCONFIRMATIONVAR.iscontrol = true;
     P221PRODUCTIONCONFIRMATIONVAR.SEARCH = '';

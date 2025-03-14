@@ -42,7 +42,20 @@ class P211CHEMPLANINGgetsub_Bloc extends Bloc<P211CHEMPLANINGgetsub_Event,
     //-------------------------------------------------------------------------------------
     final response = await Dio().post(
       "${server2}03iPPGETDATACHEM/GETDATA",
-      data: {},
+      data: {
+        "HEADER": {
+          "PLANT": "1000",
+          "ORD_ST_DATE_FR":
+              "${P211CHEMPLANINGVAR.day}.${P211CHEMPLANINGVAR.month}.${P211CHEMPLANINGVAR.year}",
+          "ORD_ST_DATE_TO":
+              "${P211CHEMPLANINGVAR.day}.${P211CHEMPLANINGVAR.month}.${P211CHEMPLANINGVAR.year}",
+          "ORDER_TYPE": "",
+          "PROD_SUP": ""
+        },
+        "PROC_ORD": [
+          {"PROCESS_ORDER": "", "MATERIAL": ""}
+        ]
+      },
     );
     var input = [];
     // Navigator.pop(P19PROGRESSMAINcontext);

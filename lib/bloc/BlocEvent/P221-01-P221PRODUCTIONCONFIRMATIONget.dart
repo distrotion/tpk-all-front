@@ -50,7 +50,20 @@ class P221PRODUCTIONCONFIRMATIONget_Bloc extends Bloc<
     //-------------------------------------------------------------------------------------
     final response = await Dio().post(
       "${server2}03iPPGETDATACHEM/GETDATA",
-      data: {},
+      data: {
+        "HEADER": {
+          "PLANT": "1000",
+          "ORD_ST_DATE_FR":
+              "${P221PRODUCTIONCONFIRMATIONVAR.day}.${P221PRODUCTIONCONFIRMATIONVAR.month}.${P221PRODUCTIONCONFIRMATIONVAR.year}",
+          "ORD_ST_DATE_TO":
+              "${P221PRODUCTIONCONFIRMATIONVAR.day}.${P221PRODUCTIONCONFIRMATIONVAR.month}.${P221PRODUCTIONCONFIRMATIONVAR.year}",
+          "ORDER_TYPE": "",
+          "PROD_SUP": ""
+        },
+        "PROC_ORD": [
+          {"PROCESS_ORDER": "", "MATERIAL": ""}
+        ]
+      },
     );
     var input = [];
     // Navigator.pop(P19PROGRESSMAINcontext);

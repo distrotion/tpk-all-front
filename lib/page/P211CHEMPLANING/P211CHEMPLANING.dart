@@ -42,12 +42,12 @@ class _P211CHEMPLANINGState extends State<P211CHEMPLANING> {
     super.initState();
     var now = DateTime.now();
     // P211CHEMPLANINGVAR.formattedDate = DateFormat('dd-MM-yy').format(now);
-    // P211CHEMPLANINGVAR.day = DateFormat('dd').format(now);
-    // P211CHEMPLANINGVAR.month = DateFormat('MM').format(now);
-    // P211CHEMPLANINGVAR.year = DateFormat('yyyy').format(now);
-    P211CHEMPLANINGVAR.day = "03";
-    P211CHEMPLANINGVAR.month = "03";
-    P211CHEMPLANINGVAR.year = "2025";
+    P211CHEMPLANINGVAR.day = DateFormat('dd').format(now);
+    P211CHEMPLANINGVAR.month = DateFormat('MM').format(now);
+    P211CHEMPLANINGVAR.year = DateFormat('yyyy').format(now);
+    // P211CHEMPLANINGVAR.day = "03";
+    // P211CHEMPLANINGVAR.month = "03";
+    // P211CHEMPLANINGVAR.year = "2025";
 
     P211CHEMPLANINGVAR.iscontrol = true;
     P211CHEMPLANINGVAR.SEARCH = '';

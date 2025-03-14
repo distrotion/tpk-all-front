@@ -40,12 +40,12 @@ class _P301QMMASTERMAINState extends State<P301QMMASTERMAIN> {
     super.initState();
     var now = DateTime.now();
     // P301QMMASTERVAR.formattedDate = DateFormat('dd-MM-yy').format(now);
-    // P301QMMASTERVAR.day = DateFormat('dd').format(now);
-    // P301QMMASTERVAR.month = DateFormat('MM').format(now);
-    // P301QMMASTERVAR.year = DateFormat('yyyy').format(now);
-    P301QMMASTERVAR.day = "03";
-    P301QMMASTERVAR.month = "03";
-    P301QMMASTERVAR.year = "2025";
+    P301QMMASTERVAR.day = DateFormat('dd').format(now);
+    P301QMMASTERVAR.month = DateFormat('MM').format(now);
+    P301QMMASTERVAR.year = DateFormat('yyyy').format(now);
+    // P301QMMASTERVAR.day = "03";
+    // P301QMMASTERVAR.month = "03";
+    // P301QMMASTERVAR.year = "2025";
 
     P301QMMASTERVAR.iscontrol = true;
     P301QMMASTERVAR.SEARCH = '';

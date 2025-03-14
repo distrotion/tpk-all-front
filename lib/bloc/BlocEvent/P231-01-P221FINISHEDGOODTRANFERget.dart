@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../data/global.dart';
+import '../../page/P231FINISHEDGOODTRANFER/P231FINISHEDGOODTRANFERVAR.dart';
 import '../../widget/common/Loading.dart';
 import '../../widget/common/Safty.dart';
 //-------------------------------------------------
@@ -45,7 +46,20 @@ class P231FINISHEDGOODTRANFERget_Bloc extends Bloc<
     //-------------------------------------------------------------------------------------
     final response = await Dio().post(
       "${server2}03iPPGETDATACHEM/GETDATA",
-      data: {},
+      data: {
+        "HEADER": {
+          "PLANT": "1000",
+          "ORD_ST_DATE_FR":
+              "${P231FINISHEDGOODTRANFERVAR.day}.${P231FINISHEDGOODTRANFERVAR.month}.${P231FINISHEDGOODTRANFERVAR.year}",
+          "ORD_ST_DATE_TO":
+              "${P231FINISHEDGOODTRANFERVAR.day}.${P231FINISHEDGOODTRANFERVAR.month}.${P231FINISHEDGOODTRANFERVAR.year}",
+          "ORDER_TYPE": "",
+          "PROD_SUP": ""
+        },
+        "PROC_ORD": [
+          {"PROCESS_ORDER": "", "MATERIAL": ""}
+        ]
+      },
     );
     var input = [];
     // Navigator.pop(P19PROGRESSMAINcontext);

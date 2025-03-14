@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../data/global.dart';
+import '../../page/P301QMMASTER/P301QMMASTERVAR.dart';
 import '../../widget/common/Loading.dart';
 //-------------------------------------------------
 
@@ -40,7 +41,20 @@ class P301QMMASTERget_Bloc
     //-------------------------------------------------------------------------------------
     final response = await Dio().post(
       "${server2}QMINCOMING/GETDATA",
-      data: {},
+      data: {
+        "HEADER": {
+          "PLANT": "1000",
+          "ORD_ST_DATE_FR":
+              "${P301QMMASTERVAR.day}.${P301QMMASTERVAR.month}.${P301QMMASTERVAR.year}",
+          "ORD_ST_DATE_TO":
+              "${P301QMMASTERVAR.day}.${P301QMMASTERVAR.month}.${P301QMMASTERVAR.year}",
+          "ORDER_TYPE": "",
+          "PROD_SUP": ""
+        },
+        "PROC_ORD": [
+          {"PROCESS_ORDER": "", "MATERIAL": ""}
+        ]
+      },
     );
     var input = [];
     // Navigator.pop(P19PROGRESSMAINcontext);

@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../data/global.dart';
+import '../../page/P211CHEMPLANING/P211CHEMPLANINGVAR.dart';
 import '../../widget/common/Loading.dart';
 //-------------------------------------------------
 
@@ -40,7 +41,20 @@ class P211CHEMPLANINGget_Bloc
     //-------------------------------------------------------------------------------------
     final response = await Dio().post(
       "${server2}03iPPGETDATACHEM/GETDATA",
-      data: {},
+      data: {
+        "HEADER": {
+          "PLANT": "1000",
+          "ORD_ST_DATE_FR":
+              "${P211CHEMPLANINGVAR.day}.${P211CHEMPLANINGVAR.month}.${P211CHEMPLANINGVAR.year}",
+          "ORD_ST_DATE_TO":
+              "${P211CHEMPLANINGVAR.day}.${P211CHEMPLANINGVAR.month}.${P211CHEMPLANINGVAR.year}",
+          "ORDER_TYPE": "",
+          "PROD_SUP": ""
+        },
+        "PROC_ORD": [
+          {"PROCESS_ORDER": "", "MATERIAL": ""}
+        ]
+      },
     );
     var input = [];
     // Navigator.pop(P19PROGRESSMAINcontext);
