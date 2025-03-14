@@ -14,12 +14,13 @@ import '../../mainBody.dart';
 import '../../widget/common/Calendarwid.dart';
 import '../../widget/common/ComInputText.dart';
 import '../../widget/common/ComInputTextTan.dart';
-import '../../widget/qmtable/INSP_SPECtable.dart';
-import '../../widget/qmtable/PLANINGSUBtable.dart';
-import '../../widget/qmtable/PLANINGtable.dart';
-import '../../widget/qmtable/QMMAASTERtable.dart';
+import '../../widget/newtable/INSP_SPECtable.dart';
+import '../../widget/newtable/PLANINGSUBtable.dart';
+import '../../widget/newtable/PLANINGtable.dart';
+import '../../widget/newtable/QMMAASTERtable.dart';
 import '../../widget/table/PROGRESSMAIN.dart';
 
+import '../page202.dart';
 import 'P211CHEMPLANINGVAR.dart';
 
 late BuildContext P211CHEMPLANINGcontext;
@@ -69,6 +70,76 @@ class _P211CHEMPLANINGState extends State<P211CHEMPLANING> {
               padding: const EdgeInsets.all(20.0),
               child: Column(
                 children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(left: 40),
+                        child: Row(
+                          children: [
+                            InkWell(
+                              onTap: () {
+                                MainBodyContext.read<ChangePage_Bloc>()
+                                    .ChangePage_nodrower('', Page202());
+                              },
+                              child: SizedBox(
+                                width: 200,
+                                child: Icon(
+                                  Icons.arrow_back_ios,
+                                  size: 40,
+                                  color: Colors.blue,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(20.0),
+                        child: Center(
+                          child: ShaderMask(
+                            shaderCallback: (bounds) => LinearGradient(
+                              colors: const [
+                                Colors.blueAccent,
+                                Colors.lightBlueAccent
+                              ],
+                              begin: Alignment.topLeft,
+                              end: Alignment.bottomRight,
+                            ).createShader(bounds),
+                            child: Text(
+                              'SELECT OPERATION PROGRESS',
+                              style: TextStyle(
+                                fontSize: 20.0,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 40),
+                        child: Row(
+                          children: [
+                            InkWell(
+                              onTap: () {
+                                // MainBodyContext.read<ChangePage_Bloc>()
+                                //     .ChangePage_nodrower('', Page1());
+                              },
+                              child: SizedBox(
+                                width: 200,
+                                // child: Icon(
+                                //   Icons.arrow_back_ios,
+                                //   size: 40,
+                                //   color: Colors.blue,
+                                // ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
                   Container(
                     height: 50,
                     // width: 900,
@@ -267,11 +338,20 @@ class __DATAGETSETState extends State<_DATAGETSET> {
       padding: const EdgeInsets.all(12.0),
       child: Column(
         children: [
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: SizedBox(
+              child: Center(
+                child: Text("SAP RECOMMENDATION"),
+              ),
+            ),
+          ),
+
           PLANINGSUBtable(),
           // if (_datasearch
           //     .any((item) => item.PLANT == 'noxrust'))
           SizedBox(
-            height: 500,
+            height: 400,
             child: SingleChildScrollView(
               child: Container(
                 // width: 1100,
@@ -281,11 +361,24 @@ class __DATAGETSETState extends State<_DATAGETSET> {
                       // for (int i = 0; i < 10; i++) ...[
                       PLANINGSUBitem(
                         text01: _data[i].ITEM,
-                        text02: _data[i].MATERIAL_TEXT,
-                        text03: _data[i].REQ_QTY,
-                        text04: _data[i].BATCH,
+                        text02: _data[i].MATERIAL,
+                        text03: _data[i].MATERIAL_TEXT,
+                        text04: _data[i].REQ_QTY + ' ' + _data[i].UOM,
+                        text05: _data[i].BATCH_QTY + ' ' + _data[i].BATCH_UOM,
+                        text06: _data[i].BATCH,
                       ),
                     ],
+                    Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: Container(
+                        height: 50,
+                        width: 200,
+                        color: Colors.blue,
+                        child: Center(
+                          child: Text("Weight Record"),
+                        ),
+                      ),
+                    ),
                   ],
                 ),
               ),

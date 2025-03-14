@@ -16,8 +16,17 @@ class P301QMMASTERVAR {
   static String SELECTEDSETset = '';
 
   static List<PINSP_SPECclass> INSP_SPECdata = [];
+  static PINSP_SPECclass iINSP_SPECdata = PINSP_SPECclass();
   static List<SELECTED_SETclass> SELECTED_SETdata = [];
+  static SELECTED_SETclass iSELECTEDSETset = SELECTED_SETclass();
   static List<UDCODEclass> UDCODEdata = [];
 
   static String DATASUM = '';
+
+  static String TO_ALL = '';
+  static String TO_UR = '';
+
+  static String TO_BL = '';
+
+  static int iDATA = 0;
 }

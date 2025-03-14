@@ -51,37 +51,41 @@ class P211CHEMPLANINGget_Bloc
 
       if (databuff['HEADER_INFO'].length > 0) {
         for (var i = 0; i < databuff['HEADER_INFO'].length; i++) {
-          output.add(P211CHEMPLANINGgetclass(
-            PROCESS_ORDER:
-                databuff['HEADER_INFO'][i]['PROCESS_ORDER'].toString(),
-            ORDER_TYPE: databuff['HEADER_INFO'][i]['ORDER_TYPE'].toString(),
-            ORDER_TYPE_DESC:
-                databuff['HEADER_INFO'][i]['ORDER_TYPE_DESC'].toString(),
-            PLANT: databuff['HEADER_INFO'][i]['PLANT'].toString(),
-            MATERIAL: databuff['HEADER_INFO'][i]['MATERIAL'].toString(),
-            MATERIAL_TEXT:
-                databuff['HEADER_INFO'][i]['MATERIAL_TEXT'].toString(),
-            TOTAL_QTY: databuff['HEADER_INFO'][i]['TOTAL_QTY'].toString(),
-            UOM: databuff['HEADER_INFO'][i]['UOM'].toString(),
-            PROD_SUP: databuff['HEADER_INFO'][i]['PROD_SUP'].toString(),
-            PROD_SUP_DESC:
-                databuff['HEADER_INFO'][i]['PROD_SUP_DESC'].toString(),
-            BASIC_START_DATE:
-                databuff['HEADER_INFO'][i]['BASIC_START_DATE'].toString(),
-            BASIC_FINISH_DATE:
-                databuff['HEADER_INFO'][i]['BASIC_FINISH_DATE'].toString(),
-            ORDER_SEQ_NO: databuff['HEADER_INFO'][i]['ORDER_SEQ_NO'].toString(),
-            BATCH: databuff['HEADER_INFO'][i]['BATCH'].toString(),
-            STGE_LOC: databuff['HEADER_INFO'][i]['STGE_LOC'].toString(),
-            INSP_LOT: databuff['HEADER_INFO'][i]['INSP_LOT'].toString(),
-            SYSTEM_STATUS:
-                databuff['HEADER_INFO'][i]['SYSTEM_STATUS'].toString(),
-            OLD_MATERIAL: databuff['HEADER_INFO'][i]['OLD_MATERIAL'].toString(),
-            MTART: databuff['HEADER_INFO'][i]['MTART'].toString(),
-            MTBEZ: databuff['HEADER_INFO'][i]['MTBEZ'].toString(),
-            LINK_PROC_ORDER:
-                databuff['HEADER_INFO'][i]['LINK_PROC_ORDER'].toString(),
-          ));
+          if (databuff['HEADER_INFO'][i]['LINK_PROC_ORDER'].toString() == '') {
+            output.add(P211CHEMPLANINGgetclass(
+              PROCESS_ORDER:
+                  databuff['HEADER_INFO'][i]['PROCESS_ORDER'].toString(),
+              ORDER_TYPE: databuff['HEADER_INFO'][i]['ORDER_TYPE'].toString(),
+              ORDER_TYPE_DESC:
+                  databuff['HEADER_INFO'][i]['ORDER_TYPE_DESC'].toString(),
+              PLANT: databuff['HEADER_INFO'][i]['PLANT'].toString(),
+              MATERIAL: databuff['HEADER_INFO'][i]['MATERIAL'].toString(),
+              MATERIAL_TEXT:
+                  databuff['HEADER_INFO'][i]['MATERIAL_TEXT'].toString(),
+              TOTAL_QTY: databuff['HEADER_INFO'][i]['TOTAL_QTY'].toString(),
+              UOM: databuff['HEADER_INFO'][i]['UOM'].toString(),
+              PROD_SUP: databuff['HEADER_INFO'][i]['PROD_SUP'].toString(),
+              PROD_SUP_DESC:
+                  databuff['HEADER_INFO'][i]['PROD_SUP_DESC'].toString(),
+              BASIC_START_DATE:
+                  databuff['HEADER_INFO'][i]['BASIC_START_DATE'].toString(),
+              BASIC_FINISH_DATE:
+                  databuff['HEADER_INFO'][i]['BASIC_FINISH_DATE'].toString(),
+              ORDER_SEQ_NO:
+                  databuff['HEADER_INFO'][i]['ORDER_SEQ_NO'].toString(),
+              BATCH: databuff['HEADER_INFO'][i]['BATCH'].toString(),
+              STGE_LOC: databuff['HEADER_INFO'][i]['STGE_LOC'].toString(),
+              INSP_LOT: databuff['HEADER_INFO'][i]['INSP_LOT'].toString(),
+              SYSTEM_STATUS:
+                  databuff['HEADER_INFO'][i]['SYSTEM_STATUS'].toString(),
+              OLD_MATERIAL:
+                  databuff['HEADER_INFO'][i]['OLD_MATERIAL'].toString(),
+              MTART: databuff['HEADER_INFO'][i]['MTART'].toString(),
+              MTBEZ: databuff['HEADER_INFO'][i]['MTBEZ'].toString(),
+              LINK_PROC_ORDER:
+                  databuff['HEADER_INFO'][i]['LINK_PROC_ORDER'].toString(),
+            ));
+          }
         }
       }
 

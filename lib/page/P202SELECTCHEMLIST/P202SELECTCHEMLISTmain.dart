@@ -13,6 +13,8 @@ import '../page201.dart';
 import '../page202.dart';
 import '../page203.dart';
 import '../page211.dart';
+import '../page221.dart';
+import '../page231.dart';
 import '../page301.dart';
 import 'P202SELECTCHEMLISTvar.dart';
 
@@ -147,6 +149,14 @@ class _P202SELECTCHEMLISTmainBodyState
                               if (s == 1) {
                                 MainBodyContext.read<ChangePage_Bloc>()
                                     .ChangePage_nodrower('', Page211());
+                              }
+                              if (s == 3) {
+                                MainBodyContext.read<ChangePage_Bloc>()
+                                    .ChangePage_nodrower('', Page221());
+                              }
+                              if (s == 4) {
+                                MainBodyContext.read<ChangePage_Bloc>()
+                                    .ChangePage_nodrower('', Page231());
                               }
                             },
                             child: AnimatedContainer(

@@ -1,10 +1,10 @@
 class P202SELECTCHEMLISTvar {
   static List<String> NameList = [
-    "QM INCOMING",
-    "Planing",
-    "Weight Record",
-    "Machine Confirm",
-    "Goods Receip",
+    "QM INCOMING QM-I002/03/05",
+    "Planing PP-I001",
+    "Weight Record PP-I012",
+    "Machine Confirm PP-I005",
+    "Goods Receip PP-I003",
     "GAS",
     "PH",
     "ISN",

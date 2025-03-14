@@ -2,35 +2,47 @@ import 'package:flutter/material.dart';
 
 import 'tablebox.dart';
 
-class PLANINGSUBtable extends StatelessWidget {
-  const PLANINGSUBtable({super.key});
+class INSP_SPECtable extends StatelessWidget {
+  const INSP_SPECtable({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
         Expanded(
-          flex: 1,
+          flex: 2,
           child: rowbox_type0(
-            Head: "ITEM",
-          ),
-        ),
-        Expanded(
-          flex: 3,
-          child: rowbox_type0(
-            Head: "MATERIAL_TEXT",
+            Head: "MIC_SHORTTEXT",
           ),
         ),
         Expanded(
           flex: 1,
           child: rowbox_type0(
-            Head: "REQ_QTY",
+            Head: "REC_TYPE",
           ),
         ),
         Expanded(
           flex: 1,
           child: rowbox_type0(
-            Head: "BATCH",
+            Head: "MIC",
+          ),
+        ),
+        Expanded(
+          flex: 1,
+          child: rowbox_type0(
+            Head: "ANSWER",
+          ),
+        ),
+        Expanded(
+          flex: 1,
+          child: rowbox_type0(
+            Head: "ANSWER_CODE",
+          ),
+        ),
+        Expanded(
+          flex: 1,
+          child: rowbox_type0(
+            Head: "STATUS",
           ),
         ),
       ],
@@ -38,8 +50,8 @@ class PLANINGSUBtable extends StatelessWidget {
   }
 }
 
-class PLANINGSUBitem extends StatelessWidget {
-  PLANINGSUBitem({
+class INSP_SPECitem extends StatelessWidget {
+  INSP_SPECitem({
     super.key,
     this.text01,
     this.text02,
@@ -67,35 +79,39 @@ class PLANINGSUBitem extends StatelessWidget {
     return Row(
       children: [
         Expanded(
-          flex: 1,
+          flex: 2,
           child: rowbox_type0(
             Head: text01,
-            // Colorss: (holding ?? 0) % 2 == 0 ? Colors.white : Colors.grey,
-            // Colorss: holding ?? false ? Colors.grey.shade300 : Colors.white,
           ),
         ),
         Expanded(
-          flex: 3,
+          flex: 1,
           child: rowbox_type0(
             Head: text02,
-            // Colorss: (holding ?? 0) % 2 == 0 ? Colors.white : Colors.grey,
-            // Colorss: holding ?? false ? Colors.grey.shade300 : Colors.white,
           ),
         ),
         Expanded(
           flex: 1,
           child: rowbox_type0(
             Head: text03,
-            // Colorss: (holding ?? 0) % 2 == 0 ? Colors.white : Colors.grey,
-            // Colorss: holding ?? false ? Colors.grey.shade300 : Colors.white,
           ),
         ),
         Expanded(
           flex: 1,
           child: rowbox_type0(
             Head: text04,
-            // Colorss: (holding ?? 0) % 2 == 0 ? Colors.white : Colors.grey,
-            // Colorss: holding ?? false ? Colors.grey.shade300 : Colors.white,
+          ),
+        ),
+        Expanded(
+          flex: 1,
+          child: rowbox_type0(
+            Head: text05,
+          ),
+        ),
+        Expanded(
+          flex: 1,
+          child: rowbox_type0(
+            Head: text06,
           ),
         ),
       ],

@@ -6,39 +6,38 @@ import '../../page/P211CHEMPLANING/P211CHEMPLANINGVAR.dart';
 import '../../widget/common/Loading.dart';
 //-------------------------------------------------
 
-abstract class P211CHEMPLANINGgetsub_Event {}
+abstract class P310GETDETAIL_Event {}
 
-class P211CHEMPLANINGgetsub_GET extends P211CHEMPLANINGgetsub_Event {}
+class P310GETDETAIL_GET extends P310GETDETAIL_Event {}
 
-class P211CHEMPLANINGgetsub_GET2 extends P211CHEMPLANINGgetsub_Event {}
+class P310GETDETAIL_GET2 extends P310GETDETAIL_Event {}
 
-class P211CHEMPLANINGgetsub_GET3 extends P211CHEMPLANINGgetsub_Event {}
+class P310GETDETAIL_GET3 extends P310GETDETAIL_Event {}
 
-class P211CHEMPLANINGgetsub_FLUSH extends P211CHEMPLANINGgetsub_Event {}
+class P310GETDETAIL_FLUSH extends P310GETDETAIL_Event {}
 
-class P211CHEMPLANINGgetsub_Bloc extends Bloc<P211CHEMPLANINGgetsub_Event,
-    List<P211CHEMPLANINGgetsubclass>> {
-  P211CHEMPLANINGgetsub_Bloc() : super([]) {
-    on<P211CHEMPLANINGgetsub_GET>((event, emit) {
-      return _P211CHEMPLANINGgetsub_GET([], emit);
+class P310GETDETAIL_Bloc
+    extends Bloc<P310GETDETAIL_Event, List<P310GETDETAILclass>> {
+  P310GETDETAIL_Bloc() : super([]) {
+    on<P310GETDETAIL_GET>((event, emit) {
+      return _P310GETDETAIL_GET([], emit);
     });
 
-    on<P211CHEMPLANINGgetsub_GET2>((event, emit) {
-      return _P211CHEMPLANINGgetsub_GET2([], emit);
+    on<P310GETDETAIL_GET2>((event, emit) {
+      return _P310GETDETAIL_GET2([], emit);
     });
-    on<P211CHEMPLANINGgetsub_GET3>((event, emit) {
-      return _P211CHEMPLANINGgetsub_GET3([], emit);
+    on<P310GETDETAIL_GET3>((event, emit) {
+      return _P310GETDETAIL_GET3([], emit);
     });
-    on<P211CHEMPLANINGgetsub_FLUSH>((event, emit) {
-      return _P211CHEMPLANINGgetsub_FLUSH([], emit);
+    on<P310GETDETAIL_FLUSH>((event, emit) {
+      return _P310GETDETAIL_FLUSH([], emit);
     });
   }
 
-  Future<void> _P211CHEMPLANINGgetsub_GET(
-      List<P211CHEMPLANINGgetsubclass> toAdd,
-      Emitter<List<P211CHEMPLANINGgetsubclass>> emit) async {
+  Future<void> _P310GETDETAIL_GET(List<P310GETDETAILclass> toAdd,
+      Emitter<List<P310GETDETAILclass>> emit) async {
     // FreeLoadingTan(CONTEXTFORUSEPAGE19TO25.LOADINGcontext);
-    List<P211CHEMPLANINGgetsubclass> output = [];
+    List<P310GETDETAILclass> output = [];
     //-------------------------------------------------------------------------------------
     final response = await Dio().post(
       "${server2}03iPPGETDATACHEM/GETDATA",
@@ -55,7 +54,7 @@ class P211CHEMPLANINGgetsub_Bloc extends Bloc<P211CHEMPLANINGgetsub_Event,
         for (var i = 0; i < databuff['COMPONENT_INFO'].length; i++) {
           if (P211CHEMPLANINGVAR.PROCESS_ORDERselect ==
               databuff['COMPONENT_INFO'][i]['PROCESS_ORDER'].toString()) {
-            output.add(P211CHEMPLANINGgetsubclass(
+            output.add(P310GETDETAILclass(
               PROCESS_ORDER:
                   databuff['COMPONENT_INFO'][i]['PROCESS_ORDER'].toString(),
               ITEM: databuff['COMPONENT_INFO'][i]['ITEM'].toString(),
@@ -86,40 +85,37 @@ class P211CHEMPLANINGgetsub_Bloc extends Bloc<P211CHEMPLANINGgetsub_Event,
     emit(output);
   }
 
-  Future<void> _P211CHEMPLANINGgetsub_GET2(
-      List<P211CHEMPLANINGgetsubclass> toAdd,
-      Emitter<List<P211CHEMPLANINGgetsubclass>> emit) async {
-    List<P211CHEMPLANINGgetsubclass> output = [];
+  Future<void> _P310GETDETAIL_GET2(List<P310GETDETAILclass> toAdd,
+      Emitter<List<P310GETDETAILclass>> emit) async {
+    List<P310GETDETAILclass> output = [];
     //-------------------------------------------------------------------------------------
-    List<P211CHEMPLANINGgetsubclass> datadummy = [];
+    List<P310GETDETAILclass> datadummy = [];
 
     //-------------------------------------------------------------------------------------
     output = datadummy;
     emit(output);
   }
 
-  Future<void> _P211CHEMPLANINGgetsub_GET3(
-      List<P211CHEMPLANINGgetsubclass> toAdd,
-      Emitter<List<P211CHEMPLANINGgetsubclass>> emit) async {
-    List<P211CHEMPLANINGgetsubclass> output = [];
+  Future<void> _P310GETDETAIL_GET3(List<P310GETDETAILclass> toAdd,
+      Emitter<List<P310GETDETAILclass>> emit) async {
+    List<P310GETDETAILclass> output = [];
     //-------------------------------------------------------------------------------------
-    List<P211CHEMPLANINGgetsubclass> datadummy = [];
+    List<P310GETDETAILclass> datadummy = [];
 
     //-------------------------------------------------------------------------------------
     output = datadummy;
     emit(output);
   }
 
-  Future<void> _P211CHEMPLANINGgetsub_FLUSH(
-      List<P211CHEMPLANINGgetsubclass> toAdd,
-      Emitter<List<P211CHEMPLANINGgetsubclass>> emit) async {
-    List<P211CHEMPLANINGgetsubclass> output = [];
+  Future<void> _P310GETDETAIL_FLUSH(List<P310GETDETAILclass> toAdd,
+      Emitter<List<P310GETDETAILclass>> emit) async {
+    List<P310GETDETAILclass> output = [];
     emit(output);
   }
 }
 
-class P211CHEMPLANINGgetsubclass {
-  P211CHEMPLANINGgetsubclass({
+class P310GETDETAILclass {
+  P310GETDETAILclass({
     this.PROCESS_ORDER = '',
     this.ITEM = '',
     this.MATERIAL = '',

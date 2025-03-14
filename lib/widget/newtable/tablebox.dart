@@ -52,7 +52,7 @@ class oneunitbox extends StatelessWidget {
       ),
       decoration: BoxDecoration(
         color: Colorss ?? Colors.white,
-        border: Border.all(color: Colors.black, width: 2),
+        border: Border.all(color: Colors.black, width: 1),
       ),
     );
   }
@@ -100,7 +100,7 @@ class oneunitbox01 extends StatelessWidget {
       ),
       decoration: BoxDecoration(
         color: Colors.white,
-        border: Border.all(color: Colors.black, width: 2),
+        border: Border.all(color: Colors.black, width: 1),
       ),
     );
   }
@@ -148,7 +148,7 @@ class oneunitbox02 extends StatelessWidget {
       ),
       decoration: BoxDecoration(
         color: Colors.white,
-        border: Border.all(color: Colors.black, width: 2),
+        border: Border.all(color: Colors.black, width: 1),
       ),
     );
   }
@@ -206,7 +206,7 @@ class oneunitbox_NB extends StatelessWidget {
       ),
       decoration: BoxDecoration(
         color: Colorss ?? Colors.white,
-        // border: Border.all(color: Colors.black, width: 2),
+        // border: Border.all(color: Colors.black, width: 1),
       ),
     );
   }

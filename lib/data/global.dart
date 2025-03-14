@@ -61,4 +61,5 @@ bool PAgeorPOP = false;
 String server = 'http://172.23.10.40:16714/';
 // String server2 = 'http://172.23.10.34:14090/';
 String server2 = 'http://127.0.0.1:14094/';
+String server3 = 'http://127.0.0.1:14090/';
 String serverGB = 'http://127.0.0.1:18000/';

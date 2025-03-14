@@ -221,6 +221,16 @@ class PINSP_SPECclass {
     this.STUPPER_IND = '',
     this.STLOWER = '',
     this.STLOWER_IND = '',
+
+    //
+    this.iDATA = '',
+    this.DATAAP = '',
+    this.DATAAP_TEXT = '',
+    this.DATASUM = '',
+    this.DATASUM_TEXT = '',
+    this.CODEG = '',
+    this.STATUS = '',
+    this.VALUATION = '',
   });
   String INSP_LOT;
   String NODE;
@@ -250,6 +260,15 @@ class PINSP_SPECclass {
   String STUPPER_IND;
   String STLOWER;
   String STLOWER_IND;
+
+  String iDATA;
+  String DATAAP;
+  String DATAAP_TEXT;
+  String DATASUM;
+  String DATASUM_TEXT;
+  String CODEG;
+  String STATUS;
+  String VALUATION;
 }
 
 class SELECTED_SETclass {

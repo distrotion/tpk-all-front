@@ -3,36 +3,37 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../bloc/BlocEvent/P211-01-P211CHEMPLANINGget.dart';
+import '../bloc/BlocEvent/P231-01-P221FINISHEDGOODTRANFERget.dart';
+
 import 'P202SELECTCHEMLIST/P202SELECTCHEMLISTmain.dart';
 import 'P203SELECTPLANT/P203SELECTPLANTmain.dart';
 import 'P204HANDSLIST/P204HANDSLISTmain.dart';
-import 'P211CHEMPLANING/P211CHEMPLANING.dart';
+import 'P231FINISHEDGOODTRANFER/P231FINISHEDGOODTRANFER.dart';
 
 //---------------------------------------------------------
 
-class Page211 extends StatelessWidget {
-  const Page211({Key? key}) : super(key: key);
+class Page231 extends StatelessWidget {
+  const Page231({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Page211BlocTableBody();
+    return Page231BlocTableBody();
   }
 }
 
-class Page211BlocTableBody extends StatelessWidget {
-  const Page211BlocTableBody({
+class Page231BlocTableBody extends StatelessWidget {
+  const Page231BlocTableBody({
     Key? key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-        create: (_) => P211CHEMPLANINGget_Bloc(),
-        child:
-            BlocBuilder<P211CHEMPLANINGget_Bloc, List<P211CHEMPLANINGgetclass>>(
+        create: (_) => P231FINISHEDGOODTRANFERget_Bloc(),
+        child: BlocBuilder<P231FINISHEDGOODTRANFERget_Bloc,
+            List<P231FINISHEDGOODTRANFERgetclass>>(
           builder: (context, data) {
-            return Page211Body(
+            return Page231Body(
               data: data,
             );
           },
@@ -40,15 +41,15 @@ class Page211BlocTableBody extends StatelessWidget {
   }
 }
 
-class Page211Body extends StatelessWidget {
-  Page211Body({
+class Page231Body extends StatelessWidget {
+  Page231Body({
     super.key,
     this.data,
   });
-  List<P211CHEMPLANINGgetclass>? data;
+  List<P231FINISHEDGOODTRANFERgetclass>? data;
   @override
   Widget build(BuildContext context) {
-    return P211CHEMPLANING(
+    return P231FINISHEDGOODTRANFER(
       data: data,
     );
   }

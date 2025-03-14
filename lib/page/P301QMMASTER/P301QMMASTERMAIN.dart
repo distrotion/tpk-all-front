@@ -1,4 +1,5 @@
 // ignore_for_file: prefer_const_constructors, must_be_immutable
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
@@ -12,13 +13,15 @@ import '../../mainBody.dart';
 import '../../widget/common/Calendarwid.dart';
 import '../../widget/common/ComInputText.dart';
 import '../../widget/common/ComInputTextTan.dart';
-import '../../widget/qmtable/INSP_SPECtable.dart';
-import '../../widget/qmtable/QMMAASTERtable.dart';
+import '../../widget/newtable/INSP_SPECtable.dart';
+import '../../widget/newtable/QMMAASTERtable.dart';
 import '../../widget/table/PROGRESSMAIN.dart';
 
+import '../page202.dart';
 import 'P301QMMASTERVAR.dart';
 
 late BuildContext P301QMMASTERMAINcontext;
+late BuildContext P301QMMASTERMAINcontextpop1;
 
 class P301QMMASTERMAIN extends StatefulWidget {
   P301QMMASTERMAIN({
@@ -60,6 +63,76 @@ class _P301QMMASTERMAINState extends State<P301QMMASTERMAIN> {
         padding: const EdgeInsets.all(26.0),
         child: Column(
           children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(left: 40),
+                  child: Row(
+                    children: [
+                      InkWell(
+                        onTap: () {
+                          MainBodyContext.read<ChangePage_Bloc>()
+                              .ChangePage_nodrower('', Page202());
+                        },
+                        child: SizedBox(
+                          width: 200,
+                          child: Icon(
+                            Icons.arrow_back_ios,
+                            size: 40,
+                            color: Colors.blue,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: Center(
+                    child: ShaderMask(
+                      shaderCallback: (bounds) => LinearGradient(
+                        colors: const [
+                          Colors.blueAccent,
+                          Colors.lightBlueAccent
+                        ],
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                      ).createShader(bounds),
+                      child: Text(
+                        'SELECT OPERATION PROGRESS',
+                        style: TextStyle(
+                          fontSize: 20.0,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 40),
+                  child: Row(
+                    children: [
+                      InkWell(
+                        onTap: () {
+                          // MainBodyContext.read<ChangePage_Bloc>()
+                          //     .ChangePage_nodrower('', Page1());
+                        },
+                        child: SizedBox(
+                          width: 200,
+                          // child: Icon(
+                          //   Icons.arrow_back_ios,
+                          //   size: 40,
+                          //   color: Colors.blue,
+                          // ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
             Padding(
               padding: const EdgeInsets.all(20.0),
               child: Column(
@@ -133,7 +206,9 @@ class _P301QMMASTERMAINState extends State<P301QMMASTERMAIN> {
                         child: Text(
                           "วันที่ : ${P301QMMASTERVAR.day}-${P301QMMASTERVAR.month}-${P301QMMASTERVAR.year}",
                           style: TextStyle(
-                              fontWeight: FontWeight.bold, color: Colors.black),
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black,
+                          ),
                         ),
                       ),
                     ),
@@ -156,6 +231,9 @@ class _P301QMMASTERMAINState extends State<P301QMMASTERMAIN> {
                                   P301QMMASTERVAR.pagepop = 0;
                                   P301QMMASTERVAR.INSP_LOTset =
                                       _datain[i].INSP_LOT;
+                                  P301QMMASTERVAR.TO_UR = _datain[i].INSP_QTY;
+                                  P301QMMASTERVAR.TO_ALL = _datain[i].INSP_QTY;
+                                  P301QMMASTERVAR.TO_BL = "";
                                   P301QMMASTERVAR.INSP_SPECdata = [];
                                   P301QMMASTERVAR.SELECTED_SETdata = [];
                                   P301QMMASTERVAR.UDCODEdata = [];
@@ -248,6 +326,7 @@ class _NEWNEWREQUESTState extends State<NEWNEWREQUEST> {
 
   @override
   Widget build(BuildContext context) {
+    P301QMMASTERMAINcontextpop1 = context;
     P301QMMASTERgetINSP_SPECclassSET _datain = widget.datain ??
         P301QMMASTERgetINSP_SPECclassSET(
           INSP_SPEC: [],
@@ -337,11 +416,13 @@ class _NEWNEWREQUESTState extends State<NEWNEWREQUEST> {
                                   // P301QMMASTERVAR.SELECTEDSETsetAC =
                                   //     P301QMMASTERVAR
                                   //         .INSP_SPECdata[i].SLECTEDSET;
+                                  P301QMMASTERVAR.iSELECTEDSETset =
+                                      _datain.SELECTED_SET[i];
                                   P301QMMASTERVAR.SELECTEDSETset =
                                       P301QMMASTERVAR
                                           .INSP_SPECdata[i].SLECTEDSET;
-                                  print(
-                                      '--->' + P301QMMASTERVAR.SELECTEDSETset);
+                                  // print(
+                                  //     '--->' + P301QMMASTERVAR.SELECTEDSETset);
                                   for (var i = 0;
                                       i < _datain.SELECTED_SET.length;
                                       i++) {
@@ -377,7 +458,10 @@ class _NEWNEWREQUESTState extends State<NEWNEWREQUEST> {
                                   } else {
                                     P301QMMASTERVAR.pagepopapp = 1;
                                   }
-
+                                  P301QMMASTERVAR.DATASUM = '';
+                                  P301QMMASTERVAR.iDATA = i;
+                                  P301QMMASTERVAR.iINSP_SPECdata =
+                                      P301QMMASTERVAR.INSP_SPECdata[i];
                                   _QMI003POPapp(context);
                                 },
                                 onHover: (v) {
@@ -390,8 +474,15 @@ class _NEWNEWREQUESTState extends State<NEWNEWREQUEST> {
                                   text02:
                                       P301QMMASTERVAR.INSP_SPECdata[i].REC_TYPE,
                                   text03: P301QMMASTERVAR.INSP_SPECdata[i].MIC,
-                                  text04: "",
-                                  text05: "",
+                                  text04:
+                                      P301QMMASTERVAR.INSP_SPECdata[i].DATASUM +
+                                          P301QMMASTERVAR
+                                              .INSP_SPECdata[i].DATAAP_TEXT,
+                                  text05: P301QMMASTERVAR
+                                          .INSP_SPECdata[i].DATASUM_TEXT +
+                                      P301QMMASTERVAR.INSP_SPECdata[i].DATAAP,
+                                  text06:
+                                      P301QMMASTERVAR.INSP_SPECdata[i].STATUS,
                                 ),
                               ),
                             ],
@@ -403,17 +494,103 @@ class _NEWNEWREQUESTState extends State<NEWNEWREQUEST> {
                 ),
               ),
               InkWell(
+                onTap: () async {
+                  //
+                  print("------------------>");
+                  List<Map<String, dynamic>> databuff = [];
+
+                  for (var i = 0;
+                      i < P301QMMASTERVAR.INSP_SPECdata.length;
+                      i++) {
+                    //
+                    if (P301QMMASTERVAR.INSP_SPECdata[i].DATASUM == '') {
+                      databuff.add({
+                        "INSP_LOT": P301QMMASTERVAR.INSP_LOTset,
+                        "INSPOPER": "10", //
+                        "INSPCHAR": P301QMMASTERVAR.INSP_SPECdata[i].INSP_CHAR,
+                        "INSPSAMPLE": "000001",
+                        "CLOSED": "X", //
+                        "EVALUATED": "X", //
+                        "EVALUATION":
+                            P301QMMASTERVAR.INSP_SPECdata[i].VALUATION, // A,R
+                        "MEAN_VALUE": '', // "",12.123
+                        "REMARK": "-",
+                        "CODE1": P301QMMASTERVAR.INSP_SPECdata[i].DATAAP,
+                        "CODE_GRP1": P301QMMASTERVAR.INSP_SPECdata[i].CODEG,
+                        "ORIGINAL_INPUT": ""
+                      });
+                    } else {
+                      databuff.add({
+                        "INSP_LOT": P301QMMASTERVAR.INSP_LOTset,
+                        "INSPOPER": "10", //
+                        "INSPCHAR": P301QMMASTERVAR.INSP_SPECdata[i].INSP_CHAR,
+                        "INSPSAMPLE": "000001",
+                        "CLOSED": "X", //
+                        "EVALUATED": "X", //
+                        "EVALUATION":
+                            P301QMMASTERVAR.INSP_SPECdata[i].VALUATION, // A,R
+                        "MEAN_VALUE":
+                            P301QMMASTERVAR.INSP_SPECdata[i].DATASUM, //
+                        "REMARK": "-",
+                        "CODE1": "",
+                        "CODE_GRP1": "",
+                        "ORIGINAL_INPUT": ""
+                      });
+                    }
+                  }
+
+                  Map<String, dynamic> output = {
+                    "INSPLOT": P301QMMASTERVAR.INSP_LOTset,
+                    "INSPOPER": "10",
+                    "INSPPOINT": "000001",
+                    "USERC1": "-",
+                    "CAT_TYPE": "3",
+                    "PSEL_SET": "2100",
+                    "SEL_SET": "UD-POINT",
+                    "CODE_GRP": "UDCODE",
+                    "CODE": "A2", // A2 , R3
+                    "T_SAMPLE_RESULTS": databuff
+                  };
+
+                  await Dio()
+                      .post(
+                    "${server2}QMINCOMING/SETVALUE",
+                    data: output,
+                  )
+                      .then((v) {
+                    //
+                    print(v.data);
+                  });
+
+                  // print(output);
+                },
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Container(
+                    width: 200,
+                    height: 60,
+                    color: Colors.blue,
+                    child: Center(
+                      child: Text("SAVE"),
+                    ),
+                  ),
+                ),
+              ),
+              InkWell(
                 onTap: () {
                   //
                   P301QMMASTERVAR.pagepop = 1;
                   setState(() {});
                 },
-                child: Container(
-                  width: 200,
-                  height: 60,
-                  color: Colors.blue,
-                  child: Center(
-                    child: Text("Used Decision"),
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Container(
+                    width: 200,
+                    height: 60,
+                    color: Colors.blue,
+                    child: Center(
+                      child: Text("Used Decision"),
+                    ),
                   ),
                 ),
               ),
@@ -424,16 +601,95 @@ class _NEWNEWREQUESTState extends State<NEWNEWREQUEST> {
                   // width: 1100,
                   child: Column(
                     children: [
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: ComInputText(
+                          isEnabled: false,
+                          height: 40,
+                          width: 300,
+                          isContr: P301QMMASTERVAR.iscontrol,
+                          fnContr: (input) {
+                            setState(() {
+                              P301QMMASTERVAR.iscontrol = input;
+                            });
+                          },
+                          sValue: P301QMMASTERVAR.TO_UR,
+                          returnfunc: (String s) {
+                            P301QMMASTERVAR.TO_UR = s;
+                          },
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: ComInputText(
+                          sLabel: "GOOD",
+                          height: 40,
+                          width: 300,
+                          isContr: P301QMMASTERVAR.iscontrol,
+                          fnContr: (input) {
+                            setState(() {
+                              P301QMMASTERVAR.iscontrol = input;
+                            });
+                          },
+                          sValue: P301QMMASTERVAR.TO_UR,
+                          returnfunc: (String s) {
+                            P301QMMASTERVAR.TO_UR = s;
+                          },
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: ComInputText(
+                          sLabel: "NO GOOD",
+                          height: 40,
+                          width: 300,
+                          isContr: P301QMMASTERVAR.iscontrol,
+                          fnContr: (input) {
+                            setState(() {
+                              P301QMMASTERVAR.iscontrol = input;
+                            });
+                          },
+                          sValue: P301QMMASTERVAR.TO_BL,
+                          returnfunc: (String s) {
+                            P301QMMASTERVAR.TO_BL = s;
+                          },
+                        ),
+                      ),
                       for (int i = 0; i < _datain.UDCODE.length; i++) ...[
                         Padding(
                           padding: const EdgeInsets.all(8.0),
-                          child: Container(
-                            height: 80,
-                            width: 400,
-                            color: Colors.green,
-                            child: Center(
-                              child: Text(
-                                _datain.UDCODE[i].CODE_TEXT,
+                          child: InkWell(
+                            onTap: () {
+                              Map<String, String> output = {
+                                "INSPLOT": P301QMMASTERVAR.INSP_LOTset,
+                                "UD_SELECTED_SET": "",
+                                "UD_PLANT": "",
+                                "UD_CODE_GROUP": _datain.UDCODE[i].CODEGROUP,
+                                "UD_CODE": _datain.UDCODE[i].CODE,
+                                "TO_UR": P301QMMASTERVAR.TO_UR,
+                                "TO_BLOCKED": P301QMMASTERVAR.TO_BL,
+                                "TO_RETURN": ""
+                              };
+//
+                              Dio()
+                                  .post(
+                                "${server2}QMINCOMING/UDSAVE",
+                                data: output,
+                              )
+                                  .then((v) {
+                                //
+                                print(v.data);
+                              });
+//
+                            },
+                            child: Container(
+                              height: 80,
+                              width: 400,
+                              color: Colors.green,
+                              child: Center(
+                                child: Text(
+                                  _datain.UDCODE[i].CODE_TEXT,
+                                ),
                               ),
                             ),
                           ),
@@ -443,6 +699,9 @@ class _NEWNEWREQUESTState extends State<NEWNEWREQUEST> {
                   ),
                 ),
               ),
+
+              //
+
               InkWell(
                 onTap: () {
                   //
@@ -526,14 +785,48 @@ class _QMI003POPappState extends State<QMI003POPapp> {
                                 i++) ...[
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
-                                child: Container(
-                                  height: 80,
-                                  width: 200,
-                                  color: Colors.blue,
-                                  child: Center(
-                                    child: Text(
-                                      P301QMMASTERVAR
-                                          .SELECTED_SETdata[i].CODE_TEXT,
+                                child: InkWell(
+                                  onTap: () {
+                                    //
+
+                                    P301QMMASTERVAR
+                                            .INSP_SPECdata[P301QMMASTERVAR.iDATA]
+                                            .DATAAP =
+                                        P301QMMASTERVAR
+                                            .SELECTED_SETdata[i].CODE;
+                                    P301QMMASTERVAR
+                                            .INSP_SPECdata[P301QMMASTERVAR.iDATA]
+                                            .DATAAP_TEXT =
+                                        P301QMMASTERVAR
+                                            .SELECTED_SETdata[i].CODE_TEXT;
+
+                                    P301QMMASTERVAR
+                                            .INSP_SPECdata[P301QMMASTERVAR.iDATA]
+                                            .CODEG =
+                                        P301QMMASTERVAR
+                                            .SELECTED_SETdata[i].CODEGROUP;
+
+                                    P301QMMASTERVAR
+                                            .INSP_SPECdata[P301QMMASTERVAR.iDATA]
+                                            .VALUATION =
+                                        P301QMMASTERVAR
+                                            .SELECTED_SETdata[i].VALUATION;
+
+                                    P301QMMASTERMAINcontextpop1.read<
+                                            P301QMMASTERgetINSP_SPEC_Bloc>()
+                                        .add(P301QMMASTERgetINSP_SPEC_GET());
+
+                                    Navigator.pop(context);
+                                  },
+                                  child: Container(
+                                    height: 80,
+                                    width: 200,
+                                    color: Colors.blue,
+                                    child: Center(
+                                      child: Text(
+                                        P301QMMASTERVAR
+                                            .SELECTED_SETdata[i].CODE_TEXT,
+                                      ),
                                     ),
                                   ),
                                 ),
@@ -575,6 +868,16 @@ class _QMI003POPappState extends State<QMI003POPapp> {
                   //
                   // P301QMMASTERVAR.pagepop = 1;
                   // setState(() {});
+                  P301QMMASTERVAR.INSP_SPECdata[P301QMMASTERVAR.iDATA].DATASUM =
+                      P301QMMASTERVAR.DATASUM;
+                  P301QMMASTERVAR.INSP_SPECdata[P301QMMASTERVAR.iDATA]
+                      .DATASUM_TEXT = "VALUE";
+
+                  P301QMMASTERMAINcontextpop1.read<
+                          P301QMMASTERgetINSP_SPEC_Bloc>()
+                      .add(P301QMMASTERgetINSP_SPEC_GET());
+                  Navigator.pop(context);
+                  // P301QMMASTERVAR.INSP_SPECdata[ P301QMMASTERVAR.iDATA ].DATAAP_TEXT
                 },
                 child: Container(
                   width: 200,
