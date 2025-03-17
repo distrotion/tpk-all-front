@@ -12,6 +12,12 @@ class FINISHEDGOODTRANFERtable extends StatelessWidget {
         Expanded(
           flex: 1,
           child: rowbox_type0(
+            Head: "",
+          ),
+        ),
+        Expanded(
+          flex: 1,
+          child: rowbox_type0(
             Head: "ORDER",
           ),
         ),
@@ -102,6 +108,7 @@ class FINISHEDGOODTRANFERitem extends StatelessWidget {
     this.text11,
     this.text12,
     this.holding,
+    this.Wid01,
   });
 
   String? text01;
@@ -117,12 +124,18 @@ class FINISHEDGOODTRANFERitem extends StatelessWidget {
   String? text11;
   String? text12;
 
+  Widget? Wid01;
+
   bool? holding;
 
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
+        Expanded(
+          flex: 1,
+          child: Wid01 ?? SizedBox(),
+        ),
         Expanded(
           flex: 1,
           child: rowbox_type0_NB(

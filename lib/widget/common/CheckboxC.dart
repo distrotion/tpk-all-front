@@ -13,11 +13,11 @@ class CheckBoxC extends StatefulWidget {
 class _CheckBoxCState extends State<CheckBoxC> {
   @override
   Widget build(BuildContext context) {
-    Color getColor(Set<MaterialState> states) {
-      const Set<MaterialState> interactiveStates = <MaterialState>{
-        MaterialState.pressed,
-        MaterialState.hovered,
-        MaterialState.focused,
+    Color getColor(Set<WidgetState> states) {
+      const Set<WidgetState> interactiveStates = <WidgetState>{
+        WidgetState.pressed,
+        WidgetState.hovered,
+        WidgetState.focused,
       };
       if (states.any(interactiveStates.contains)) {
         return Colors.black;
@@ -27,7 +27,7 @@ class _CheckBoxCState extends State<CheckBoxC> {
 
     return Checkbox(
       checkColor: Colors.white,
-      fillColor: MaterialStateProperty.resolveWith(getColor),
+      fillColor: WidgetStateProperty.resolveWith(getColor),
       value: widget.value,
       onChanged: (bool? value) {
         widget.getChbox!(value!);

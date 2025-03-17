@@ -52,7 +52,7 @@ class P231FINISHEDGOODTRANFERget_Bloc extends Bloc<
           "ORD_ST_DATE_FR":
               "${P231FINISHEDGOODTRANFERVAR.day}.${P231FINISHEDGOODTRANFERVAR.month}.${P231FINISHEDGOODTRANFERVAR.year}",
           "ORD_ST_DATE_TO":
-              "${P231FINISHEDGOODTRANFERVAR.day}.${P231FINISHEDGOODTRANFERVAR.month}.${P231FINISHEDGOODTRANFERVAR.year}",
+              "${P231FINISHEDGOODTRANFERVAR.day_next}.${P231FINISHEDGOODTRANFERVAR.month_next}.${P231FINISHEDGOODTRANFERVAR.year_next}",
           "ORDER_TYPE": "",
           "PROD_SUP": ""
         },
@@ -104,17 +104,25 @@ class P231FINISHEDGOODTRANFERget_Bloc extends Bloc<
                   databuff['HEADER_INFO'][i]['OLD_MATERIAL'].toString(),
               MTART: databuff['HEADER_INFO'][i]['MTART'].toString(),
               MTBEZ: databuff['HEADER_INFO'][i]['MTBEZ'].toString(),
-              LINK_PROC_ORDER:
-                  databuff['HEADER_INFO'][i]['LINK_PROC_ORDER'].toString(),
+              LINK_PROC_ORDER: databuff['HEADER_INFO'][i]['LINK_PROC_ORDER']
+                          .toString() ==
+                      'Manual Create'
+                  ? databuff['HEADER_INFO'][i]['ORDER_SEQ_NO'].toString()
+                  : databuff['HEADER_INFO'][i]['LINK_PROC_ORDER'].toString(),
             ));
 
             final response2 = await Dio().post(
               "${server3}datacentertest/getsoi8order-ro",
               data: {
                 "PLANT": '',
-                "ORDER": databuff['HEADER_INFO'][i]['LINK_PROC_ORDER']
-                    .toString()
-                    .substring(4, 10),
+                "ORDER": (
+                  databuff['HEADER_INFO'][i]['LINK_PROC_ORDER'].toString() ==
+                          'Manual Create'
+                      ? databuff['HEADER_INFO'][i]['ORDER_SEQ_NO'].toString()
+                      : databuff['HEADER_INFO'][i]['LINK_PROC_ORDER']
+                          .toString(),
+                  // ).toString().substring(4, 10),
+                ).toString().substring(5, 11),
               },
             );
             if (response2.statusCode == 200) {
@@ -135,9 +143,14 @@ class P231FINISHEDGOODTRANFERget_Bloc extends Bloc<
               "${server3}datacentertest/getsoi8order-pack-or",
               data: {
                 "PLANT": '',
-                "ORDER": databuff['HEADER_INFO'][i]['LINK_PROC_ORDER']
-                    .toString()
-                    .substring(4, 10),
+                "ORDER": (
+                  databuff['HEADER_INFO'][i]['LINK_PROC_ORDER'].toString() ==
+                          'Manual Create'
+                      ? databuff['HEADER_INFO'][i]['ORDER_SEQ_NO'].toString()
+                      : databuff['HEADER_INFO'][i]['LINK_PROC_ORDER']
+                          .toString(),
+                  // ).toString().substring(4, 10),
+                ).toString().substring(5, 11),
                 // "PLANT": "liquid",
                 // "ORDER": "227276"
               },
@@ -239,6 +252,7 @@ class P231FINISHEDGOODTRANFERgetclass {
     this.NumQuantity2 = '',
     this.NumPackSize3 = '',
     this.NumQuantity3 = '',
+    this.check = false,
   });
 
   String PROCESS_ORDER;
@@ -273,6 +287,8 @@ class P231FINISHEDGOODTRANFERgetclass {
   String NumQuantity2;
   String NumPackSize3;
   String NumQuantity3;
+
+  bool check;
 }
 
 String savenull(input) {

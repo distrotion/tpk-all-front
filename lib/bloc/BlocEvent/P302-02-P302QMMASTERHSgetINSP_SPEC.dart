@@ -2,59 +2,63 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../data/global.dart';
-import '../../page/P301QMMASTER/P301QMMASTERVAR.dart';
+import '../../page/P302QMMASTERHS/P302QMMASTERHSVAR.dart';
 import '../../widget/common/Loading.dart';
 //-------------------------------------------------
 
-abstract class P301QMMASTERgetINSP_SPEC_Event {}
+abstract class P302QMMASTERHSgetINSP_SPEC_Event {}
 
-class P301QMMASTERgetINSP_SPEC_GET extends P301QMMASTERgetINSP_SPEC_Event {}
+class P302QMMASTERHSgetINSP_SPEC_GET extends P302QMMASTERHSgetINSP_SPEC_Event {}
 
-class P301QMMASTERgetINSP_SPEC_GET2 extends P301QMMASTERgetINSP_SPEC_Event {}
+class P302QMMASTERHSgetINSP_SPEC_GET2
+    extends P302QMMASTERHSgetINSP_SPEC_Event {}
 
-class P301QMMASTERgetINSP_SPEC_GET3 extends P301QMMASTERgetINSP_SPEC_Event {}
+class P302QMMASTERHSgetINSP_SPEC_GET3
+    extends P302QMMASTERHSgetINSP_SPEC_Event {}
 
-class P301QMMASTERgetINSP_SPEC_FLUSH extends P301QMMASTERgetINSP_SPEC_Event {}
+class P302QMMASTERHSgetINSP_SPEC_FLUSH
+    extends P302QMMASTERHSgetINSP_SPEC_Event {}
 
-class P301QMMASTERgetINSP_SPEC_Bloc extends Bloc<P301QMMASTERgetINSP_SPEC_Event,
-    P301QMMASTERgetINSP_SPECclassSET> {
-  P301QMMASTERgetINSP_SPEC_Bloc() : super(P301QMMASTERgetINSP_SPECclassSET()) {
-    on<P301QMMASTERgetINSP_SPEC_GET>((event, emit) {
-      return _P301QMMASTERgetINSP_SPEC_GET(
-          P301QMMASTERgetINSP_SPECclassSET(), emit);
+class P302QMMASTERHSgetINSP_SPEC_Bloc extends Bloc<
+    P302QMMASTERHSgetINSP_SPEC_Event, P302QMMASTERHSgetINSP_SPECclassSET> {
+  P302QMMASTERHSgetINSP_SPEC_Bloc()
+      : super(P302QMMASTERHSgetINSP_SPECclassSET()) {
+    on<P302QMMASTERHSgetINSP_SPEC_GET>((event, emit) {
+      return _P302QMMASTERHSgetINSP_SPEC_GET(
+          P302QMMASTERHSgetINSP_SPECclassSET(), emit);
     });
 
-    on<P301QMMASTERgetINSP_SPEC_GET2>((event, emit) {
-      return _P301QMMASTERgetINSP_SPEC_GET2(
-          P301QMMASTERgetINSP_SPECclassSET(), emit);
+    on<P302QMMASTERHSgetINSP_SPEC_GET2>((event, emit) {
+      return _P302QMMASTERHSgetINSP_SPEC_GET2(
+          P302QMMASTERHSgetINSP_SPECclassSET(), emit);
     });
-    on<P301QMMASTERgetINSP_SPEC_GET3>((event, emit) {
-      return _P301QMMASTERgetINSP_SPEC_GET3(
-          P301QMMASTERgetINSP_SPECclassSET(), emit);
+    on<P302QMMASTERHSgetINSP_SPEC_GET3>((event, emit) {
+      return _P302QMMASTERHSgetINSP_SPEC_GET3(
+          P302QMMASTERHSgetINSP_SPECclassSET(), emit);
     });
-    on<P301QMMASTERgetINSP_SPEC_FLUSH>((event, emit) {
-      return _P301QMMASTERgetINSP_SPEC_FLUSH(
-          P301QMMASTERgetINSP_SPECclassSET(), emit);
+    on<P302QMMASTERHSgetINSP_SPEC_FLUSH>((event, emit) {
+      return _P302QMMASTERHSgetINSP_SPEC_FLUSH(
+          P302QMMASTERHSgetINSP_SPECclassSET(), emit);
     });
   }
 
-  Future<void> _P301QMMASTERgetINSP_SPEC_GET(
-      P301QMMASTERgetINSP_SPECclassSET toAdd,
-      Emitter<P301QMMASTERgetINSP_SPECclassSET> emit) async {
+  Future<void> _P302QMMASTERHSgetINSP_SPEC_GET(
+      P302QMMASTERHSgetINSP_SPECclassSET toAdd,
+      Emitter<P302QMMASTERHSgetINSP_SPECclassSET> emit) async {
     // FreeLoadingTan(CONTEXTFORUSEPAGE19TO25.LOADINGcontext);
-    P301QMMASTERgetINSP_SPECclassSET output =
-        P301QMMASTERgetINSP_SPECclassSET();
+    P302QMMASTERHSgetINSP_SPECclassSET output =
+        P302QMMASTERHSgetINSP_SPECclassSET();
     //-------------------------------------------------------------------------------------
     final response = await Dio().post(
       "${server2}QMINCOMING/GETDATA",
       data: {
         "HEADER": {
           "FROM_DATE":
-              "${P301QMMASTERVAR.day}.${P301QMMASTERVAR.month}.${P301QMMASTERVAR.year}",
+              "${P302QMMASTERHSVAR.day}.${P302QMMASTERHSVAR.month}.${P302QMMASTERHSVAR.year}",
           "TO_DATE":
-              "${P301QMMASTERVAR.day_next}.${P301QMMASTERVAR.month_next}.${P301QMMASTERVAR.year_next}",
-          "PLANT": P301QMMASTERVAR.PLANT,
-          "LOT_ORI": P301QMMASTERVAR.LOT_ORI,
+              "${P302QMMASTERHSVAR.day_next}.${P302QMMASTERHSVAR.month_next}.${P302QMMASTERHSVAR.year_next}",
+          "PLANT": P302QMMASTERHSVAR.PLANT,
+          "LOT_ORI": P302QMMASTERHSVAR.LOT_ORI,
           "MATERIAL": "",
           "BATCH": "",
           "LOT_NO": ""
@@ -75,7 +79,7 @@ class P301QMMASTERgetINSP_SPEC_Bloc extends Bloc<P301QMMASTERgetINSP_SPEC_Event,
       output.UDCODE = [];
       if (databuff['INSP_SPEC'].length > 0) {
         for (var i = 0; i < databuff['INSP_SPEC'].length; i++) {
-          output.INSP_SPEC.add(PINSP_SPECclass(
+          output.INSP_SPEC.add(PINSP_SPECHSclass(
             INSP_LOT: databuff['INSP_SPEC'][i]['INSP_LOT'].toString(),
             NODE: databuff['INSP_SPEC'][i]['NODE'].toString(),
             INSP_CHAR: databuff['INSP_SPEC'][i]['INSP_CHAR'].toString(),
@@ -113,7 +117,7 @@ class P301QMMASTERgetINSP_SPEC_Bloc extends Bloc<P301QMMASTERgetINSP_SPEC_Event,
 
       if (databuff['SELECTED_SET'].length > 0) {
         for (var i = 0; i < databuff['SELECTED_SET'].length; i++) {
-          output.SELECTED_SET.add(SELECTED_SETclass(
+          output.SELECTED_SET.add(SELECTED_SETHSclass(
             CATALOGTYPE: databuff['SELECTED_SET'][i]['CATALOGTYPE'].toString(),
             SELECTEDSET_PLANT:
                 databuff['SELECTED_SET'][i]['SELECTEDSET_PLANT'].toString(),
@@ -153,59 +157,59 @@ class P301QMMASTERgetINSP_SPEC_Bloc extends Bloc<P301QMMASTERgetINSP_SPEC_Event,
     emit(output);
   }
 
-  Future<void> _P301QMMASTERgetINSP_SPEC_GET2(
-      P301QMMASTERgetINSP_SPECclassSET toAdd,
-      Emitter<P301QMMASTERgetINSP_SPECclassSET> emit) async {
-    P301QMMASTERgetINSP_SPECclassSET output =
-        P301QMMASTERgetINSP_SPECclassSET();
+  Future<void> _P302QMMASTERHSgetINSP_SPEC_GET2(
+      P302QMMASTERHSgetINSP_SPECclassSET toAdd,
+      Emitter<P302QMMASTERHSgetINSP_SPECclassSET> emit) async {
+    P302QMMASTERHSgetINSP_SPECclassSET output =
+        P302QMMASTERHSgetINSP_SPECclassSET();
     //-------------------------------------------------------------------------------------
-    P301QMMASTERgetINSP_SPECclassSET datadummy =
-        P301QMMASTERgetINSP_SPECclassSET();
+    P302QMMASTERHSgetINSP_SPECclassSET datadummy =
+        P302QMMASTERHSgetINSP_SPECclassSET();
 
     //-------------------------------------------------------------------------------------
     output = datadummy;
     emit(output);
   }
 
-  Future<void> _P301QMMASTERgetINSP_SPEC_GET3(
-      P301QMMASTERgetINSP_SPECclassSET toAdd,
-      Emitter<P301QMMASTERgetINSP_SPECclassSET> emit) async {
-    P301QMMASTERgetINSP_SPECclassSET output =
-        P301QMMASTERgetINSP_SPECclassSET();
+  Future<void> _P302QMMASTERHSgetINSP_SPEC_GET3(
+      P302QMMASTERHSgetINSP_SPECclassSET toAdd,
+      Emitter<P302QMMASTERHSgetINSP_SPECclassSET> emit) async {
+    P302QMMASTERHSgetINSP_SPECclassSET output =
+        P302QMMASTERHSgetINSP_SPECclassSET();
     //-------------------------------------------------------------------------------------
-    P301QMMASTERgetINSP_SPECclassSET datadummy =
-        P301QMMASTERgetINSP_SPECclassSET();
+    P302QMMASTERHSgetINSP_SPECclassSET datadummy =
+        P302QMMASTERHSgetINSP_SPECclassSET();
 
     //-------------------------------------------------------------------------------------
     output = datadummy;
     emit(output);
   }
 
-  Future<void> _P301QMMASTERgetINSP_SPEC_FLUSH(
-      P301QMMASTERgetINSP_SPECclassSET toAdd,
-      Emitter<P301QMMASTERgetINSP_SPECclassSET> emit) async {
-    P301QMMASTERgetINSP_SPECclassSET output =
-        P301QMMASTERgetINSP_SPECclassSET();
+  Future<void> _P302QMMASTERHSgetINSP_SPEC_FLUSH(
+      P302QMMASTERHSgetINSP_SPECclassSET toAdd,
+      Emitter<P302QMMASTERHSgetINSP_SPECclassSET> emit) async {
+    P302QMMASTERHSgetINSP_SPECclassSET output =
+        P302QMMASTERHSgetINSP_SPECclassSET();
     emit(output);
   }
 }
 
-class P301QMMASTERgetINSP_SPECclassSET {
-  P301QMMASTERgetINSP_SPECclassSET({
+class P302QMMASTERHSgetINSP_SPECclassSET {
+  P302QMMASTERHSgetINSP_SPECclassSET({
     this.INSP_SPEC = const [],
     this.SELECTED_SET = const [],
     this.UDCODE = const [],
   });
-  List<PINSP_SPECclass> INSP_SPEC;
-  List<SELECTED_SETclass> SELECTED_SET;
+  List<PINSP_SPECHSclass> INSP_SPEC;
+  List<SELECTED_SETHSclass> SELECTED_SET;
 
   List<UDCODEclass> UDCODE;
 
-  //SELECTED_SETclass
+  //SELECTED_SETHSclass
 }
 
-class PINSP_SPECclass {
-  PINSP_SPECclass({
+class PINSP_SPECHSclass {
+  PINSP_SPECHSclass({
     this.INSP_LOT = '',
     this.NODE = '',
     this.INSP_CHAR = '',
@@ -284,8 +288,8 @@ class PINSP_SPECclass {
   String VALUATION;
 }
 
-class SELECTED_SETclass {
-  SELECTED_SETclass({
+class SELECTED_SETHSclass {
+  SELECTED_SETHSclass({
     this.CATALOGTYPE = '',
     this.SELECTEDSET_PLANT = '',
     this.SELECTEDSET = '',

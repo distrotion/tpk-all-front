@@ -51,6 +51,12 @@ class QMMAASTERtable extends StatelessWidget {
             Head: "QTY",
           ),
         ),
+        Expanded(
+          flex: 1,
+          child: rowbox_type0(
+            Head: "STATUS",
+          ),
+        ),
       ],
     );
   }
@@ -68,6 +74,7 @@ class QMMAASTERitem extends StatelessWidget {
     this.text07,
     this.text08,
     this.text09,
+    this.holding,
   });
 
   String? text01;
@@ -79,6 +86,7 @@ class QMMAASTERitem extends StatelessWidget {
   String? text07;
   String? text08;
   String? text09;
+  bool? holding;
 
   @override
   Widget build(BuildContext context) {
@@ -86,44 +94,58 @@ class QMMAASTERitem extends StatelessWidget {
       children: [
         Expanded(
           flex: 1,
-          child: rowbox_type0(
+          child: rowbox_type0_NB_BIG(
             Head: text01,
+            Colorss: holding ?? false ? Colors.grey.shade300 : Colors.white,
           ),
         ),
         Expanded(
           flex: 2,
-          child: rowbox_type0(
+          child: rowbox_type0_NB_BIG(
             Head: text02,
+            Colorss: holding ?? false ? Colors.grey.shade300 : Colors.white,
           ),
         ),
         Expanded(
           flex: 1,
-          child: rowbox_type0(
+          child: rowbox_type0_NB_BIG(
             Head: text03,
+            Colorss: holding ?? false ? Colors.grey.shade300 : Colors.white,
           ),
         ),
         Expanded(
           flex: 1,
-          child: rowbox_type0(
+          child: rowbox_type0_NB_BIG(
             Head: text04,
+            Colorss: holding ?? false ? Colors.grey.shade300 : Colors.white,
           ),
         ),
         Expanded(
           flex: 1,
-          child: rowbox_type0(
+          child: rowbox_type0_NB_BIG(
             Head: text05,
+            Colorss: holding ?? false ? Colors.grey.shade300 : Colors.white,
           ),
         ),
         Expanded(
           flex: 1,
-          child: rowbox_type0(
+          child: rowbox_type0_NB_BIG(
             Head: text06,
+            Colorss: holding ?? false ? Colors.grey.shade300 : Colors.white,
           ),
         ),
         Expanded(
           flex: 1,
-          child: rowbox_type0(
+          child: rowbox_type0_NB_BIG(
             Head: text07,
+            Colorss: holding ?? false ? Colors.grey.shade300 : Colors.white,
+          ),
+        ),
+        Expanded(
+          flex: 1,
+          child: rowbox_type0_NB_BIG(
+            Head: text08,
+            Colorss: holding ?? false ? Colors.grey.shade300 : Colors.white,
           ),
         ),
       ],

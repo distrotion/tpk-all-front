@@ -1,23 +1,8 @@
 class P204HANDSLISTvar {
   static List<String> NameList = [
-    "QM-I003 : [Chemical/ H&S] Inbound interface result recoding for incoming inspection lot with inspection point",
-    "QM-I004 : [Chemical/ H&S] Inbound Interface Usage Decision for Incoming Inspection lot and Final Inspection Lot",
-    "PP-I002 – Outbound Process order ",
-    "PP-I007 - Interface Update Status to PPIC",
-    "PP-I008 - Inbound Production Confirm From TPPS System to SAP",
-    "PP-I007 - Interface Update User Status  to QCFN",
-    "PP-I008 - Inbound Production Confirm From TTPS System to SAP",
-    "PP-I004 - Inbound Post Goods Receipt FG",
-    "GAS",
-    "PH",
-    "ISN",
-    "PVD",
-    "PAL",
-    "DELTA",
-    "",
-    "",
-    "",
-    "",
+    "QM INCOMING QM-I002/03/05",
+    "PP-I001  Order list",
+    "PP-I004  Good Receive",
   ];
 
   static List<bool> isHoveredList = [

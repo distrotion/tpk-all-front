@@ -43,9 +43,19 @@ class _P301QMMASTERMAINState extends State<P301QMMASTERMAIN> {
     P301QMMASTERVAR.day = DateFormat('dd').format(now);
     P301QMMASTERVAR.month = DateFormat('MM').format(now);
     P301QMMASTERVAR.year = DateFormat('yyyy').format(now);
-    // P301QMMASTERVAR.day = "03";
-    // P301QMMASTERVAR.month = "03";
-    // P301QMMASTERVAR.year = "2025";
+
+    P301QMMASTERVAR.day_next = DateFormat('dd').format(now);
+    P301QMMASTERVAR.month_next = DateFormat('MM').format(now);
+    P301QMMASTERVAR.year_next = DateFormat('yyyy').format(now);
+
+    // P301QMMASTERVAR.day_next = "05";
+    // P301QMMASTERVAR.month_next = "04";
+    // P301QMMASTERVAR.year_next = "2025";
+
+    P301QMMASTERVAR.PLANT = QUERYDATASET.PLANT;
+    P301QMMASTERVAR.LOT_ORI = QUERYDATASET.LOT_ORI;
+
+    P301QMMASTERVAR.holding = 999;
 
     P301QMMASTERVAR.iscontrol = true;
     P301QMMASTERVAR.SEARCH = '';
@@ -189,6 +199,9 @@ class _P301QMMASTERMAINState extends State<P301QMMASTERMAIN> {
                         P301QMMASTERVAR.year = year;
 
                         setState(() {});
+                        context
+                            .read<P301QMMASTERget_Bloc>()
+                            .add(P301QMMASTERget_GET());
                       });
                     },
                     child: Container(
@@ -209,6 +222,43 @@ class _P301QMMASTERMAINState extends State<P301QMMASTERMAIN> {
                             fontWeight: FontWeight.bold,
                             color: Colors.black,
                           ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  InkWell(
+                    onTap: () {
+                      DateTime calendaset = DateTime.now();
+                      //
+                      CalendaSelectDates(context, calendaset,
+                          (day, month, year) {
+                        //
+                        P301QMMASTERVAR.day_next = day;
+                        P301QMMASTERVAR.month_next = month;
+                        P301QMMASTERVAR.year_next = year;
+
+                        setState(() {});
+                        context
+                            .read<P301QMMASTERget_Bloc>()
+                            .add(P301QMMASTERget_GET());
+                      });
+                    },
+                    child: Container(
+                      height: 30,
+                      // width: 900,
+                      decoration: BoxDecoration(
+                        // color: Colors.blue.shade900,
+                        border: Border(
+                          top: BorderSide(),
+                          left: BorderSide(),
+                          right: BorderSide(),
+                        ),
+                      ),
+                      child: Center(
+                        child: Text(
+                          "ถึงวันที่ : ${P301QMMASTERVAR.day_next}-${P301QMMASTERVAR.month_next}-${P301QMMASTERVAR.year_next}",
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, color: Colors.black),
                         ),
                       ),
                     ),
@@ -243,8 +293,12 @@ class _P301QMMASTERMAINState extends State<P301QMMASTERMAIN> {
                                 onHover: (v) {
                                   //
                                   // print(v.toString() + ":" + i.toString());
+                                  setState(() {
+                                    P301QMMASTERVAR.holding = i;
+                                  });
                                 },
                                 child: QMMAASTERitem(
+                                  holding: P301QMMASTERVAR.holding == i,
                                   text01: _datain[i].MATERIAL,
                                   text02: _datain[i].CUST_NAME1,
                                   text03: _datain[i].MAT_DESC,
@@ -254,6 +308,7 @@ class _P301QMMASTERMAINState extends State<P301QMMASTERMAIN> {
                                   text07: _datain[i].INSP_QTY +
                                       ' ' +
                                       _datain[i].INSP_UOM,
+                                  text08: _datain[i].INSP_LOT_STATUS,
                                 ),
                               ),
                             ],
@@ -821,7 +876,11 @@ class _QMI003POPappState extends State<QMI003POPapp> {
                                   child: Container(
                                     height: 80,
                                     width: 200,
-                                    color: Colors.blue,
+                                    color: P301QMMASTERVAR.SELECTED_SETdata[i]
+                                                .VALUATION ==
+                                            'A'
+                                        ? Colors.green
+                                        : Colors.blue,
                                     child: Center(
                                       child: Text(
                                         P301QMMASTERVAR

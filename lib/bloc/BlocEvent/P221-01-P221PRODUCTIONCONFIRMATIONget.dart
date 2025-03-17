@@ -56,7 +56,7 @@ class P221PRODUCTIONCONFIRMATIONget_Bloc extends Bloc<
           "ORD_ST_DATE_FR":
               "${P221PRODUCTIONCONFIRMATIONVAR.day}.${P221PRODUCTIONCONFIRMATIONVAR.month}.${P221PRODUCTIONCONFIRMATIONVAR.year}",
           "ORD_ST_DATE_TO":
-              "${P221PRODUCTIONCONFIRMATIONVAR.day}.${P221PRODUCTIONCONFIRMATIONVAR.month}.${P221PRODUCTIONCONFIRMATIONVAR.year}",
+              "${P221PRODUCTIONCONFIRMATIONVAR.day_next}.${P221PRODUCTIONCONFIRMATIONVAR.month_next}.${P221PRODUCTIONCONFIRMATIONVAR.year_next}",
           "ORDER_TYPE": "",
           "PROD_SUP": ""
         },
@@ -108,17 +108,25 @@ class P221PRODUCTIONCONFIRMATIONget_Bloc extends Bloc<
                   databuff['HEADER_INFO'][i]['OLD_MATERIAL'].toString(),
               MTART: databuff['HEADER_INFO'][i]['MTART'].toString(),
               MTBEZ: databuff['HEADER_INFO'][i]['MTBEZ'].toString(),
-              LINK_PROC_ORDER:
-                  databuff['HEADER_INFO'][i]['LINK_PROC_ORDER'].toString(),
+              LINK_PROC_ORDER: databuff['HEADER_INFO'][i]['LINK_PROC_ORDER']
+                          .toString() ==
+                      'Manual Create'
+                  ? databuff['HEADER_INFO'][i]['ORDER_SEQ_NO'].toString()
+                  : databuff['HEADER_INFO'][i]['LINK_PROC_ORDER'].toString(),
             ));
 
             final response2 = await Dio().post(
               "${server3}datacentertest/getsoi8order-ro",
               data: {
                 "PLANT": 'liquid',
-                "ORDER": databuff['HEADER_INFO'][i]['LINK_PROC_ORDER']
-                    .toString()
-                    .substring(4, 10),
+                "ORDER": (
+                  databuff['HEADER_INFO'][i]['LINK_PROC_ORDER'].toString() ==
+                          'Manual Create'
+                      ? databuff['HEADER_INFO'][i]['ORDER_SEQ_NO'].toString()
+                      : databuff['HEADER_INFO'][i]['LINK_PROC_ORDER']
+                          .toString(),
+                  // ).toString().substring(4, 10),
+                ).toString().substring(5, 11),
               },
             );
             if (response2.statusCode == 200) {
@@ -169,8 +177,11 @@ class P221PRODUCTIONCONFIRMATIONget_Bloc extends Bloc<
                   databuff['HEADER_INFO'][i]['OLD_MATERIAL'].toString(),
               MTART: databuff['HEADER_INFO'][i]['MTART'].toString(),
               MTBEZ: databuff['HEADER_INFO'][i]['MTBEZ'].toString(),
-              LINK_PROC_ORDER:
-                  databuff['HEADER_INFO'][i]['LINK_PROC_ORDER'].toString(),
+              LINK_PROC_ORDER: databuff['HEADER_INFO'][i]['LINK_PROC_ORDER']
+                          .toString() ==
+                      'Manual Create'
+                  ? databuff['HEADER_INFO'][i]['ORDER_SEQ_NO'].toString()
+                  : databuff['HEADER_INFO'][i]['LINK_PROC_ORDER'].toString(),
             ));
 
             output2.add(buffer);

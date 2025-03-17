@@ -1393,7 +1393,8 @@ class _P310CHEMTANKMAINState extends State<P310CHEMTANKMAIN> {
                                         "ENTRY_QNT": orderfg.Yield,
                                         "ENTRY_UOM": ordersemi.UOM,
                                         "MFG_DATE":
-                                            "${calendaset.day}.${calendaset.month}.${calendaset.year}",
+                                            // "${calendaset.day}.${calendaset.month}.${calendaset.year}",
+                                            "${P221PRODUCTIONCONFIRMATIONVAR.day_next}.${P221PRODUCTIONCONFIRMATIONVAR.month_next}.${P221PRODUCTIONCONFIRMATIONVAR.year_next}",
                                       }
                                     ];
 
@@ -1430,10 +1431,14 @@ class _P310CHEMTANKMAINState extends State<P310CHEMTANKMAIN> {
                                           "PHASE": "0020",
                                           "YIELD": orderfg.Yield,
                                           "CONF_QUAN_UNIT": ordersemi.UOM,
+                                          // "POSTG_DATE":
+                                          //     "${calendaset.day}.${calendaset.month}.${calendaset.year}",
+                                          // "EXEC_START_DATE":
+                                          //     "${calendaset.day}.${calendaset.month}.${calendaset.year}",
                                           "POSTG_DATE":
-                                              "${calendaset.day}.${calendaset.month}.${calendaset.year}",
+                                              "${P221PRODUCTIONCONFIRMATIONVAR.day_next}.${P221PRODUCTIONCONFIRMATIONVAR.month_next}.${P221PRODUCTIONCONFIRMATIONVAR.year_next}",
                                           "EXEC_START_DATE":
-                                              "${calendaset.day}.${calendaset.month}.${calendaset.year}",
+                                              "${P221PRODUCTIONCONFIRMATIONVAR.day_next}.${P221PRODUCTIONCONFIRMATIONVAR.month_next}.${P221PRODUCTIONCONFIRMATIONVAR.year_next}",
                                         },
                                         "T_GOODSMOVEMENT": dataout1,
                                       },
@@ -1448,10 +1453,14 @@ class _P310CHEMTANKMAINState extends State<P310CHEMTANKMAIN> {
                                             "PHASE": "0020",
                                             "YIELD": orderfg.Yield,
                                             "CONF_QUAN_UNIT": orderfg.UOM,
+                                            // "POSTG_DATE":
+                                            //     "${calendaset.day}.${calendaset.month}.${calendaset.year}",
+                                            // "EXEC_START_DATE":
+                                            //     "${calendaset.day}.${calendaset.month}.${calendaset.year}",
                                             "POSTG_DATE":
-                                                "${calendaset.day}.${calendaset.month}.${calendaset.year}",
+                                                "${P221PRODUCTIONCONFIRMATIONVAR.day_next}.${P221PRODUCTIONCONFIRMATIONVAR.month_next}.${P221PRODUCTIONCONFIRMATIONVAR.year_next}",
                                             "EXEC_START_DATE":
-                                                "${calendaset.day}.${calendaset.month}.${calendaset.year}",
+                                                "${P221PRODUCTIONCONFIRMATIONVAR.day_next}.${P221PRODUCTIONCONFIRMATIONVAR.month_next}.${P221PRODUCTIONCONFIRMATIONVAR.year_next}",
                                           },
                                           "T_GOODSMOVEMENT": dataout2,
                                         },

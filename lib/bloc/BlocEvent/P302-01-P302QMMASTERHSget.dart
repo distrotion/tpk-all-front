@@ -2,53 +2,54 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../data/global.dart';
-import '../../page/P301QMMASTER/P301QMMASTERVAR.dart';
+
+import '../../page/P302QMMASTERHS/P302QMMASTERHSVAR.dart';
 import '../../widget/common/Loading.dart';
 //-------------------------------------------------
 
-abstract class P301QMMASTERget_Event {}
+abstract class P302QMMASTERHSget_Event {}
 
-class P301QMMASTERget_GET extends P301QMMASTERget_Event {}
+class P302QMMASTERHSget_GET extends P302QMMASTERHSget_Event {}
 
-class P301QMMASTERget_GET2 extends P301QMMASTERget_Event {}
+class P302QMMASTERHSget_GET2 extends P302QMMASTERHSget_Event {}
 
-class P301QMMASTERget_GET3 extends P301QMMASTERget_Event {}
+class P302QMMASTERHSget_GET3 extends P302QMMASTERHSget_Event {}
 
-class P301QMMASTERget_FLUSH extends P301QMMASTERget_Event {}
+class P302QMMASTERHSget_FLUSH extends P302QMMASTERHSget_Event {}
 
-class P301QMMASTERget_Bloc
-    extends Bloc<P301QMMASTERget_Event, List<P301QMMASTERgetclass>> {
-  P301QMMASTERget_Bloc() : super([]) {
-    on<P301QMMASTERget_GET>((event, emit) {
-      return _P301QMMASTERget_GET([], emit);
+class P302QMMASTERHSget_Bloc
+    extends Bloc<P302QMMASTERHSget_Event, List<P302QMMASTERHSgetclass>> {
+  P302QMMASTERHSget_Bloc() : super([]) {
+    on<P302QMMASTERHSget_GET>((event, emit) {
+      return _P302QMMASTERHSget_GET([], emit);
     });
 
-    on<P301QMMASTERget_GET2>((event, emit) {
-      return _P301QMMASTERget_GET2([], emit);
+    on<P302QMMASTERHSget_GET2>((event, emit) {
+      return _P302QMMASTERHSget_GET2([], emit);
     });
-    on<P301QMMASTERget_GET3>((event, emit) {
-      return _P301QMMASTERget_GET3([], emit);
+    on<P302QMMASTERHSget_GET3>((event, emit) {
+      return _P302QMMASTERHSget_GET3([], emit);
     });
-    on<P301QMMASTERget_FLUSH>((event, emit) {
-      return _P301QMMASTERget_FLUSH([], emit);
+    on<P302QMMASTERHSget_FLUSH>((event, emit) {
+      return _P302QMMASTERHSget_FLUSH([], emit);
     });
   }
 
-  Future<void> _P301QMMASTERget_GET(List<P301QMMASTERgetclass> toAdd,
-      Emitter<List<P301QMMASTERgetclass>> emit) async {
+  Future<void> _P302QMMASTERHSget_GET(List<P302QMMASTERHSgetclass> toAdd,
+      Emitter<List<P302QMMASTERHSgetclass>> emit) async {
     // FreeLoadingTan(CONTEXTFORUSEPAGE19TO25.LOADINGcontext);
-    List<P301QMMASTERgetclass> output = [];
+    List<P302QMMASTERHSgetclass> output = [];
     //-------------------------------------------------------------------------------------
     final response = await Dio().post(
       "${server2}QMINCOMING/GETDATA",
       data: {
         "HEADER": {
           "FROM_DATE":
-              "${P301QMMASTERVAR.day}.${P301QMMASTERVAR.month}.${P301QMMASTERVAR.year}",
+              "${P302QMMASTERHSVAR.day}.${P302QMMASTERHSVAR.month}.${P302QMMASTERHSVAR.year}",
           "TO_DATE":
-              "${P301QMMASTERVAR.day_next}.${P301QMMASTERVAR.month_next}.${P301QMMASTERVAR.year_next}",
-          "PLANT": P301QMMASTERVAR.PLANT,
-          "LOT_ORI": P301QMMASTERVAR.LOT_ORI,
+              "${P302QMMASTERHSVAR.day_next}.${P302QMMASTERHSVAR.month_next}.${P302QMMASTERHSVAR.year_next}",
+          "PLANT": P302QMMASTERHSVAR.PLANT,
+          "LOT_ORI": P302QMMASTERHSVAR.LOT_ORI,
           "MATERIAL": "",
           "BATCH": "",
           "LOT_NO": ""
@@ -65,7 +66,7 @@ class P301QMMASTERget_Bloc
 //INSP_LOT
       if (databuff['INSP_LOT'].length > 0) {
         for (var i = 0; i < databuff['INSP_LOT'].length; i++) {
-          output.add(P301QMMASTERgetclass(
+          output.add(P302QMMASTERHSgetclass(
             INSP_LOT: databuff['INSP_LOT'][i]['INSP_LOT'].toString(),
             INSP_LOT_STATUS:
                 databuff['INSP_LOT'][i]['INSP_LOT_STATUS'].toString(),
@@ -142,37 +143,37 @@ class P301QMMASTERget_Bloc
     emit(output);
   }
 
-  Future<void> _P301QMMASTERget_GET2(List<P301QMMASTERgetclass> toAdd,
-      Emitter<List<P301QMMASTERgetclass>> emit) async {
-    List<P301QMMASTERgetclass> output = [];
+  Future<void> _P302QMMASTERHSget_GET2(List<P302QMMASTERHSgetclass> toAdd,
+      Emitter<List<P302QMMASTERHSgetclass>> emit) async {
+    List<P302QMMASTERHSgetclass> output = [];
     //-------------------------------------------------------------------------------------
-    List<P301QMMASTERgetclass> datadummy = [];
+    List<P302QMMASTERHSgetclass> datadummy = [];
 
     //-------------------------------------------------------------------------------------
     output = datadummy;
     emit(output);
   }
 
-  Future<void> _P301QMMASTERget_GET3(List<P301QMMASTERgetclass> toAdd,
-      Emitter<List<P301QMMASTERgetclass>> emit) async {
-    List<P301QMMASTERgetclass> output = [];
+  Future<void> _P302QMMASTERHSget_GET3(List<P302QMMASTERHSgetclass> toAdd,
+      Emitter<List<P302QMMASTERHSgetclass>> emit) async {
+    List<P302QMMASTERHSgetclass> output = [];
     //-------------------------------------------------------------------------------------
-    List<P301QMMASTERgetclass> datadummy = [];
+    List<P302QMMASTERHSgetclass> datadummy = [];
 
     //-------------------------------------------------------------------------------------
     output = datadummy;
     emit(output);
   }
 
-  Future<void> _P301QMMASTERget_FLUSH(List<P301QMMASTERgetclass> toAdd,
-      Emitter<List<P301QMMASTERgetclass>> emit) async {
-    List<P301QMMASTERgetclass> output = [];
+  Future<void> _P302QMMASTERHSget_FLUSH(List<P302QMMASTERHSgetclass> toAdd,
+      Emitter<List<P302QMMASTERHSgetclass>> emit) async {
+    List<P302QMMASTERHSgetclass> output = [];
     emit(output);
   }
 }
 
-class P301QMMASTERgetclass {
-  P301QMMASTERgetclass({
+class P302QMMASTERHSgetclass {
+  P302QMMASTERHSgetclass({
     this.INSP_LOT = '',
     this.INSP_LOT_STATUS = '',
     this.INSP_LOT_ORIGIN = '',

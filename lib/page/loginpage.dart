@@ -45,60 +45,60 @@ class LoginPageWidget extends StatelessWidget {
                   const SizedBox(
                     height: 20,
                   ),
-                  SizedBox(
-                    height: 40,
-                    child: ComInputText(
-                      height: 40,
-                      width: 240,
-                      isContr: logindata.isControl,
-                      fnContr: (input) {
-                        logindata.isControl = input;
-                      },
-                      sValue: logindata.userID,
-                      returnfunc: (String s) {
-                        logindata.userID = s;
-                      },
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  SizedBox(
-                    height: 40,
-                    // child: ComInputText(
-                    //   height: 40,
-                    //   width: 240,
-                    //   isPassword: true,
-                    //   isContr: logindata.isControl,
-                    //   fnContr: (input) {
-                    //     logindata.isControl = input;
-                    //   },
-                    //   sValue: logindata.userPASS,
-                    //   returnfunc: (String s) {
-                    //     logindata.userPASS = s;
-                    //   },
-                    // ),
-                    child: ComInputText(
-                      keyboardtype: TextInputType.visiblePassword,
-                      nLimitedChar: 50,
-                      width: 500,
-                      sPlaceholder: "Password",
-                      height: 40,
-                      isContr: logindata.isControl,
-                      fnContr: (input) {
-                        logindata.isControl = input;
-                      },
-                      sValue: logindata.userPASS,
-                      returnfunc: (String s) {
-                        logindata.userPASS = s;
-                      },
-                      isEnabled: true,
-                      isPassword: true,
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
+                  // SizedBox(
+                  //   height: 40,
+                  //   child: ComInputText(
+                  //     height: 40,
+                  //     width: 240,
+                  //     isContr: logindata.isControl,
+                  //     fnContr: (input) {
+                  //       logindata.isControl = input;
+                  //     },
+                  //     sValue: logindata.userID,
+                  //     returnfunc: (String s) {
+                  //       logindata.userID = s;
+                  //     },
+                  //   ),
+                  // ),
+                  // const SizedBox(
+                  //   height: 20,
+                  // ),
+                  // SizedBox(
+                  //   height: 40,
+                  //   // child: ComInputText(
+                  //   //   height: 40,
+                  //   //   width: 240,
+                  //   //   isPassword: true,
+                  //   //   isContr: logindata.isControl,
+                  //   //   fnContr: (input) {
+                  //   //     logindata.isControl = input;
+                  //   //   },
+                  //   //   sValue: logindata.userPASS,
+                  //   //   returnfunc: (String s) {
+                  //   //     logindata.userPASS = s;
+                  //   //   },
+                  //   // ),
+                  //   child: ComInputText(
+                  //     keyboardtype: TextInputType.visiblePassword,
+                  //     nLimitedChar: 50,
+                  //     width: 500,
+                  //     sPlaceholder: "Password",
+                  //     height: 40,
+                  //     isContr: logindata.isControl,
+                  //     fnContr: (input) {
+                  //       logindata.isControl = input;
+                  //     },
+                  //     sValue: logindata.userPASS,
+                  //     returnfunc: (String s) {
+                  //       logindata.userPASS = s;
+                  //     },
+                  //     isEnabled: true,
+                  //     isPassword: true,
+                  //   ),
+                  // ),
+                  // const SizedBox(
+                  //   height: 20,
+                  // ),
                   const _LoginSignin(),
                   const SizedBox(
                     height: 50,
@@ -132,7 +132,7 @@ class _LoginSignin extends StatelessWidget {
           child: const Align(
             alignment: Alignment.center,
             child: Text(
-              "Sign IN",
+              "Sign IN (BETA TEST)",
               style: TextStyle(
                 fontFamily: 'Mitr',
                 color: Colors.black,

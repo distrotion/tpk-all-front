@@ -12,6 +12,7 @@ import '../../bloc/Cubit/ChangePageEventCUBIT.dart';
 import '../../data/global.dart';
 import '../../mainBody.dart';
 import '../../widget/common/Calendarwid.dart';
+import '../../widget/common/CheckboxC.dart';
 import '../../widget/common/ComInputText.dart';
 import '../../widget/common/ComInputTextTan.dart';
 import '../../widget/common/Safty.dart';
@@ -49,9 +50,17 @@ class _P231FINISHEDGOODTRANFERState extends State<P231FINISHEDGOODTRANFER> {
     P231FINISHEDGOODTRANFERVAR.day = DateFormat('dd').format(now);
     P231FINISHEDGOODTRANFERVAR.month = DateFormat('MM').format(now);
     P231FINISHEDGOODTRANFERVAR.year = DateFormat('yyyy').format(now);
+
+    // P231FINISHEDGOODTRANFERVAR.day_next = DateFormat('dd').format(now);
+    // P231FINISHEDGOODTRANFERVAR.month_next = DateFormat('MM').format(now);
+    // P231FINISHEDGOODTRANFERVAR.year_next = DateFormat('yyyy').format(now);
+
     // P231FINISHEDGOODTRANFERVAR.day = "03";
     // P231FINISHEDGOODTRANFERVAR.month = "03";
     // P231FINISHEDGOODTRANFERVAR.year = "2025";
+    P231FINISHEDGOODTRANFERVAR.day_next = "05";
+    P231FINISHEDGOODTRANFERVAR.month_next = "04";
+    P231FINISHEDGOODTRANFERVAR.year_next = "2025";
 
     P231FINISHEDGOODTRANFERVAR.iscontrol = true;
     P231FINISHEDGOODTRANFERVAR.SEARCH = '';
@@ -220,6 +229,40 @@ class _P231FINISHEDGOODTRANFERState extends State<P231FINISHEDGOODTRANFER> {
                       ),
                     ),
                   ),
+                  InkWell(
+                    onTap: () {
+                      DateTime calendaset = DateTime.now();
+                      //
+                      CalendaSelectDates(context, calendaset,
+                          (day, month, year) {
+                        //
+                        P231FINISHEDGOODTRANFERVAR.day_next = day;
+                        P231FINISHEDGOODTRANFERVAR.month_next = month;
+                        P231FINISHEDGOODTRANFERVAR.year_next = year;
+
+                        setState(() {});
+                      });
+                    },
+                    child: Container(
+                      height: 30,
+                      // width: 900,
+                      decoration: BoxDecoration(
+                        // color: Colors.blue.shade900,
+                        border: Border(
+                          top: BorderSide(),
+                          left: BorderSide(),
+                          right: BorderSide(),
+                        ),
+                      ),
+                      child: Center(
+                        child: Text(
+                          "ถึงวันที่ : ${P231FINISHEDGOODTRANFERVAR.day_next}-${P231FINISHEDGOODTRANFERVAR.month_next}-${P231FINISHEDGOODTRANFERVAR.year_next}",
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, color: Colors.black),
+                        ),
+                      ),
+                    ),
+                  ),
                   FINISHEDGOODTRANFERtable(),
                   // if (_datasearch
                   //     .any((item) => item.PLANT == 'noxrust'))
@@ -238,6 +281,7 @@ class _P231FINISHEDGOODTRANFERState extends State<P231FINISHEDGOODTRANFER> {
                                   // P231FINISHEDGOODTRANFERVAR
                                   //         .PROCESS_ORDERselect =
                                   //     _datain[i].PROCESS_ORDER;
+                                  //-----------------------------------------------
                                   P231FINISHEDGOODTRANFERVAR
                                       .FINALSEND = (double.parse(ConverstStr(
                                                   _datain[i].NumPackSize1)) *
@@ -256,6 +300,14 @@ class _P231FINISHEDGOODTRANFERState extends State<P231FINISHEDGOODTRANFER> {
                                   P231FINISHEDGOODTRANFERVAR.FGPOSTDATA =
                                       _datain[i];
                                   _POPUPCREATEUSERSW(context);
+                                  //-------------
+                                  // setState(() {
+                                  //   if (_datain[i].check) {
+                                  //     _datain[i].check = false;
+                                  //   } else {
+                                  //     _datain[i].check = true;
+                                  //   }
+                                  // });
                                 },
                                 onHover: (v) {
                                   //
@@ -265,6 +317,14 @@ class _P231FINISHEDGOODTRANFERState extends State<P231FINISHEDGOODTRANFER> {
                                   });
                                 },
                                 child: FINISHEDGOODTRANFERitem(
+                                  Wid01: CheckBoxC(
+                                    getChbox: (p0) {
+                                      setState(() {
+                                        _datain[i].check = p0;
+                                      });
+                                    },
+                                    value: _datain[i].check,
+                                  ),
                                   holding:
                                       P231FINISHEDGOODTRANFERVAR.holding == i,
                                   text01: _datain[i].PROCESS_ORDER,
@@ -409,9 +469,11 @@ class __DATAGETSETState extends State<_DATAGETSET> {
                 DateTime calendaset = DateTime.now();
                 Map<String, String> dataset = {
                   "PSTNG_DATE":
-                      "${calendaset.day}.${calendaset.month}.${calendaset.year}",
+                      // "${calendaset.day}.${calendaset.month}.${calendaset.year}",
+                      "${P231FINISHEDGOODTRANFERVAR.day_next}.${P231FINISHEDGOODTRANFERVAR.month_next}.${P231FINISHEDGOODTRANFERVAR.year_next}",
                   "DOC_DATE":
-                      "${calendaset.day}.${calendaset.month}.${calendaset.year}",
+                      // "${calendaset.day}.${calendaset.month}.${calendaset.year}",
+                      "${P231FINISHEDGOODTRANFERVAR.day_next}.${P231FINISHEDGOODTRANFERVAR.month_next}.${P231FINISHEDGOODTRANFERVAR.year_next}",
                   "REF_DOC_NO":
                       P231FINISHEDGOODTRANFERVAR.FGPOSTDATA.PROCESS_ORDER,
                   "HEADER_TXT": "USER DATA",
@@ -427,9 +489,12 @@ class __DATAGETSETState extends State<_DATAGETSET> {
                       P231FINISHEDGOODTRANFERVAR.FGPOSTDATA.PROCESS_ORDER,
                   "EXPIRYDATE": "",
                   "PROD_DATE":
-                      "${calendaset.day}.${calendaset.month}.${calendaset.year}",
+                      // "${calendaset.day}.${calendaset.month}.${calendaset.year}",
+                      "${P231FINISHEDGOODTRANFERVAR.day_next}.${P231FINISHEDGOODTRANFERVAR.month_next}.${P231FINISHEDGOODTRANFERVAR.year_next}",
                   "TEMPLATE": ""
                 };
+
+                print(dataset);
 
                 Dio()
                     .post(

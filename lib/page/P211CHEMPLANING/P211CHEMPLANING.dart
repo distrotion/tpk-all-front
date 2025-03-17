@@ -45,9 +45,14 @@ class _P211CHEMPLANINGState extends State<P211CHEMPLANING> {
     P211CHEMPLANINGVAR.day = DateFormat('dd').format(now);
     P211CHEMPLANINGVAR.month = DateFormat('MM').format(now);
     P211CHEMPLANINGVAR.year = DateFormat('yyyy').format(now);
-    // P211CHEMPLANINGVAR.day = "03";
-    // P211CHEMPLANINGVAR.month = "03";
-    // P211CHEMPLANINGVAR.year = "2025";
+
+    // P211CHEMPLANINGVAR.day_next = DateFormat('dd').format(now);
+    // P211CHEMPLANINGVAR.month_next = DateFormat('MM').format(now);
+    // P211CHEMPLANINGVAR.year_next = DateFormat('yyyy').format(now);
+
+    P211CHEMPLANINGVAR.day_next = "05";
+    P211CHEMPLANINGVAR.month_next = "04";
+    P211CHEMPLANINGVAR.year_next = "2025";
 
     P211CHEMPLANINGVAR.iscontrol = true;
     P211CHEMPLANINGVAR.SEARCH = '';
@@ -192,6 +197,9 @@ class _P211CHEMPLANINGState extends State<P211CHEMPLANING> {
                         P211CHEMPLANINGVAR.year = year;
 
                         setState(() {});
+                        context
+                            .read<P211CHEMPLANINGget_Bloc>()
+                            .add(P211CHEMPLANINGget_GET());
                       });
                     },
                     child: Container(
@@ -208,6 +216,43 @@ class _P211CHEMPLANINGState extends State<P211CHEMPLANING> {
                       child: Center(
                         child: Text(
                           "วันที่ : ${P211CHEMPLANINGVAR.day}-${P211CHEMPLANINGVAR.month}-${P211CHEMPLANINGVAR.year}",
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, color: Colors.black),
+                        ),
+                      ),
+                    ),
+                  ),
+                  InkWell(
+                    onTap: () {
+                      DateTime calendaset = DateTime.now();
+                      //
+                      CalendaSelectDates(context, calendaset,
+                          (day, month, year) {
+                        //
+                        P211CHEMPLANINGVAR.day_next = day;
+                        P211CHEMPLANINGVAR.month_next = month;
+                        P211CHEMPLANINGVAR.year_next = year;
+
+                        setState(() {});
+                        context
+                            .read<P211CHEMPLANINGget_Bloc>()
+                            .add(P211CHEMPLANINGget_GET());
+                      });
+                    },
+                    child: Container(
+                      height: 30,
+                      // width: 900,
+                      decoration: BoxDecoration(
+                        // color: Colors.blue.shade900,
+                        border: Border(
+                          top: BorderSide(),
+                          left: BorderSide(),
+                          right: BorderSide(),
+                        ),
+                      ),
+                      child: Center(
+                        child: Text(
+                          "ถึงวันที่ : ${P211CHEMPLANINGVAR.day_next}-${P211CHEMPLANINGVAR.month_next}-${P211CHEMPLANINGVAR.year_next}",
                           style: TextStyle(
                               fontWeight: FontWeight.bold, color: Colors.black),
                         ),

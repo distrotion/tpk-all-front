@@ -49,9 +49,14 @@ class _P221PRODUCTIONCONFIRMATIONState
     P221PRODUCTIONCONFIRMATIONVAR.day = DateFormat('dd').format(now);
     P221PRODUCTIONCONFIRMATIONVAR.month = DateFormat('MM').format(now);
     P221PRODUCTIONCONFIRMATIONVAR.year = DateFormat('yyyy').format(now);
-    // P221PRODUCTIONCONFIRMATIONVAR.day = "03";
-    // P221PRODUCTIONCONFIRMATIONVAR.month = "03";
-    // P221PRODUCTIONCONFIRMATIONVAR.year = "2025";
+
+    // P221PRODUCTIONCONFIRMATIONVAR.day_next = DateFormat('dd').format(now);
+    // P221PRODUCTIONCONFIRMATIONVAR.month_next = DateFormat('MM').format(now);
+    // P221PRODUCTIONCONFIRMATIONVAR.year_next = DateFormat('yyyy').format(now);
+
+    P221PRODUCTIONCONFIRMATIONVAR.day_next = "05";
+    P221PRODUCTIONCONFIRMATIONVAR.month_next = "04";
+    P221PRODUCTIONCONFIRMATIONVAR.year_next = "2025";
 
     P221PRODUCTIONCONFIRMATIONVAR.iscontrol = true;
     P221PRODUCTIONCONFIRMATIONVAR.SEARCH = '';
@@ -198,6 +203,9 @@ class _P221PRODUCTIONCONFIRMATIONState
                         P221PRODUCTIONCONFIRMATIONVAR.year = year;
 
                         setState(() {});
+                        context
+                            .read<P221PRODUCTIONCONFIRMATIONget_Bloc>()
+                            .add(P221PRODUCTIONCONFIRMATIONget_GET());
                       });
                     },
                     child: Container(
@@ -214,6 +222,43 @@ class _P221PRODUCTIONCONFIRMATIONState
                       child: Center(
                         child: Text(
                           "วันที่ : ${P221PRODUCTIONCONFIRMATIONVAR.day}-${P221PRODUCTIONCONFIRMATIONVAR.month}-${P221PRODUCTIONCONFIRMATIONVAR.year}",
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, color: Colors.black),
+                        ),
+                      ),
+                    ),
+                  ),
+                  InkWell(
+                    onTap: () {
+                      DateTime calendaset = DateTime.now();
+                      //
+                      CalendaSelectDates(context, calendaset,
+                          (day, month, year) {
+                        //
+                        P221PRODUCTIONCONFIRMATIONVAR.day_next = day;
+                        P221PRODUCTIONCONFIRMATIONVAR.month_next = month;
+                        P221PRODUCTIONCONFIRMATIONVAR.year_next = year;
+
+                        setState(() {});
+                        context
+                            .read<P221PRODUCTIONCONFIRMATIONget_Bloc>()
+                            .add(P221PRODUCTIONCONFIRMATIONget_GET());
+                      });
+                    },
+                    child: Container(
+                      height: 30,
+                      // width: 900,
+                      decoration: BoxDecoration(
+                        // color: Colors.blue.shade900,
+                        border: Border(
+                          top: BorderSide(),
+                          left: BorderSide(),
+                          right: BorderSide(),
+                        ),
+                      ),
+                      child: Center(
+                        child: Text(
+                          "ถึงวันที่ : ${P221PRODUCTIONCONFIRMATIONVAR.day_next}-${P221PRODUCTIONCONFIRMATIONVAR.month_next}-${P221PRODUCTIONCONFIRMATIONVAR.year_next}",
                           style: TextStyle(
                               fontWeight: FontWeight.bold, color: Colors.black),
                         ),

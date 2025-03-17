@@ -139,6 +139,8 @@ class _P201SELECTBRANCHmainBodyState extends State<P201SELECTBRANCHmainBody> {
                               USERDATA.BRANCHNUMBER = BRANCHNUMBER.BP;
                               print(USERDATA.BRANCH);
                               print(USERDATA.BRANCHNUMBER);
+                              QUERYDATASET.PLANT = '2100';
+                              QUERYDATASET.LOT_ORI = '05';
 
                               MainBodyContext.read<ChangePage_Bloc>()
                                   .ChangePage_nodrower('', Page203());
@@ -217,6 +219,8 @@ class _P201SELECTBRANCHmainBodyState extends State<P201SELECTBRANCHmainBody> {
                               USERDATA.BRANCHNUMBER = BRANCHNUMBER.GW;
                               print(USERDATA.BRANCH);
                               print(USERDATA.BRANCHNUMBER);
+                              QUERYDATASET.PLANT = '2200';
+                              QUERYDATASET.LOT_ORI = '05';
 
                               MainBodyContext.read<ChangePage_Bloc>()
                                   .ChangePage_nodrower('', Page203());
@@ -295,6 +299,8 @@ class _P201SELECTBRANCHmainBodyState extends State<P201SELECTBRANCHmainBody> {
                               USERDATA.BRANCHNUMBER = BRANCHNUMBER.ESIE1;
                               print(USERDATA.BRANCH);
                               print(USERDATA.BRANCHNUMBER);
+                              QUERYDATASET.PLANT = '2300';
+                              QUERYDATASET.LOT_ORI = '05';
 
                               MainBodyContext.read<ChangePage_Bloc>()
                                   .ChangePage_nodrower('', Page203());

@@ -136,6 +136,9 @@ class _P200SELECTTYPEmainBodyState extends State<P200SELECTTYPEmainBody> {
                           USERDATA.INSMASTER = 'H&S';
                           print(USERDATA.INSMASTER);
 
+                          QUERYDATASET.PLANT = '';
+                          QUERYDATASET.LOT_ORI = '';
+
                           MainBodyContext.read<ChangePage_Bloc>()
                               .ChangePage_nodrower('', Page201());
                         },
@@ -232,13 +235,16 @@ class _P200SELECTTYPEmainBodyState extends State<P200SELECTTYPEmainBody> {
                       },
                       child: InkWell(
                         overlayColor:
-                            MaterialStateProperty.all(Colors.transparent),
+                            WidgetStateProperty.all(Colors.transparent),
                         onTap: () {
                           setState(() {
                             P200SELECTTYPEvar.isHoveredChem = false;
                           });
                           USERDATA.INSMASTER = 'CHEMICAL';
                           print(USERDATA.INSMASTER);
+
+                          QUERYDATASET.PLANT = '1000';
+                          QUERYDATASET.LOT_ORI = '03';
 
                           MainBodyContext.read<ChangePage_Bloc>()
                               .ChangePage_nodrower('', Page202());

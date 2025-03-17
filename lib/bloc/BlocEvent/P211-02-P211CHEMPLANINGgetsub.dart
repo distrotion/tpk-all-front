@@ -48,7 +48,7 @@ class P211CHEMPLANINGgetsub_Bloc extends Bloc<P211CHEMPLANINGgetsub_Event,
           "ORD_ST_DATE_FR":
               "${P211CHEMPLANINGVAR.day}.${P211CHEMPLANINGVAR.month}.${P211CHEMPLANINGVAR.year}",
           "ORD_ST_DATE_TO":
-              "${P211CHEMPLANINGVAR.day}.${P211CHEMPLANINGVAR.month}.${P211CHEMPLANINGVAR.year}",
+              "${P211CHEMPLANINGVAR.day_next}.${P211CHEMPLANINGVAR.month_next}.${P211CHEMPLANINGVAR.year_next}",
           "ORDER_TYPE": "",
           "PROD_SUP": ""
         },
