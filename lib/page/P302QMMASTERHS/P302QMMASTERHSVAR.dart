@@ -22,7 +22,7 @@ class P302QMMASTERHSVAR {
   static List<PINSP_SPECHSclass> INSP_SPECdata = [];
   static PINSP_SPECHSclass iINSP_SPECdata = PINSP_SPECHSclass();
   static List<SELECTED_SETHSclass> SELECTED_SETdata = [];
-  static SELECTED_SETHSclass iSELECTEDSETset = SELECTED_SETHSclass();
+  // static SELECTED_SETHSclass iSELECTEDSETset = SELECTED_SETHSclass();
   static List<UDCODEclass> UDCODEdata = [];
 
   static String DATASUM = '';
@@ -38,4 +38,6 @@ class P302QMMASTERHSVAR {
 
   static String PLANT = "2100";
   static String LOT_ORI = "03";
+
+  static String EVASET = "OK";
 }

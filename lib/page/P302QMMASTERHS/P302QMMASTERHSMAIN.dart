@@ -480,8 +480,8 @@ class _NEWNEWREQUESTState extends State<NEWNEWREQUEST> {
                                     // P302QMMASTERHSVAR.SELECTEDSETsetAC =
                                     //     P302QMMASTERHSVAR
                                     //         .INSP_SPECdata[i].SLECTEDSET;
-                                    P302QMMASTERHSVAR.iSELECTEDSETset =
-                                        _datain.SELECTED_SET[i];
+                                    // P302QMMASTERHSVAR.iSELECTEDSETset =
+                                    //     _datain.SELECTED_SET[i];
                                     P302QMMASTERHSVAR.SELECTEDSETset =
                                         P302QMMASTERHSVAR
                                             .INSP_SPECdata[i].SLECTEDSET;
@@ -563,12 +563,15 @@ class _NEWNEWREQUESTState extends State<NEWNEWREQUEST> {
                 ),
                 InkWell(
                   onTap: () async {
+                    P302QMMASTERHSVAR.EVASET = 'OK';
                     //
                     // print("------------------>");
                     List<Map<String, dynamic>> databuff = [];
+                    List<Map<String, dynamic>> databuff2 = [];
 
                     for (var i = 0;
                         i < P302QMMASTERHSVAR.INSP_SPECdata.length;
+                        // i < 2;
                         i++) {
                       //
                       if (P302QMMASTERHSVAR.INSP_SPECdata[i].DATASUM == '') {
@@ -588,6 +591,11 @@ class _NEWNEWREQUESTState extends State<NEWNEWREQUEST> {
                           "CODE_GRP1": P302QMMASTERHSVAR.INSP_SPECdata[i].CODEG,
                           "ORIGINAL_INPUT": ""
                         });
+                        // print(P302QMMASTERHSVAR.INSP_SPECdata[i].VALUATION);
+                        if (P302QMMASTERHSVAR.INSP_SPECdata[i].VALUATION !=
+                            'A') {
+                          P302QMMASTERHSVAR.EVASET = 'NOK';
+                        }
                       } else {
                         databuff.add({
                           "INSP_LOT": P302QMMASTERHSVAR.INSP_LOTset,
@@ -597,8 +605,7 @@ class _NEWNEWREQUESTState extends State<NEWNEWREQUEST> {
                           "INSPSAMPLE": "000001",
                           "CLOSED": "X", //
                           "EVALUATED": "X", //
-                          "EVALUATION": P302QMMASTERHSVAR
-                              .INSP_SPECdata[i].VALUATION, // A,R
+                          "EVALUATION": 'A', // A,R
                           "MEAN_VALUE":
                               P302QMMASTERHSVAR.INSP_SPECdata[i].DATASUM, //
                           "REMARK": "-",
@@ -606,8 +613,38 @@ class _NEWNEWREQUESTState extends State<NEWNEWREQUEST> {
                           "CODE_GRP1": "",
                           "ORIGINAL_INPUT": ""
                         });
+                        // if(P302QMMASTERHSVAR.INSP_SPECdata[i].){
+
+                        databuff2.add({
+                          "INSPLOT": P302QMMASTERHSVAR.INSP_LOTset,
+                          "INSPOPER": "10",
+                          "INSPCHAR":
+                              P302QMMASTERHSVAR.INSP_SPECdata[i].INSP_CHAR,
+                          "INSPSAMPLE": "000001",
+                          "RES_NO": "0001",
+                          "RES_VALUE":
+                              P302QMMASTERHSVAR.INSP_SPECdata[i].DATASUM,
+                          "REMARK": "",
+                          "CODE1": " ",
+                          "CODE_GRP1": " ",
+                          "ORIGINAL_INPUT": " "
+                        });
+                        //  }
                       }
                     }
+
+                    //     {
+//             "INSPLOT": "50000000224",
+//             "INSPOPER": "0010",
+//             "INSPCHAR": "0020",
+//             "INSPSAMPLE": "000001",
+//             "RES_NO": "0001",
+//             "RES_VALUE": "14.8",
+//             "REMARK": "POINT A ",
+//             "CODE1": " ",
+//             "CODE_GRP1": " ",
+//             "ORIGINAL_INPUT": " "
+//     },
 
                     Map<String, dynamic> output = {
                       "INSPLOT": P302QMMASTERHSVAR.INSP_LOTset,
@@ -619,9 +656,10 @@ class _NEWNEWREQUESTState extends State<NEWNEWREQUEST> {
                       "SEL_SET": "UD-POINT",
                       "CODE_GRP": "UDCODE",
                       "CODE": "A2", // A2 , R3
-                      "T_SAMPLE_RESULTS": databuff
+                      "T_SAMPLE_RESULTS": databuff,
+                      "T_SINGLE_RESULTS": databuff2,
                     };
-
+                    // print(output);
                     await Dio()
                         .post(
                       "${server2}QMINCOMING/SETVALUE",
@@ -709,6 +747,7 @@ class _NEWNEWREQUESTState extends State<NEWNEWREQUEST> {
                                 sValue: P302QMMASTERHSVAR.TO_UR,
                                 returnfunc: (String s) {
                                   P302QMMASTERHSVAR.TO_UR = s;
+                                  setState(() {});
                                 },
                               ),
                             ),
@@ -727,6 +766,7 @@ class _NEWNEWREQUESTState extends State<NEWNEWREQUEST> {
                                 sValue: P302QMMASTERHSVAR.TO_BL,
                                 returnfunc: (String s) {
                                   P302QMMASTERHSVAR.TO_BL = s;
+                                  setState(() {});
                                 },
                               ),
                             ),
@@ -735,60 +775,367 @@ class _NEWNEWREQUESTState extends State<NEWNEWREQUEST> {
                         Column(
                           children: [
                             for (int i = 0; i < _datain.UDCODE.length; i++) ...[
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: InkWell(
-                                  onTap: () {
-                                    if (int.parse(ConverstStr(
-                                            P302QMMASTERHSVAR.TO_ALL)) ==
-                                        (int.parse(ConverstStr(
-                                                P302QMMASTERHSVAR.TO_UR))) +
-                                            (int.parse(ConverstStr(
-                                                P302QMMASTERHSVAR.TO_BL)))) {
-                                      Map<String, String> output = {
-                                        "INSPLOT":
-                                            P302QMMASTERHSVAR.INSP_LOTset,
-                                        "UD_SELECTED_SET": "",
-                                        "UD_PLANT": "",
-                                        "UD_CODE_GROUP":
-                                            _datain.UDCODE[i].CODEGROUP,
-                                        "UD_CODE": _datain.UDCODE[i].CODE,
-                                        "TO_UR": P302QMMASTERHSVAR.TO_UR,
-                                        "TO_BLOCKED": P302QMMASTERHSVAR.TO_BL,
-                                        "TO_RETURN": ""
-                                      };
+                              if (_datain.UDCODE[i].CODE == 'A1' &&
+                                  int.parse(ConverstStr(
+                                          P302QMMASTERHSVAR.TO_ALL)) ==
+                                      int.parse(ConverstStr(
+                                          P302QMMASTERHSVAR.TO_UR)) &&
+                                  (P302QMMASTERHSVAR.EVASET == 'OK')) ...[
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: InkWell(
+                                    onTap: () {
+                                      if (int.parse(ConverstStr(
+                                              P302QMMASTERHSVAR.TO_ALL)) ==
+                                          (int.parse(ConverstStr(
+                                                  P302QMMASTERHSVAR.TO_UR))) +
+                                              (int.parse(ConverstStr(
+                                                  P302QMMASTERHSVAR.TO_BL)))) {
+                                        Map<String, String> output = {
+                                          "INSPLOT":
+                                              P302QMMASTERHSVAR.INSP_LOTset,
+                                          "UD_SELECTED_SET": "",
+                                          "UD_PLANT": "",
+                                          "UD_CODE_GROUP":
+                                              _datain.UDCODE[i].CODEGROUP,
+                                          "UD_CODE": _datain.UDCODE[i].CODE,
+                                          "TO_UR": P302QMMASTERHSVAR.TO_UR,
+                                          "TO_BLOCKED": P302QMMASTERHSVAR.TO_BL,
+                                          "TO_RETURN": ""
+                                        };
 
-                                      Dio()
-                                          .post(
-                                        "${server2}QMINCOMING/UDSAVE",
-                                        data: output,
-                                      )
-                                          .then((v) {
-                                        Navigator.pop(context);
-                                        P302QMMASTERHSMAINcontext.read<
-                                                P302QMMASTERHSget_Bloc>()
-                                            .add(P302QMMASTERHSget_GET());
+                                        Dio()
+                                            .post(
+                                          "${server2}QMINCOMING/UDSAVE",
+                                          data: output,
+                                        )
+                                            .then((v) {
+                                          Navigator.pop(context);
+                                          P302QMMASTERHSMAINcontext.read<
+                                                  P302QMMASTERHSget_Bloc>()
+                                              .add(P302QMMASTERHSget_GET());
+                                          //
+                                          print(v.data);
+                                        });
+                                      } else {
                                         //
-                                        print(v.data);
-                                      });
-                                    } else {
-                                      //
-                                      WORNINGpop(context,
-                                          ["", "QTY is not same"], 120, 200);
-                                    }
-                                  },
-                                  child: Container(
-                                    height: 80,
-                                    width: 400,
-                                    color: Colors.green,
-                                    child: Center(
-                                      child: Text(
-                                        _datain.UDCODE[i].CODE_TEXT,
+                                        WORNINGpop(context,
+                                            ["", "QTY is not same"], 120, 200);
+                                      }
+                                    },
+                                    child: Container(
+                                      height: 80,
+                                      width: 400,
+                                      color: Colors.green,
+                                      child: Center(
+                                        child: Text(
+                                          _datain.UDCODE[i].CODE_TEXT,
+                                        ),
                                       ),
                                     ),
                                   ),
                                 ),
-                              )
+                              ],
+                              if (_datain.UDCODE[i].CODE == 'A4' &&
+                                  int.parse(ConverstStr(
+                                          P302QMMASTERHSVAR.TO_ALL)) ==
+                                      int.parse(ConverstStr(
+                                          P302QMMASTERHSVAR.TO_UR)) &&
+                                  (P302QMMASTERHSVAR.EVASET == 'NOK')) ...[
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Container(
+                                    height: 80,
+                                    width: 350,
+                                    // color: Colors.yellow,
+                                    child: Center(
+                                      child: Text(
+                                        'Attach "HOLD PRODUCT TAG" \nand Contact customer',
+                                      ),
+                                    ),
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(8),
+                                      color: Colors.yellow,
+                                      border: Border.all(
+                                          color: Colors.black, width: 1),
+                                    ),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: InkWell(
+                                    onTap: () {
+                                      if (int.parse(ConverstStr(
+                                              P302QMMASTERHSVAR.TO_ALL)) ==
+                                          (int.parse(ConverstStr(
+                                                  P302QMMASTERHSVAR.TO_UR))) +
+                                              (int.parse(ConverstStr(
+                                                  P302QMMASTERHSVAR.TO_BL)))) {
+                                        Map<String, String> output = {
+                                          "INSPLOT":
+                                              P302QMMASTERHSVAR.INSP_LOTset,
+                                          "UD_SELECTED_SET": "",
+                                          "UD_PLANT": "",
+                                          "UD_CODE_GROUP":
+                                              _datain.UDCODE[i].CODEGROUP,
+                                          "UD_CODE": _datain.UDCODE[i].CODE,
+                                          "TO_UR": P302QMMASTERHSVAR.TO_UR,
+                                          "TO_BLOCKED": P302QMMASTERHSVAR.TO_BL,
+                                          "TO_RETURN": ""
+                                        };
+
+                                        Dio()
+                                            .post(
+                                          "${server2}QMINCOMING/UDSAVE",
+                                          data: output,
+                                        )
+                                            .then((v) {
+                                          Navigator.pop(context);
+                                          P302QMMASTERHSMAINcontext.read<
+                                                  P302QMMASTERHSget_Bloc>()
+                                              .add(P302QMMASTERHSget_GET());
+                                          //
+                                          print(v.data);
+                                        });
+                                      } else {
+                                        //
+                                        WORNINGpop(context,
+                                            ["", "QTY is not same"], 120, 200);
+                                      }
+                                    },
+                                    child: Container(
+                                      height: 80,
+                                      width: 400,
+                                      color: Colors.blue,
+                                      child: Center(
+                                        child: Text(
+                                          _datain.UDCODE[i].CODE_TEXT,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                              if (_datain.UDCODE[i].CODE == 'A6' &&
+                                  int.parse(ConverstStr(
+                                          P302QMMASTERHSVAR.TO_ALL)) !=
+                                      int.parse(ConverstStr(
+                                          P302QMMASTERHSVAR.TO_UR)) &&
+                                  (int.parse(ConverstStr(
+                                          P302QMMASTERHSVAR.TO_ALL)) !=
+                                      int.parse(ConverstStr(
+                                          P302QMMASTERHSVAR.TO_BL)))) ...[
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Container(
+                                    height: 80,
+                                    width: 350,
+                                    // color: Colors.yellow,
+                                    child: Center(
+                                      child: Text(
+                                          'Attach "HOLD PRODUCT TAG" \nand Contact customer'),
+                                    ),
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(8),
+                                      color: Colors.yellow,
+                                      border: Border.all(
+                                          color: Colors.black, width: 1),
+                                    ),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: InkWell(
+                                    onTap: () {
+                                      if (int.parse(ConverstStr(
+                                              P302QMMASTERHSVAR.TO_ALL)) ==
+                                          (int.parse(ConverstStr(
+                                                  P302QMMASTERHSVAR.TO_UR))) +
+                                              (int.parse(ConverstStr(
+                                                  P302QMMASTERHSVAR.TO_BL)))) {
+                                        Map<String, String> output = {
+                                          "INSPLOT":
+                                              P302QMMASTERHSVAR.INSP_LOTset,
+                                          "UD_SELECTED_SET": "",
+                                          "UD_PLANT": "",
+                                          "UD_CODE_GROUP":
+                                              _datain.UDCODE[i].CODEGROUP,
+                                          "UD_CODE": _datain.UDCODE[i].CODE,
+                                          "TO_UR": P302QMMASTERHSVAR.TO_UR,
+                                          "TO_BLOCKED": P302QMMASTERHSVAR.TO_BL,
+                                          "TO_RETURN": ""
+                                        };
+
+                                        Dio()
+                                            .post(
+                                          "${server2}QMINCOMING/UDSAVE",
+                                          data: output,
+                                        )
+                                            .then((v) {
+                                          Navigator.pop(context);
+                                          P302QMMASTERHSMAINcontext.read<
+                                                  P302QMMASTERHSget_Bloc>()
+                                              .add(P302QMMASTERHSget_GET());
+                                          //
+                                          print(v.data);
+                                        });
+                                      } else {
+                                        //
+                                        WORNINGpop(context,
+                                            ["", "QTY is not same"], 120, 200);
+                                      }
+                                    },
+                                    child: Container(
+                                      height: 80,
+                                      width: 400,
+                                      color: Colors.green.shade400,
+                                      child: Center(
+                                        child: Text(
+                                          _datain.UDCODE[i].CODE_TEXT,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                              if (_datain.UDCODE[i].CODE == 'R1' &&
+                                  int.parse(ConverstStr(
+                                          P302QMMASTERHSVAR.TO_ALL)) ==
+                                      int.parse(ConverstStr(
+                                          P302QMMASTERHSVAR.TO_BL))) ...[
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Container(
+                                    height: 80,
+                                    width: 350,
+                                    // color: Colors.yellow,
+                                    child: Center(
+                                      child: Text(
+                                          'Contact Store to return all parts to customer'),
+                                    ),
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(8),
+                                      color: Colors.orange,
+                                      border: Border.all(
+                                          color: Colors.black, width: 1),
+                                    ),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: InkWell(
+                                    onTap: () {
+                                      if (int.parse(ConverstStr(
+                                              P302QMMASTERHSVAR.TO_ALL)) ==
+                                          (int.parse(ConverstStr(
+                                                  P302QMMASTERHSVAR.TO_UR))) +
+                                              (int.parse(ConverstStr(
+                                                  P302QMMASTERHSVAR.TO_BL)))) {
+                                        Map<String, String> output = {
+                                          "INSPLOT":
+                                              P302QMMASTERHSVAR.INSP_LOTset,
+                                          "UD_SELECTED_SET": "",
+                                          "UD_PLANT": "",
+                                          "UD_CODE_GROUP":
+                                              _datain.UDCODE[i].CODEGROUP,
+                                          "UD_CODE": _datain.UDCODE[i].CODE,
+                                          "TO_UR": P302QMMASTERHSVAR.TO_UR,
+                                          "TO_BLOCKED": P302QMMASTERHSVAR.TO_BL,
+                                          "TO_RETURN": ""
+                                        };
+
+                                        Dio()
+                                            .post(
+                                          "${server2}QMINCOMING/UDSAVE",
+                                          data: output,
+                                        )
+                                            .then((v) {
+                                          Navigator.pop(context);
+                                          P302QMMASTERHSMAINcontext.read<
+                                                  P302QMMASTERHSget_Bloc>()
+                                              .add(P302QMMASTERHSget_GET());
+                                          //
+                                          print(v.data);
+                                        });
+                                      } else {
+                                        //
+                                        WORNINGpop(context,
+                                            ["", "QTY is not same"], 120, 200);
+                                      }
+                                    },
+                                    child: Container(
+                                      height: 80,
+                                      width: 400,
+                                      color: Colors.red,
+                                      child: Center(
+                                        child: Text(
+                                          _datain.UDCODE[i].CODE_TEXT,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                              //   if (_datain.UDCODE[i].CODE == 'R99' &&
+                              //       (int.parse(ConverstStr(
+                              //               P302QMMASTERHSVAR.TO_ALL)) ==
+                              //           int.parse(ConverstStr(
+                              //               P302QMMASTERHSVAR.TO_BL)))) ...[
+                              //     Padding(
+                              //       padding: const EdgeInsets.all(8.0),
+                              //       child: InkWell(
+                              //         onTap: () {
+                              //           // if (int.parse(ConverstStr(
+                              //           //         P302QMMASTERHSVAR.TO_ALL)) ==
+                              //           //     (int.parse(ConverstStr(
+                              //           //             P302QMMASTERHSVAR.TO_UR))) +
+                              //           //         (int.parse(ConverstStr(
+                              //           //             P302QMMASTERHSVAR.TO_BL)))) {
+                              //           //   Map<String, String> output = {
+                              //           //     "INSPLOT":
+                              //           //         P302QMMASTERHSVAR.INSP_LOTset,
+                              //           //     "UD_SELECTED_SET": "",
+                              //           //     "UD_PLANT": "",
+                              //           //     "UD_CODE_GROUP":
+                              //           //         _datain.UDCODE[i].CODEGROUP,
+                              //           //     "UD_CODE": _datain.UDCODE[i].CODE,
+                              //           //     "TO_UR": P302QMMASTERHSVAR.TO_UR,
+                              //           //     "TO_BLOCKED": P302QMMASTERHSVAR.TO_BL,
+                              //           //     "TO_RETURN": ""
+                              //           //   };
+
+                              //           //   Dio()
+                              //           //       .post(
+                              //           //     "${server2}QMINCOMING/UDSAVE",
+                              //           //     data: output,
+                              //           //   )
+                              //           //       .then((v) {
+                              //           Navigator.pop(context);
+                              //           P302QMMASTERHSMAINcontext.read<
+                              //                   P302QMMASTERHSget_Bloc>()
+                              //               .add(P302QMMASTERHSget_GET());
+                              //           //     //
+                              //           //     print(v.data);
+                              //           //   });
+                              //           // } else {
+                              //           //   //
+                              //           //   WORNINGpop(context,
+                              //           //       ["", "QTY is not same"], 120, 200);
+                              //           // }
+                              //         },
+                              //         child: Container(
+                              //           height: 80,
+                              //           width: 400,
+                              //           color: Colors.orange,
+                              //           child: Center(
+                              //             child: Text(
+                              //               _datain.UDCODE[i].CODE_TEXT,
+                              //             ),
+                              //           ),
+                              //         ),
+                              //       ),
+                              //     ),
+                              //   ],
                             ]
                           ],
                         ),
@@ -923,7 +1270,7 @@ class _QMI003POPappState extends State<QMI003POPapp> {
                                                 .VALUATION ==
                                             'A'
                                         ? Colors.green
-                                        : Colors.blue,
+                                        : Colors.red,
                                     child: Center(
                                       child: Text(
                                         P302QMMASTERHSVAR

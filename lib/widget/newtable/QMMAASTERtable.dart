@@ -24,25 +24,25 @@ class QMMAASTERtable extends StatelessWidget {
         Expanded(
           flex: 1,
           child: rowbox_type0(
-            Head: "PART NAME",
+            Head: "PART NAME/NO",
           ),
         ),
         Expanded(
           flex: 1,
           child: rowbox_type0(
-            Head: "PART NO",
+            Head: "Material",
           ),
         ),
         Expanded(
           flex: 1,
           child: rowbox_type0(
-            Head: "CHARG",
+            Head: "Received Lot",
           ),
         ),
         Expanded(
           flex: 1,
           child: rowbox_type0(
-            Head: "CUST LOT",
+            Head: "Inspection Lot",
           ),
         ),
         Expanded(
