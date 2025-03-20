@@ -1,6 +1,6 @@
-import '../../bloc/BlocEvent/P301-02-P301QMMASTERgetINSP_SPEC.dart';
+import '../../bloc/BlocEvent/P303-02-P303QMMASTERQCINSP_SPEC.dart';
 
-class P301QMMASTERVAR {
+class P303QMMASTERQCVAR {
   static bool iscontrol = false;
   static String SEARCH = '';
   static bool isHoveredClear = false;
@@ -18,11 +18,12 @@ class P301QMMASTERVAR {
   static int pagepopapp = 0;
   static String INSP_LOTset = '';
   static String SELECTEDSETset = '';
+  static String PROCESS_ORDERset = '';
 
-  static List<PINSP_SPECclass> INSP_SPECdata = [];
-  static PINSP_SPECclass iINSP_SPECdata = PINSP_SPECclass();
-  static List<SELECTED_SETclass> SELECTED_SETdata = [];
-  static SELECTED_SETclass iSELECTEDSETset = SELECTED_SETclass();
+  static List<PINSP_SPECHSclass> INSP_SPECdata = [];
+  static PINSP_SPECHSclass iINSP_SPECdata = PINSP_SPECHSclass();
+  static List<SELECTED_SETHSclass> SELECTED_SETdata = [];
+  // static SELECTED_SETHSclass iSELECTEDSETset = SELECTED_SETHSclass();
   static List<UDCODEclass> UDCODEdata = [];
 
   static String DATASUM = '';

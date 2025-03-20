@@ -5,19 +5,24 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 
 import '../../bloc/BlocEvent/ChangePageEvent.dart';
+
 import '../../bloc/BlocEvent/P301-01-P301QMMASTERget.dart';
 import '../../bloc/BlocEvent/P301-02-P301QMMASTERgetINSP_SPEC.dart';
+
 import '../../bloc/Cubit/ChangePageEventCUBIT.dart';
 import '../../data/global.dart';
 import '../../mainBody.dart';
 import '../../widget/common/Calendarwid.dart';
 import '../../widget/common/ComInputText.dart';
 import '../../widget/common/ComInputTextTan.dart';
+import '../../widget/common/Safty.dart';
+import '../../widget/common/popup.dart';
 import '../../widget/newtable/INSP_SPECtable.dart';
 import '../../widget/newtable/QMMAASTERtable.dart';
 import '../../widget/table/PROGRESSMAIN.dart';
 
 import '../page202.dart';
+import '../page204.dart';
 import 'P301QMMASTERVAR.dart';
 
 late BuildContext P301QMMASTERMAINcontext;
@@ -55,10 +60,9 @@ class _P301QMMASTERMAINState extends State<P301QMMASTERMAIN> {
     P301QMMASTERVAR.PLANT = QUERYDATASET.PLANT;
     P301QMMASTERVAR.LOT_ORI = QUERYDATASET.LOT_ORI;
 
-    P301QMMASTERVAR.holding = 999;
-
     P301QMMASTERVAR.iscontrol = true;
     P301QMMASTERVAR.SEARCH = '';
+    P301QMMASTERVAR.holding = 999;
     context.read<P301QMMASTERget_Bloc>().add(P301QMMASTERget_GET());
   }
 
@@ -83,7 +87,7 @@ class _P301QMMASTERMAINState extends State<P301QMMASTERMAIN> {
                       InkWell(
                         onTap: () {
                           MainBodyContext.read<ChangePage_Bloc>()
-                              .ChangePage_nodrower('', Page202());
+                              .ChangePage_nodrower('', Page204());
                         },
                         child: SizedBox(
                           width: 200,
@@ -431,349 +435,732 @@ class _NEWNEWREQUESTState extends State<NEWNEWREQUEST> {
       height: 500,
       width: 800,
       color: Colors.white,
-      child: SingleChildScrollView(
-        child: Column(
-          children: [
-            const SizedBox(
-              height: 24,
-            ),
-            const SizedBox(
-              child: Center(
-                child: Text("Quality control management"),
+      child: Padding(
+        padding: const EdgeInsets.all(15.0),
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              const SizedBox(
+                height: 24,
               ),
-            ),
-            if (P301QMMASTERVAR.pagepop == 0) ...[
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Column(
-                  children: [
-                    const SizedBox(
-                      child: Center(
-                        child: Text("INSP_SPEC"),
-                      ),
-                    ),
-                    INSP_SPECtable(),
-                    // if (_datasearch
-                    //     .any((item) => item.PLANT == 'noxrust'))
-                    SingleChildScrollView(
-                      child: Container(
-                        // width: 1100,
-                        child: Column(
-                          children: [
-                            for (int i = 0;
-                                i < P301QMMASTERVAR.INSP_SPECdata.length;
-                                i++) ...[
-                              // for (int i = 0; i < 10; i++) ...[
-                              InkWell(
-                                onTap: () {
-                                  //
-                                  P301QMMASTERVAR.SELECTED_SETdata = [];
-                                  // P301QMMASTERVAR.SELECTEDSETsetAC =
-                                  //     P301QMMASTERVAR
-                                  //         .INSP_SPECdata[i].SLECTEDSET;
-                                  P301QMMASTERVAR.iSELECTEDSETset =
-                                      _datain.SELECTED_SET[i];
-                                  P301QMMASTERVAR.SELECTEDSETset =
-                                      P301QMMASTERVAR
-                                          .INSP_SPECdata[i].SLECTEDSET;
-                                  // print(
-                                  //     '--->' + P301QMMASTERVAR.SELECTEDSETset);
-                                  for (var i = 0;
-                                      i < _datain.SELECTED_SET.length;
-                                      i++) {
-                                    if (_datain.SELECTED_SET[i].SELECTEDSET ==
-                                        P301QMMASTERVAR.SELECTEDSETset) {
-                                      //     //
-                                      print(
-                                          _datain.SELECTED_SET[i].SELECTEDSET);
-                                      P301QMMASTERVAR.SELECTED_SETdata.add(
-                                          SELECTED_SETclass(
-                                        CATALOGTYPE:
-                                            _datain.SELECTED_SET[i].CATALOGTYPE,
-                                        SELECTEDSET_PLANT: _datain
-                                            .SELECTED_SET[i].SELECTEDSET_PLANT,
-                                        SELECTEDSET:
-                                            _datain.SELECTED_SET[i].SELECTEDSET,
-                                        SELECTEDSET_DESC: _datain
-                                            .SELECTED_SET[i].SELECTEDSET_DESC,
-                                        CODEGROUP:
-                                            _datain.SELECTED_SET[i].CODEGROUP,
-                                        CODE: _datain.SELECTED_SET[i].CODE,
-                                        CODE_TEXT:
-                                            _datain.SELECTED_SET[i].CODE_TEXT,
-                                        VALUATION:
-                                            _datain.SELECTED_SET[i].VALUATION,
-                                      ));
-                                    }
-                                    // print(_datain.SELECTED_SET[i].SELECTEDSET);
-                                  }
-                                  //SLECTEDSET
-                                  if (P301QMMASTERVAR.SELECTEDSETset != '') {
-                                    P301QMMASTERVAR.pagepopapp = 0;
-                                  } else {
-                                    P301QMMASTERVAR.pagepopapp = 1;
-                                  }
-                                  P301QMMASTERVAR.DATASUM = '';
-                                  P301QMMASTERVAR.iDATA = i;
-                                  P301QMMASTERVAR.iINSP_SPECdata =
-                                      P301QMMASTERVAR.INSP_SPECdata[i];
-                                  _QMI003POPapp(context);
-                                },
-                                onHover: (v) {
-                                  //
-                                  // print(v.toString() + ":" + i.toString());
-                                },
-                                child: INSP_SPECitem(
-                                  text01: P301QMMASTERVAR
-                                      .INSP_SPECdata[i].MIC_SHORTTEXT,
-                                  text02:
-                                      P301QMMASTERVAR.INSP_SPECdata[i].REC_TYPE,
-                                  text03: P301QMMASTERVAR.INSP_SPECdata[i].MIC,
-                                  text04:
-                                      P301QMMASTERVAR.INSP_SPECdata[i].DATASUM +
-                                          P301QMMASTERVAR
-                                              .INSP_SPECdata[i].DATAAP_TEXT,
-                                  text05: P301QMMASTERVAR
-                                          .INSP_SPECdata[i].DATASUM_TEXT +
-                                      P301QMMASTERVAR.INSP_SPECdata[i].DATAAP,
-                                  text06:
-                                      P301QMMASTERVAR.INSP_SPECdata[i].STATUS,
-                                ),
-                              ),
-                            ],
-                          ],
-                        ),
-                      ),
-                    ),
-                  ],
+              const SizedBox(
+                child: Center(
+                  child: Text("Quality control management"),
                 ),
               ),
-              InkWell(
-                onTap: () async {
-                  //
-                  print("------------------>");
-                  List<Map<String, dynamic>> databuff = [];
-
-                  for (var i = 0;
-                      i < P301QMMASTERVAR.INSP_SPECdata.length;
-                      i++) {
-                    //
-                    if (P301QMMASTERVAR.INSP_SPECdata[i].DATASUM == '') {
-                      databuff.add({
-                        "INSP_LOT": P301QMMASTERVAR.INSP_LOTset,
-                        "INSPOPER": "10", //
-                        "INSPCHAR": P301QMMASTERVAR.INSP_SPECdata[i].INSP_CHAR,
-                        "INSPSAMPLE": "000001",
-                        "CLOSED": "X", //
-                        "EVALUATED": "X", //
-                        "EVALUATION":
-                            P301QMMASTERVAR.INSP_SPECdata[i].VALUATION, // A,R
-                        "MEAN_VALUE": '', // "",12.123
-                        "REMARK": "-",
-                        "CODE1": P301QMMASTERVAR.INSP_SPECdata[i].DATAAP,
-                        "CODE_GRP1": P301QMMASTERVAR.INSP_SPECdata[i].CODEG,
-                        "ORIGINAL_INPUT": ""
-                      });
-                    } else {
-                      databuff.add({
-                        "INSP_LOT": P301QMMASTERVAR.INSP_LOTset,
-                        "INSPOPER": "10", //
-                        "INSPCHAR": P301QMMASTERVAR.INSP_SPECdata[i].INSP_CHAR,
-                        "INSPSAMPLE": "000001",
-                        "CLOSED": "X", //
-                        "EVALUATED": "X", //
-                        "EVALUATION":
-                            P301QMMASTERVAR.INSP_SPECdata[i].VALUATION, // A,R
-                        "MEAN_VALUE":
-                            P301QMMASTERVAR.INSP_SPECdata[i].DATASUM, //
-                        "REMARK": "-",
-                        "CODE1": "",
-                        "CODE_GRP1": "",
-                        "ORIGINAL_INPUT": ""
-                      });
-                    }
-                  }
-
-                  Map<String, dynamic> output = {
-                    "INSPLOT": P301QMMASTERVAR.INSP_LOTset,
-                    "INSPOPER": "10",
-                    "INSPPOINT": "000001",
-                    "USERC1": "-",
-                    "CAT_TYPE": "3",
-                    "PSEL_SET": "2100",
-                    "SEL_SET": "UD-POINT",
-                    "CODE_GRP": "UDCODE",
-                    "CODE": "A2", // A2 , R3
-                    "T_SAMPLE_RESULTS": databuff
-                  };
-
-                  await Dio()
-                      .post(
-                    "${server2}QMINCOMING/SETVALUE",
-                    data: output,
-                  )
-                      .then((v) {
-                    //
-                    print(v.data);
-                  });
-
-                  // print(output);
-                },
-                child: Padding(
+              const SizedBox(
+                height: 24,
+              ),
+              if (P301QMMASTERVAR.pagepop == 0) ...[
+                Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Container(
-                    width: 200,
-                    height: 60,
-                    color: Colors.blue,
-                    child: Center(
-                      child: Text("SAVE"),
-                    ),
-                  ),
-                ),
-              ),
-              InkWell(
-                onTap: () {
-                  //
-                  P301QMMASTERVAR.pagepop = 1;
-                  setState(() {});
-                },
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Container(
-                    width: 200,
-                    height: 60,
-                    color: Colors.blue,
-                    child: Center(
-                      child: Text("Used Decision"),
-                    ),
-                  ),
-                ),
-              ),
-            ] else if (P301QMMASTERVAR.pagepop == 1) ...[
-              //
-              SingleChildScrollView(
-                child: Container(
-                  // width: 1100,
                   child: Column(
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: ComInputText(
-                          isEnabled: false,
-                          height: 40,
-                          width: 300,
-                          isContr: P301QMMASTERVAR.iscontrol,
-                          fnContr: (input) {
-                            setState(() {
-                              P301QMMASTERVAR.iscontrol = input;
-                            });
-                          },
-                          sValue: P301QMMASTERVAR.TO_UR,
-                          returnfunc: (String s) {
-                            P301QMMASTERVAR.TO_UR = s;
-                          },
+                      const SizedBox(
+                        child: Center(
+                          child: Text("INSP_SPEC"),
                         ),
                       ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: ComInputText(
-                          sLabel: "GOOD",
-                          height: 40,
-                          width: 300,
-                          isContr: P301QMMASTERVAR.iscontrol,
-                          fnContr: (input) {
-                            setState(() {
-                              P301QMMASTERVAR.iscontrol = input;
-                            });
-                          },
-                          sValue: P301QMMASTERVAR.TO_UR,
-                          returnfunc: (String s) {
-                            P301QMMASTERVAR.TO_UR = s;
-                          },
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: ComInputText(
-                          sLabel: "NO GOOD",
-                          height: 40,
-                          width: 300,
-                          isContr: P301QMMASTERVAR.iscontrol,
-                          fnContr: (input) {
-                            setState(() {
-                              P301QMMASTERVAR.iscontrol = input;
-                            });
-                          },
-                          sValue: P301QMMASTERVAR.TO_BL,
-                          returnfunc: (String s) {
-                            P301QMMASTERVAR.TO_BL = s;
-                          },
-                        ),
-                      ),
-                      for (int i = 0; i < _datain.UDCODE.length; i++) ...[
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: InkWell(
-                            onTap: () {
-                              Map<String, String> output = {
-                                "INSPLOT": P301QMMASTERVAR.INSP_LOTset,
-                                "UD_SELECTED_SET": "",
-                                "UD_PLANT": "",
-                                "UD_CODE_GROUP": _datain.UDCODE[i].CODEGROUP,
-                                "UD_CODE": _datain.UDCODE[i].CODE,
-                                "TO_UR": P301QMMASTERVAR.TO_UR,
-                                "TO_BLOCKED": P301QMMASTERVAR.TO_BL,
-                                "TO_RETURN": ""
-                              };
-//
-                              Dio()
-                                  .post(
-                                "${server2}QMINCOMING/UDSAVE",
-                                data: output,
-                              )
-                                  .then((v) {
-                                //
-                                print(v.data);
-                              });
-//
-                            },
-                            child: Container(
-                              height: 80,
-                              width: 400,
-                              color: Colors.green,
-                              child: Center(
-                                child: Text(
-                                  _datain.UDCODE[i].CODE_TEXT,
+                      INSP_SPECtable(),
+                      // if (_datasearch
+                      //     .any((item) => item.PLANT == 'noxrust'))
+                      SingleChildScrollView(
+                        child: Container(
+                          // width: 1100,
+                          child: Column(
+                            children: [
+                              for (int i = 0;
+                                  i < P301QMMASTERVAR.INSP_SPECdata.length;
+                                  i++) ...[
+                                // for (int i = 0; i < 10; i++) ...[
+                                InkWell(
+                                  onTap: () {
+                                    //
+                                    P301QMMASTERVAR.SELECTED_SETdata = [];
+                                    // P301QMMASTERVAR.SELECTEDSETsetAC =
+                                    //     P301QMMASTERVAR
+                                    //         .INSP_SPECdata[i].SLECTEDSET;
+                                    // P301QMMASTERVAR.iSELECTEDSETset =
+                                    //     _datain.SELECTED_SET[i];
+                                    P301QMMASTERVAR.SELECTEDSETset =
+                                        P301QMMASTERVAR
+                                            .INSP_SPECdata[i].SLECTEDSET;
+                                    // print(
+                                    //     '--->' + P301QMMASTERVAR.SELECTEDSETset);
+                                    for (var i = 0;
+                                        i < _datain.SELECTED_SET.length;
+                                        i++) {
+                                      if (_datain.SELECTED_SET[i].SELECTEDSET ==
+                                          P301QMMASTERVAR.SELECTEDSETset) {
+                                        //     //
+                                        print(_datain
+                                            .SELECTED_SET[i].SELECTEDSET);
+                                        P301QMMASTERVAR.SELECTED_SETdata.add(
+                                            SELECTED_SETclass(
+                                          CATALOGTYPE: _datain
+                                              .SELECTED_SET[i].CATALOGTYPE,
+                                          SELECTEDSET_PLANT: _datain
+                                              .SELECTED_SET[i]
+                                              .SELECTEDSET_PLANT,
+                                          SELECTEDSET: _datain
+                                              .SELECTED_SET[i].SELECTEDSET,
+                                          SELECTEDSET_DESC: _datain
+                                              .SELECTED_SET[i].SELECTEDSET_DESC,
+                                          CODEGROUP:
+                                              _datain.SELECTED_SET[i].CODEGROUP,
+                                          CODE: _datain.SELECTED_SET[i].CODE,
+                                          CODE_TEXT:
+                                              _datain.SELECTED_SET[i].CODE_TEXT,
+                                          VALUATION:
+                                              _datain.SELECTED_SET[i].VALUATION,
+                                        ));
+                                      }
+                                      // print(_datain.SELECTED_SET[i].SELECTEDSET);
+                                    }
+                                    //SLECTEDSET
+                                    if (P301QMMASTERVAR.SELECTEDSETset != '') {
+                                      P301QMMASTERVAR.pagepopapp = 0;
+                                    } else {
+                                      P301QMMASTERVAR.pagepopapp = 1;
+                                    }
+                                    P301QMMASTERVAR.DATASUM = '';
+                                    P301QMMASTERVAR.iDATA = i;
+                                    P301QMMASTERVAR.iINSP_SPECdata =
+                                        P301QMMASTERVAR.INSP_SPECdata[i];
+                                    _QMI003POPapp(context);
+                                  },
+                                  onHover: (v) {
+                                    //
+                                    // print(v.toString() + ":" + i.toString());
+                                  },
+                                  child: INSP_SPECitem(
+                                    text01: P301QMMASTERVAR
+                                        .INSP_SPECdata[i].MIC_SHORTTEXT,
+                                    text02: P301QMMASTERVAR
+                                        .INSP_SPECdata[i].REC_TYPE,
+                                    text03:
+                                        P301QMMASTERVAR.INSP_SPECdata[i].MIC,
+                                    text04: P301QMMASTERVAR
+                                            .INSP_SPECdata[i].DATASUM +
+                                        P301QMMASTERVAR
+                                            .INSP_SPECdata[i].DATAAP_TEXT,
+                                    text05: P301QMMASTERVAR
+                                            .INSP_SPECdata[i].DATASUM_TEXT +
+                                        P301QMMASTERVAR.INSP_SPECdata[i].DATAAP,
+                                    text06:
+                                        P301QMMASTERVAR.INSP_SPECdata[i].STATUS,
+                                  ),
                                 ),
-                              ),
-                            ),
+                              ],
+                            ],
                           ),
-                        )
-                      ]
+                        ),
+                      ),
                     ],
                   ),
                 ),
-              ),
+                InkWell(
+                  onTap: () async {
+                    P301QMMASTERVAR.EVASET = 'OK';
+                    //
+                    // print("------------------>");
+                    List<Map<String, dynamic>> databuff = [];
+                    List<Map<String, dynamic>> databuff2 = [];
 
-              //
+                    for (var i = 0;
+                        i < P301QMMASTERVAR.INSP_SPECdata.length;
+                        // i < 2;
+                        i++) {
+                      //
+                      if (P301QMMASTERVAR.INSP_SPECdata[i].DATASUM == '') {
+                        databuff.add({
+                          "INSP_LOT": P301QMMASTERVAR.INSP_LOTset,
+                          "INSPOPER": "10", //
+                          "INSPCHAR":
+                              P301QMMASTERVAR.INSP_SPECdata[i].INSP_CHAR,
+                          "INSPSAMPLE": "000001",
+                          "CLOSED": "X", //
+                          "EVALUATED": "X", //
+                          "EVALUATION":
+                              P301QMMASTERVAR.INSP_SPECdata[i].VALUATION, // A,R
+                          "MEAN_VALUE": '', // "",12.123
+                          "REMARK": "-",
+                          "CODE1": P301QMMASTERVAR.INSP_SPECdata[i].DATAAP,
+                          "CODE_GRP1": P301QMMASTERVAR.INSP_SPECdata[i].CODEG,
+                          "ORIGINAL_INPUT": ""
+                        });
+                        // print(P301QMMASTERVAR.INSP_SPECdata[i].VALUATION);
+                        if (P301QMMASTERVAR.INSP_SPECdata[i].VALUATION != 'A') {
+                          P301QMMASTERVAR.EVASET = 'NOK';
+                        }
+                      } else {
+                        databuff.add({
+                          "INSP_LOT": P301QMMASTERVAR.INSP_LOTset,
+                          "INSPOPER": "10", //
+                          "INSPCHAR":
+                              P301QMMASTERVAR.INSP_SPECdata[i].INSP_CHAR,
+                          "INSPSAMPLE": "000001",
+                          "CLOSED": "X", //
+                          "EVALUATED": "X", //
+                          "EVALUATION": 'A', // A,R
+                          "MEAN_VALUE":
+                              P301QMMASTERVAR.INSP_SPECdata[i].DATASUM, //
+                          "REMARK": "-",
+                          "CODE1": "",
+                          "CODE_GRP1": "",
+                          "ORIGINAL_INPUT": ""
+                        });
+                        if (P301QMMASTERVAR.INSP_SPECdata[i].INSP_CHAR ==
+                            'SIN') {
+                          databuff2.add({
+                            "INSPLOT": P301QMMASTERVAR.INSP_LOTset,
+                            "INSPOPER": "10",
+                            "INSPCHAR":
+                                P301QMMASTERVAR.INSP_SPECdata[i].INSP_CHAR,
+                            "INSPSAMPLE": "000001",
+                            "RES_NO": "0001",
+                            "RES_VALUE":
+                                P301QMMASTERVAR.INSP_SPECdata[i].DATASUM,
+                            "REMARK": "",
+                            "CODE1": " ",
+                            "CODE_GRP1": " ",
+                            "ORIGINAL_INPUT": " "
+                          });
+                        }
+                      }
+                    }
 
-              InkWell(
-                onTap: () {
-                  //
-                  P301QMMASTERVAR.pagepop = 0;
-                  setState(() {});
-                },
-                child: Container(
-                  width: 200,
-                  height: 60,
-                  color: Colors.blue,
-                  child: Center(
-                    child: Text("INSP_SPEC"),
+                    //     {
+//             "INSPLOT": "50000000224",
+//             "INSPOPER": "0010",
+//             "INSPCHAR": "0020",
+//             "INSPSAMPLE": "000001",
+//             "RES_NO": "0001",
+//             "RES_VALUE": "14.8",
+//             "REMARK": "POINT A ",
+//             "CODE1": " ",
+//             "CODE_GRP1": " ",
+//             "ORIGINAL_INPUT": " "
+//     },
+
+                    Map<String, dynamic> output = {
+                      "INSPLOT": P301QMMASTERVAR.INSP_LOTset,
+                      "INSPOPER": "10",
+                      "INSPPOINT": "000001",
+                      "USERC1": "-",
+                      "CAT_TYPE": "3",
+                      "PSEL_SET": "1000",
+                      "SEL_SET": "UD-POINT",
+                      "CODE_GRP": "UDCODE",
+                      "CODE": "A2", // A2 , R3
+                      "T_SAMPLE_RESULTS": databuff,
+                      "T_SINGLE_RESULTS": databuff2,
+                    };
+                    // print(output);
+                    await Dio()
+                        .post(
+                      "${server2}QMINCOMING/SETVALUE",
+                      data: output,
+                    )
+                        .then((v) {
+                      //
+                      print(v.data);
+                      P301QMMASTERVAR.pagepop = 1;
+                      setState(() {});
+                    });
+
+                    // print(output);
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(
+                      width: 200,
+                      height: 60,
+                      color: Colors.blue,
+                      child: Center(
+                        child: Text("SAVE"),
+                      ),
+                    ),
                   ),
                 ),
-              ),
+                // InkWell(
+                //   onTap: () {
+                //     //
+                //     P301QMMASTERVAR.pagepop = 1;
+                //     setState(() {});
+                //   },
+                //   child: Padding(
+                //     padding: const EdgeInsets.all(8.0),
+                //     child: Container(
+                //       width: 200,
+                //       height: 60,
+                //       color: Colors.blue,
+                //       child: Center(
+                //         child: Text("Used Decision"),
+                //       ),
+                //     ),
+                //   ),
+                // ),
+              ] else if (P301QMMASTERVAR.pagepop == 1) ...[
+                //
+                SingleChildScrollView(
+                  child: Container(
+                    // width: 1100,
+                    height: 500,
+                    child: Row(
+                      children: [
+                        Column(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: ComInputText(
+                                isEnabled: false,
+                                height: 40,
+                                width: 300,
+                                isContr: P301QMMASTERVAR.iscontrol,
+                                fnContr: (input) {
+                                  setState(() {
+                                    P301QMMASTERVAR.iscontrol = input;
+                                  });
+                                },
+                                sValue: P301QMMASTERVAR.TO_ALL,
+                                returnfunc: (String s) {
+                                  P301QMMASTERVAR.TO_ALL = s;
+                                },
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: ComInputText(
+                                sLabel: "GOOD",
+                                height: 40,
+                                width: 300,
+                                isContr: P301QMMASTERVAR.iscontrol,
+                                fnContr: (input) {
+                                  setState(() {
+                                    P301QMMASTERVAR.iscontrol = input;
+                                  });
+                                },
+                                sValue: P301QMMASTERVAR.TO_UR,
+                                returnfunc: (String s) {
+                                  P301QMMASTERVAR.TO_UR = s;
+                                  setState(() {});
+                                },
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: ComInputText(
+                                sLabel: "NO GOOD",
+                                height: 40,
+                                width: 300,
+                                isContr: P301QMMASTERVAR.iscontrol,
+                                fnContr: (input) {
+                                  setState(() {
+                                    P301QMMASTERVAR.iscontrol = input;
+                                  });
+                                },
+                                sValue: P301QMMASTERVAR.TO_BL,
+                                returnfunc: (String s) {
+                                  P301QMMASTERVAR.TO_BL = s;
+                                  setState(() {});
+                                },
+                              ),
+                            ),
+                          ],
+                        ),
+                        Column(
+                          children: [
+                            for (int i = 0; i < _datain.UDCODE.length; i++) ...[
+                              if (_datain.UDCODE[i].CODE == 'A2' &&
+                                  int.parse(ConverstStr(
+                                          P301QMMASTERVAR.TO_ALL)) ==
+                                      int.parse(
+                                          ConverstStr(P301QMMASTERVAR.TO_UR)) &&
+                                  (P301QMMASTERVAR.EVASET == 'OK')) ...[
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: InkWell(
+                                    onTap: () {
+                                      if (int.parse(ConverstStr(
+                                              P301QMMASTERVAR.TO_ALL)) ==
+                                          (int.parse(ConverstStr(
+                                                  P301QMMASTERVAR.TO_UR))) +
+                                              (int.parse(ConverstStr(
+                                                  P301QMMASTERVAR.TO_BL)))) {
+                                        Map<String, String> output = {
+                                          "INSPLOT":
+                                              P301QMMASTERVAR.INSP_LOTset,
+                                          "UD_SELECTED_SET": "",
+                                          "UD_PLANT": "",
+                                          "UD_CODE_GROUP":
+                                              _datain.UDCODE[i].CODEGROUP,
+                                          "UD_CODE": _datain.UDCODE[i].CODE,
+                                          "TO_UR": P301QMMASTERVAR.TO_UR,
+                                          "TO_BLOCKED": P301QMMASTERVAR.TO_BL,
+                                          "TO_RETURN": ""
+                                        };
+
+                                        Dio()
+                                            .post(
+                                          "${server2}QMINCOMING/UDSAVE",
+                                          data: output,
+                                        )
+                                            .then((v) {
+                                          Navigator.pop(context);
+                                          P301QMMASTERMAINcontext.read<
+                                                  P301QMMASTERget_Bloc>()
+                                              .add(P301QMMASTERget_GET());
+                                          //
+                                          print(v.data);
+                                        });
+                                      } else {
+                                        //
+                                        WORNINGpop(context,
+                                            ["", "QTY is not same"], 120, 200);
+                                      }
+                                    },
+                                    child: Container(
+                                      height: 80,
+                                      width: 400,
+                                      color: Colors.green,
+                                      child: Center(
+                                        child: Text(
+                                          _datain.UDCODE[i].CODE_TEXT,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                              if (_datain.UDCODE[i].CODE == 'A3' &&
+                                  int.parse(ConverstStr(
+                                          P301QMMASTERVAR.TO_ALL)) ==
+                                      int.parse(
+                                          ConverstStr(P301QMMASTERVAR.TO_UR)) &&
+                                  (P301QMMASTERVAR.EVASET == 'NOK')) ...[
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Container(
+                                    height: 80,
+                                    width: 350,
+                                    // color: Colors.yellow,
+                                    child: Center(
+                                      child: Text(
+                                        'Attach "HOLD PRODUCT TAG" \nand Contact customer',
+                                      ),
+                                    ),
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(8),
+                                      color: Colors.yellow,
+                                      border: Border.all(
+                                          color: Colors.black, width: 1),
+                                    ),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: InkWell(
+                                    onTap: () {
+                                      if (int.parse(ConverstStr(
+                                              P301QMMASTERVAR.TO_ALL)) ==
+                                          (int.parse(ConverstStr(
+                                                  P301QMMASTERVAR.TO_UR))) +
+                                              (int.parse(ConverstStr(
+                                                  P301QMMASTERVAR.TO_BL)))) {
+                                        Map<String, String> output = {
+                                          "INSPLOT":
+                                              P301QMMASTERVAR.INSP_LOTset,
+                                          "UD_SELECTED_SET": "",
+                                          "UD_PLANT": "",
+                                          "UD_CODE_GROUP":
+                                              _datain.UDCODE[i].CODEGROUP,
+                                          "UD_CODE": _datain.UDCODE[i].CODE,
+                                          "TO_UR": P301QMMASTERVAR.TO_UR,
+                                          "TO_BLOCKED": P301QMMASTERVAR.TO_BL,
+                                          "TO_RETURN": ""
+                                        };
+
+                                        Dio()
+                                            .post(
+                                          "${server2}QMINCOMING/UDSAVE",
+                                          data: output,
+                                        )
+                                            .then((v) {
+                                          Navigator.pop(context);
+                                          P301QMMASTERMAINcontext.read<
+                                                  P301QMMASTERget_Bloc>()
+                                              .add(P301QMMASTERget_GET());
+                                          //
+                                          print(v.data);
+                                        });
+                                      } else {
+                                        //
+                                        WORNINGpop(context,
+                                            ["", "QTY is not same"], 120, 200);
+                                      }
+                                    },
+                                    child: Container(
+                                      height: 80,
+                                      width: 400,
+                                      color: Colors.blue,
+                                      child: Center(
+                                        child: Text(
+                                          _datain.UDCODE[i].CODE_TEXT,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                              if (_datain.UDCODE[i].CODE == 'A6' &&
+                                  int.parse(ConverstStr(
+                                          P301QMMASTERVAR.TO_ALL)) !=
+                                      int.parse(
+                                          ConverstStr(P301QMMASTERVAR.TO_UR)) &&
+                                  (int.parse(ConverstStr(
+                                          P301QMMASTERVAR.TO_ALL)) !=
+                                      int.parse(ConverstStr(
+                                          P301QMMASTERVAR.TO_BL)))) ...[
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Container(
+                                    height: 80,
+                                    width: 350,
+                                    // color: Colors.yellow,
+                                    child: Center(
+                                      child: Text(
+                                          'Attach "HOLD PRODUCT TAG" \nand Contact customer'),
+                                    ),
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(8),
+                                      color: Colors.yellow,
+                                      border: Border.all(
+                                          color: Colors.black, width: 1),
+                                    ),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: InkWell(
+                                    onTap: () {
+                                      if (int.parse(ConverstStr(
+                                              P301QMMASTERVAR.TO_ALL)) ==
+                                          (int.parse(ConverstStr(
+                                                  P301QMMASTERVAR.TO_UR))) +
+                                              (int.parse(ConverstStr(
+                                                  P301QMMASTERVAR.TO_BL)))) {
+                                        Map<String, String> output = {
+                                          "INSPLOT":
+                                              P301QMMASTERVAR.INSP_LOTset,
+                                          "UD_SELECTED_SET": "",
+                                          "UD_PLANT": "",
+                                          "UD_CODE_GROUP":
+                                              _datain.UDCODE[i].CODEGROUP,
+                                          "UD_CODE": _datain.UDCODE[i].CODE,
+                                          "TO_UR": P301QMMASTERVAR.TO_UR,
+                                          "TO_BLOCKED": P301QMMASTERVAR.TO_BL,
+                                          "TO_RETURN": ""
+                                        };
+
+                                        Dio()
+                                            .post(
+                                          "${server2}QMINCOMING/UDSAVE",
+                                          data: output,
+                                        )
+                                            .then((v) {
+                                          Navigator.pop(context);
+                                          P301QMMASTERMAINcontext.read<
+                                                  P301QMMASTERget_Bloc>()
+                                              .add(P301QMMASTERget_GET());
+                                          //
+                                          print(v.data);
+                                        });
+                                      } else {
+                                        //
+                                        WORNINGpop(context,
+                                            ["", "QTY is not same"], 120, 200);
+                                      }
+                                    },
+                                    child: Container(
+                                      height: 80,
+                                      width: 400,
+                                      color: Colors.green.shade400,
+                                      child: Center(
+                                        child: Text(
+                                          _datain.UDCODE[i].CODE_TEXT,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                              if (_datain.UDCODE[i].CODE == 'R3' &&
+                                  int.parse(ConverstStr(
+                                          P301QMMASTERVAR.TO_ALL)) ==
+                                      int.parse(ConverstStr(
+                                          P301QMMASTERVAR.TO_BL))) ...[
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Container(
+                                    height: 80,
+                                    width: 350,
+                                    // color: Colors.yellow,
+                                    child: Center(
+                                      child: Text(
+                                          'Contact Store to return all parts to customer'),
+                                    ),
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(8),
+                                      color: Colors.orange,
+                                      border: Border.all(
+                                          color: Colors.black, width: 1),
+                                    ),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: InkWell(
+                                    onTap: () {
+                                      if (int.parse(ConverstStr(
+                                              P301QMMASTERVAR.TO_ALL)) ==
+                                          (int.parse(ConverstStr(
+                                                  P301QMMASTERVAR.TO_UR))) +
+                                              (int.parse(ConverstStr(
+                                                  P301QMMASTERVAR.TO_BL)))) {
+                                        Map<String, String> output = {
+                                          "INSPLOT":
+                                              P301QMMASTERVAR.INSP_LOTset,
+                                          "UD_SELECTED_SET": "",
+                                          "UD_PLANT": "",
+                                          "UD_CODE_GROUP":
+                                              _datain.UDCODE[i].CODEGROUP,
+                                          "UD_CODE": _datain.UDCODE[i].CODE,
+                                          "TO_UR": P301QMMASTERVAR.TO_UR,
+                                          "TO_BLOCKED": P301QMMASTERVAR.TO_BL,
+                                          "TO_RETURN": ""
+                                        };
+
+                                        Dio()
+                                            .post(
+                                          "${server2}QMINCOMING/UDSAVE",
+                                          data: output,
+                                        )
+                                            .then((v) {
+                                          Navigator.pop(context);
+                                          P301QMMASTERMAINcontext.read<
+                                                  P301QMMASTERget_Bloc>()
+                                              .add(P301QMMASTERget_GET());
+                                          //
+                                          print(v.data);
+                                        });
+                                      } else {
+                                        //
+                                        WORNINGpop(context,
+                                            ["", "QTY is not same"], 120, 200);
+                                      }
+                                    },
+                                    child: Container(
+                                      height: 80,
+                                      width: 400,
+                                      color: Colors.red,
+                                      child: Center(
+                                        child: Text(
+                                          _datain.UDCODE[i].CODE_TEXT,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                              //   if (_datain.UDCODE[i].CODE == 'R99' &&
+                              //       (int.parse(ConverstStr(
+                              //               P301QMMASTERVAR.TO_ALL)) ==
+                              //           int.parse(ConverstStr(
+                              //               P301QMMASTERVAR.TO_BL)))) ...[
+                              //     Padding(
+                              //       padding: const EdgeInsets.all(8.0),
+                              //       child: InkWell(
+                              //         onTap: () {
+                              //           // if (int.parse(ConverstStr(
+                              //           //         P301QMMASTERVAR.TO_ALL)) ==
+                              //           //     (int.parse(ConverstStr(
+                              //           //             P301QMMASTERVAR.TO_UR))) +
+                              //           //         (int.parse(ConverstStr(
+                              //           //             P301QMMASTERVAR.TO_BL)))) {
+                              //           //   Map<String, String> output = {
+                              //           //     "INSPLOT":
+                              //           //         P301QMMASTERVAR.INSP_LOTset,
+                              //           //     "UD_SELECTED_SET": "",
+                              //           //     "UD_PLANT": "",
+                              //           //     "UD_CODE_GROUP":
+                              //           //         _datain.UDCODE[i].CODEGROUP,
+                              //           //     "UD_CODE": _datain.UDCODE[i].CODE,
+                              //           //     "TO_UR": P301QMMASTERVAR.TO_UR,
+                              //           //     "TO_BLOCKED": P301QMMASTERVAR.TO_BL,
+                              //           //     "TO_RETURN": ""
+                              //           //   };
+
+                              //           //   Dio()
+                              //           //       .post(
+                              //           //     "${server2}QMINCOMING/UDSAVE",
+                              //           //     data: output,
+                              //           //   )
+                              //           //       .then((v) {
+                              //           Navigator.pop(context);
+                              //           P301QMMASTERMAINcontext.read<
+                              //                   P301QMMASTERget_Bloc>()
+                              //               .add(P301QMMASTERget_GET());
+                              //           //     //
+                              //           //     print(v.data);
+                              //           //   });
+                              //           // } else {
+                              //           //   //
+                              //           //   WORNINGpop(context,
+                              //           //       ["", "QTY is not same"], 120, 200);
+                              //           // }
+                              //         },
+                              //         child: Container(
+                              //           height: 80,
+                              //           width: 400,
+                              //           color: Colors.orange,
+                              //           child: Center(
+                              //             child: Text(
+                              //               _datain.UDCODE[i].CODE_TEXT,
+                              //             ),
+                              //           ),
+                              //         ),
+                              //       ),
+                              //     ),
+                              //   ],
+                            ]
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+
+                //
+
+                InkWell(
+                  onTap: () {
+                    //
+                    P301QMMASTERVAR.pagepop = 0;
+                    setState(() {});
+                  },
+                  child: Container(
+                    width: 200,
+                    height: 60,
+                    color: Colors.blue,
+                    child: Center(
+                      child: Text("INSP_SPEC"),
+                    ),
+                  ),
+                ),
+              ],
             ],
-          ],
+          ),
         ),
       ),
     );
@@ -880,7 +1267,7 @@ class _QMI003POPappState extends State<QMI003POPapp> {
                                                 .VALUATION ==
                                             'A'
                                         ? Colors.green
-                                        : Colors.blue,
+                                        : Colors.red,
                                     child: Center(
                                       child: Text(
                                         P301QMMASTERVAR

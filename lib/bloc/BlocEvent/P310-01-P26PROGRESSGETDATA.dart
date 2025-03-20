@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../data/global.dart';
-import '../../page/P221PRODUCTIONCONFIRMATION/P221PRODUCTIONCONFIRMATIONVAR.dart';
+import '../../page/P221PRODUCTIONCONFIRMATIONSM/P221PRODUCTIONCONFIRMATIONSMVAR.dart';
 import '../../page/P310CHEMTANK/P310CHEMTANKMAIN.dart';
 import '../../page/P310CHEMTANK/P310CHEMTANKVAR.dart';
 import '../../widget/common/Loading.dart';
@@ -44,7 +44,7 @@ class P310CHEMTANKGETDATA_Bloc
     //-------------------------------------------------------------------------------------
     final response = await Dio().post(
       // "${server3}datacentertest/getsoi8order",
-      "${server3}datacentertest/getsoi8order-ro",
+      "${server2}datacentertest/getsoi8order-ro",
       //
       data: {
         "PLANT": P310CHEMTANKVAR.PLANT,

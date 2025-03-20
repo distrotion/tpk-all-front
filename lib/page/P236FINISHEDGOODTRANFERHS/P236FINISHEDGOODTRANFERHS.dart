@@ -1,4 +1,6 @@
 // ignore_for_file: prefer_const_constructors, must_be_immutable
+import 'dart:async';
+
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -8,6 +10,7 @@ import 'package:qr_flutter/qr_flutter.dart';
 import '../../bloc/BlocEvent/ChangePageEvent.dart';
 
 import '../../bloc/BlocEvent/P231-01-P221FINISHEDGOODTRANFERget.dart';
+import '../../bloc/BlocEvent/P236-01-P236FINISHEDGOODTRANFERHSget.dart';
 import '../../bloc/BlocEvent/P301-02-P301QMMASTERgetINSP_SPEC.dart';
 import '../../bloc/Cubit/ChangePageEventCUBIT.dart';
 import '../../data/global.dart';
@@ -18,6 +21,7 @@ import '../../widget/common/ComInputText.dart';
 import '../../widget/common/ComInputTextTan.dart';
 import '../../widget/common/Loading.dart';
 import '../../widget/common/Safty.dart';
+import '../../widget/newtable/FINISHEDGOODTRANFERHStable.dart';
 import '../../widget/newtable/INSP_SPECtable.dart';
 import '../../widget/newtable/PLANINGSUBtable.dart';
 import '../../widget/newtable/PLANINGtable.dart';
@@ -27,56 +31,57 @@ import '../../widget/table/PROGRESSMAIN.dart';
 
 import '../page1.dart';
 import '../page202.dart';
-import 'P231FINISHEDGOODTRANFERVAR.dart';
+import '../page204.dart';
+import 'P236FINISHEDGOODTRANFERHSVAR.dart';
 
-late BuildContext P231FINISHEDGOODTRANFERcontext;
+late BuildContext P236FINISHEDGOODTRANFERHScontext;
 
-class P231FINISHEDGOODTRANFER extends StatefulWidget {
-  P231FINISHEDGOODTRANFER({
+class P236FINISHEDGOODTRANFERHS extends StatefulWidget {
+  P236FINISHEDGOODTRANFERHS({
     super.key,
     this.data,
   });
-  List<P231FINISHEDGOODTRANFERgetclass>? data;
+  List<P236FINISHEDGOODTRANFERHSgetclass>? data;
 
   @override
-  State<P231FINISHEDGOODTRANFER> createState() =>
-      _P231FINISHEDGOODTRANFERState();
+  State<P236FINISHEDGOODTRANFERHS> createState() =>
+      _P236FINISHEDGOODTRANFERHSState();
 }
 
-class _P231FINISHEDGOODTRANFERState extends State<P231FINISHEDGOODTRANFER> {
+class _P236FINISHEDGOODTRANFERHSState extends State<P236FINISHEDGOODTRANFERHS> {
   @override
   void initState() {
     super.initState();
     var now = DateTime.now();
-    // P231FINISHEDGOODTRANFERVAR.formattedDate = DateFormat('dd-MM-yy').format(now);
-    P231FINISHEDGOODTRANFERVAR.day = DateFormat('dd').format(now);
-    P231FINISHEDGOODTRANFERVAR.month = DateFormat('MM').format(now);
-    P231FINISHEDGOODTRANFERVAR.year = DateFormat('yyyy').format(now);
+    // P236FINISHEDGOODTRANFERHSVAR.formattedDate = DateFormat('dd-MM-yy').format(now);
+    // P236FINISHEDGOODTRANFERHSVAR.day = DateFormat('dd').format(now);
+    // P236FINISHEDGOODTRANFERHSVAR.month = DateFormat('MM').format(now);
+    // P236FINISHEDGOODTRANFERHSVAR.year = DateFormat('yyyy').format(now);
 
-    // P231FINISHEDGOODTRANFERVAR.day_next = DateFormat('dd').format(now);
-    // P231FINISHEDGOODTRANFERVAR.month_next = DateFormat('MM').format(now);
-    // P231FINISHEDGOODTRANFERVAR.year_next = DateFormat('yyyy').format(now);
+    // P236FINISHEDGOODTRANFERHSVAR.day_next = DateFormat('dd').format(now);
+    // P236FINISHEDGOODTRANFERHSVAR.month_next = DateFormat('MM').format(now);
+    // P236FINISHEDGOODTRANFERHSVAR.year_next = DateFormat('yyyy').format(now);
 
-    // P231FINISHEDGOODTRANFERVAR.day = "03";
-    // P231FINISHEDGOODTRANFERVAR.month = "03";
-    // P231FINISHEDGOODTRANFERVAR.year = "2025";
-    P231FINISHEDGOODTRANFERVAR.day_next = "05";
-    P231FINISHEDGOODTRANFERVAR.month_next = "04";
-    P231FINISHEDGOODTRANFERVAR.year_next = "2025";
+    P236FINISHEDGOODTRANFERHSVAR.day = "05";
+    P236FINISHEDGOODTRANFERHSVAR.month = "03";
+    P236FINISHEDGOODTRANFERHSVAR.year = "2025";
+    P236FINISHEDGOODTRANFERHSVAR.day_next = "05";
+    P236FINISHEDGOODTRANFERHSVAR.month_next = "04";
+    P236FINISHEDGOODTRANFERHSVAR.year_next = "2025";
 
-    P231FINISHEDGOODTRANFERVAR.iscontrol = true;
-    P231FINISHEDGOODTRANFERVAR.SEARCH = '';
-    P231FINISHEDGOODTRANFERVAR.holding = 999;
+    P236FINISHEDGOODTRANFERHSVAR.iscontrol = true;
+    P236FINISHEDGOODTRANFERHSVAR.SEARCH = '';
+    P236FINISHEDGOODTRANFERHSVAR.holding = 999;
     context
-        .read<P231FINISHEDGOODTRANFERget_Bloc>()
-        .add(P231FINISHEDGOODTRANFERget_GET());
+        .read<P236FINISHEDGOODTRANFERHSget_Bloc>()
+        .add(P236FINISHEDGOODTRANFERHSget_GET());
   }
 
   @override
   Widget build(BuildContext context) {
-    P231FINISHEDGOODTRANFERcontext = context;
-    List<P231FINISHEDGOODTRANFERgetclass> _datain = widget.data ?? [];
-    List<P231FINISHEDGOODTRANFERgetclass> _datasearch = [];
+    P236FINISHEDGOODTRANFERHScontext = context;
+    List<P236FINISHEDGOODTRANFERHSgetclass> _datain = widget.data ?? [];
+    List<P236FINISHEDGOODTRANFERHSgetclass> _datasearch = [];
 
     return SingleChildScrollView(
       child: Padding(
@@ -93,7 +98,7 @@ class _P231FINISHEDGOODTRANFERState extends State<P231FINISHEDGOODTRANFER> {
                       InkWell(
                         onTap: () {
                           MainBodyContext.read<ChangePage_Bloc>()
-                              .ChangePage_nodrower('', Page202());
+                              .ChangePage_nodrower('', Page204());
                         },
                         child: SizedBox(
                           width: 200,
@@ -204,9 +209,9 @@ class _P231FINISHEDGOODTRANFERState extends State<P231FINISHEDGOODTRANFER> {
                       CalendaSelectDates(context, calendaset,
                           (day, month, year) {
                         //
-                        P231FINISHEDGOODTRANFERVAR.day = day;
-                        P231FINISHEDGOODTRANFERVAR.month = month;
-                        P231FINISHEDGOODTRANFERVAR.year = year;
+                        P236FINISHEDGOODTRANFERHSVAR.day = day;
+                        P236FINISHEDGOODTRANFERHSVAR.month = month;
+                        P236FINISHEDGOODTRANFERHSVAR.year = year;
 
                         setState(() {});
                       });
@@ -224,7 +229,7 @@ class _P231FINISHEDGOODTRANFERState extends State<P231FINISHEDGOODTRANFER> {
                       ),
                       child: Center(
                         child: Text(
-                          "วันที่ : ${P231FINISHEDGOODTRANFERVAR.day}-${P231FINISHEDGOODTRANFERVAR.month}-${P231FINISHEDGOODTRANFERVAR.year}",
+                          "วันที่ : ${P236FINISHEDGOODTRANFERHSVAR.day}-${P236FINISHEDGOODTRANFERHSVAR.month}-${P236FINISHEDGOODTRANFERHSVAR.year}",
                           style: TextStyle(
                               fontWeight: FontWeight.bold, color: Colors.black),
                         ),
@@ -238,9 +243,9 @@ class _P231FINISHEDGOODTRANFERState extends State<P231FINISHEDGOODTRANFER> {
                       CalendaSelectDates(context, calendaset,
                           (day, month, year) {
                         //
-                        P231FINISHEDGOODTRANFERVAR.day_next = day;
-                        P231FINISHEDGOODTRANFERVAR.month_next = month;
-                        P231FINISHEDGOODTRANFERVAR.year_next = year;
+                        P236FINISHEDGOODTRANFERHSVAR.day_next = day;
+                        P236FINISHEDGOODTRANFERHSVAR.month_next = month;
+                        P236FINISHEDGOODTRANFERHSVAR.year_next = year;
 
                         setState(() {});
                       });
@@ -258,14 +263,14 @@ class _P231FINISHEDGOODTRANFERState extends State<P231FINISHEDGOODTRANFER> {
                       ),
                       child: Center(
                         child: Text(
-                          "ถึงวันที่ : ${P231FINISHEDGOODTRANFERVAR.day_next}-${P231FINISHEDGOODTRANFERVAR.month_next}-${P231FINISHEDGOODTRANFERVAR.year_next}",
+                          "ถึงวันที่ : ${P236FINISHEDGOODTRANFERHSVAR.day_next}-${P236FINISHEDGOODTRANFERHSVAR.month_next}-${P236FINISHEDGOODTRANFERHSVAR.year_next}",
                           style: TextStyle(
                               fontWeight: FontWeight.bold, color: Colors.black),
                         ),
                       ),
                     ),
                   ),
-                  FINISHEDGOODTRANFERtable(),
+                  FINISHEDGOODTRANFERHStable(),
                   // if (_datasearch
                   //     .any((item) => item.PLANT == 'noxrust'))
                   SizedBox(
@@ -279,47 +284,27 @@ class _P231FINISHEDGOODTRANFERState extends State<P231FINISHEDGOODTRANFER> {
                               // for (int i = 0; i < 10; i++) ...[
                               InkWell(
                                 onTap: () {
-                                  //
-                                  // P231FINISHEDGOODTRANFERVAR
-                                  //         .PROCESS_ORDERselect =
-                                  //     _datain[i].PROCESS_ORDER;
-                                  //-----------------------------------------------
-                                  P231FINISHEDGOODTRANFERVAR
-                                      .FINALSEND = (double.parse(ConverstStr(
-                                                  _datain[i].NumPackSize1)) *
-                                              double.parse(ConverstStr(
-                                                  _datain[i].NumQuantity1)) +
-                                          double.parse(ConverstStr(_datain[i].NumPackSize2)) *
-                                              double.parse(ConverstStr(
-                                                  _datain[i].NumQuantity2)) +
-                                          double.parse(ConverstStr(
-                                                  _datain[i].NumPackSize3)) *
-                                              double.parse(
-                                                  ConverstStr(_datain[i].NumQuantity3)))
-                                      .toString();
-                                  P231FINISHEDGOODTRANFERVAR.UNIT =
+                                  P236FINISHEDGOODTRANFERHSVAR.PROCESS_ORDER =
+                                      _datain[i].PROCESS_ORDER;
+                                  P236FINISHEDGOODTRANFERHSVAR.MATERIAL =
+                                      _datain[i].MATERIAL;
+
+                                  P236FINISHEDGOODTRANFERHSVAR.UOM =
                                       _datain[i].UOM;
-                                  P231FINISHEDGOODTRANFERVAR.FGPOSTDATA =
-                                      _datain[i];
+                                  P236FINISHEDGOODTRANFERHSVAR.GOOD =
+                                      _datain[i].GOOD;
+                                  P236FINISHEDGOODTRANFERHSVAR.NOGOOD =
+                                      _datain[i].NOGOOD;
                                   _POPUPCREATEUSERSW(context);
-                                  P231FINISHEDGOODTRANFERVAR.Page = 0;
-                                  //-------------
-                                  // setState(() {
-                                  //   if (_datain[i].check) {
-                                  //     _datain[i].check = false;
-                                  //   } else {
-                                  //     _datain[i].check = true;
-                                  //   }
-                                  // });
                                 },
                                 onHover: (v) {
                                   //
                                   // print(v.toString() + ":" + i.toString());
                                   setState(() {
-                                    P231FINISHEDGOODTRANFERVAR.holding = i;
+                                    P236FINISHEDGOODTRANFERHSVAR.holding = i;
                                   });
                                 },
-                                child: FINISHEDGOODTRANFERitem(
+                                child: FINISHEDGOODTRANFERHSitem(
                                   Wid01: CheckBoxC(
                                     getChbox: (p0) {
                                       setState(() {
@@ -329,22 +314,16 @@ class _P231FINISHEDGOODTRANFERState extends State<P231FINISHEDGOODTRANFER> {
                                     value: _datain[i].check,
                                   ),
                                   holding:
-                                      P231FINISHEDGOODTRANFERVAR.holding == i,
+                                      P236FINISHEDGOODTRANFERHSVAR.holding == i,
                                   text01: _datain[i].PROCESS_ORDER,
                                   text02: _datain[i].MATERIAL,
                                   text03: _datain[i].MATERIAL_TEXT,
                                   text04: _datain[i].PROD_SUP_DESC,
                                   text05: _datain[i].BATCH,
-                                  text06: _datain[i].Yield,
-                                  text07: _datain[i].NumPackSize1 != ''
-                                      ? '(P${_datain[i].NumPackSize1})*${_datain[i].NumQuantity1}'
-                                      : "",
-                                  text08: _datain[i].NumPackSize2 != ''
-                                      ? '(P${_datain[i].NumPackSize2})*${_datain[i].NumQuantity2}'
-                                      : "",
-                                  text09: _datain[i].NumPackSize3 != ''
-                                      ? '(P${_datain[i].NumPackSize3})*${_datain[i].NumQuantity3}'
-                                      : "",
+                                  text06: _datain[i].GOOD,
+                                  text07: _datain[i].NOGOOD,
+                                  text08: "",
+                                  text09: "",
                                   text10: "-",
                                   text11: "-",
                                   text12: "-",
@@ -391,9 +370,9 @@ void _POPUPCREATEUSERSW(BuildContext contextin) {
 //   @override
 //   Widget build(BuildContext context) {
 //     return BlocProvider(
-//         create: (_) => P231FINISHEDGOODTRANFERgetsub_Bloc(),
-//         child: BlocBuilder<P231FINISHEDGOODTRANFERgetsub_Bloc,
-//             List<P231FINISHEDGOODTRANFERgetsubclass>>(
+//         create: (_) => P236FINISHEDGOODTRANFERHSgetsub_Bloc(),
+//         child: BlocBuilder<P236FINISHEDGOODTRANFERHSgetsub_Bloc,
+//             List<P236FINISHEDGOODTRANFERHSgetsubclass>>(
 //           builder: (context, data) {
 //             return _DATAGETSET(
 //               data: data,
@@ -425,7 +404,7 @@ class __DATAGETSETState extends State<_DATAGETSET> {
       padding: const EdgeInsets.all(12.0),
       child: Column(
         children: [
-          if (P231FINISHEDGOODTRANFERVAR.Page == 0) ...[
+          if (P236FINISHEDGOODTRANFERHSVAR.Page == 0) ...[
             // if (_datasearch
             //     .any((item) => item.PLANT == 'noxrust'))
             Padding(
@@ -441,27 +420,59 @@ class __DATAGETSETState extends State<_DATAGETSET> {
                 children: [
                   Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Text("TO STORE"),
+                    child: Text("GOOD"),
                   ),
                   ComInputText(
                     height: 40,
                     width: 200,
-                    isContr: P231FINISHEDGOODTRANFERVAR.iscontrol,
+                    isContr: P236FINISHEDGOODTRANFERHSVAR.iscontrol,
                     fnContr: (input) {
                       setState(() {
-                        P231FINISHEDGOODTRANFERVAR.iscontrol = input;
+                        P236FINISHEDGOODTRANFERHSVAR.iscontrol = input;
                       });
                     },
-                    sValue: P231FINISHEDGOODTRANFERVAR.FINALSEND,
+                    sValue: P236FINISHEDGOODTRANFERHSVAR.GOOD,
                     returnfunc: (String s) {
                       setState(() {
-                        P231FINISHEDGOODTRANFERVAR.FINALSEND = s;
+                        P236FINISHEDGOODTRANFERHSVAR.GOOD = s;
                       });
                     },
                   ),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Text(P231FINISHEDGOODTRANFERVAR.UNIT),
+                    child: Text(P236FINISHEDGOODTRANFERHSVAR.UNIT),
+                  ),
+                ],
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text("NO GOOD"),
+                  ),
+                  ComInputText(
+                    height: 40,
+                    width: 200,
+                    isContr: P236FINISHEDGOODTRANFERHSVAR.iscontrol,
+                    fnContr: (input) {
+                      setState(() {
+                        P236FINISHEDGOODTRANFERHSVAR.iscontrol = input;
+                      });
+                    },
+                    sValue: P236FINISHEDGOODTRANFERHSVAR.NOGOOD,
+                    returnfunc: (String s) {
+                      setState(() {
+                        P236FINISHEDGOODTRANFERHSVAR.NOGOOD = s;
+                      });
+                    },
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(P236FINISHEDGOODTRANFERHSVAR.UNIT),
                   ),
                 ],
               ),
@@ -470,50 +481,107 @@ class __DATAGETSETState extends State<_DATAGETSET> {
               child: InkWell(
                 onTap: () {
                   //
-                  DateTime calendaset = DateTime.now();
-                  Map<String, String> dataset = {
-                    "PSTNG_DATE":
-                        // "${calendaset.day}.${calendaset.month}.${calendaset.year}",
-                        "${P231FINISHEDGOODTRANFERVAR.day_next}.${P231FINISHEDGOODTRANFERVAR.month_next}.${P231FINISHEDGOODTRANFERVAR.year_next}",
-                    "DOC_DATE":
-                        // "${calendaset.day}.${calendaset.month}.${calendaset.year}",
-                        "${P231FINISHEDGOODTRANFERVAR.day_next}.${P231FINISHEDGOODTRANFERVAR.month_next}.${P231FINISHEDGOODTRANFERVAR.year_next}",
-                    "REF_DOC_NO":
-                        P231FINISHEDGOODTRANFERVAR.FGPOSTDATA.PROCESS_ORDER,
-                    "HEADER_TXT": "USER DATA",
-                    "MATERIAL": P231FINISHEDGOODTRANFERVAR.FGPOSTDATA.MATERIAL,
-                    "PLANT": "1000",
-                    "STGE_LOC": P231FINISHEDGOODTRANFERVAR.FGPOSTDATA.STGE_LOC,
-                    "BATCH": P231FINISHEDGOODTRANFERVAR.FGPOSTDATA.BATCH,
-                    "MOVE_TYPE": "101",
-                    "STCK_TYPE": "",
-                    "ENTRY_QNT": P231FINISHEDGOODTRANFERVAR.FINALSEND,
-                    "ENTRY_UOM": P231FINISHEDGOODTRANFERVAR.FGPOSTDATA.UOM,
-                    "ORDERID":
-                        P231FINISHEDGOODTRANFERVAR.FGPOSTDATA.PROCESS_ORDER,
-                    "EXPIRYDATE": "",
-                    "PROD_DATE":
-                        // "${calendaset.day}.${calendaset.month}.${calendaset.year}",
-                        "${P231FINISHEDGOODTRANFERVAR.day_next}.${P231FINISHEDGOODTRANFERVAR.month_next}.${P231FINISHEDGOODTRANFERVAR.year_next}",
-                    "TEMPLATE": ""
-                  };
+                  // DateTime calendaset = DateTime.now();
+                  // Map<String, String> dataset = {
+                  //   "PSTNG_DATE":
+                  //       // "${calendaset.day}.${calendaset.month}.${calendaset.year}",
+                  //       "${P236FINISHEDGOODTRANFERHSVAR.day_next}.${P236FINISHEDGOODTRANFERHSVAR.month_next}.${P236FINISHEDGOODTRANFERHSVAR.year_next}",
+                  //   "DOC_DATE":
+                  //       // "${calendaset.day}.${calendaset.month}.${calendaset.year}",
+                  //       "${P236FINISHEDGOODTRANFERHSVAR.day_next}.${P236FINISHEDGOODTRANFERHSVAR.month_next}.${P236FINISHEDGOODTRANFERHSVAR.year_next}",
+                  //   "REF_DOC_NO":
+                  //       P236FINISHEDGOODTRANFERHSVAR.FGPOSTDATA.PROCESS_ORDER,
+                  //   "HEADER_TXT": "USER DATA",
+                  //   "MATERIAL":
+                  //       P236FINISHEDGOODTRANFERHSVAR.FGPOSTDATA.MATERIAL,
+                  //   "PLANT": "1000",
+                  //   "STGE_LOC":
+                  //       P236FINISHEDGOODTRANFERHSVAR.FGPOSTDATA.STGE_LOC,
+                  //   "BATCH": P236FINISHEDGOODTRANFERHSVAR.FGPOSTDATA.BATCH,
+                  //   "MOVE_TYPE": "101",
+                  //   "STCK_TYPE": "",
+                  //   "ENTRY_QNT": P236FINISHEDGOODTRANFERHSVAR.FINALSEND,
+                  //   "ENTRY_UOM": P236FINISHEDGOODTRANFERHSVAR.FGPOSTDATA.UOM,
+                  //   "ORDERID":
+                  //       P236FINISHEDGOODTRANFERHSVAR.FGPOSTDATA.PROCESS_ORDER,
+                  //   "EXPIRYDATE": "",
+                  //   "PROD_DATE":
+                  //       // "${calendaset.day}.${calendaset.month}.${calendaset.year}",
+                  //       "${P236FINISHEDGOODTRANFERHSVAR.day_next}.${P236FINISHEDGOODTRANFERHSVAR.month_next}.${P236FINISHEDGOODTRANFERHSVAR.year_next}",
+                  //   "TEMPLATE": ""
+                  // };
 
-                  // print(dataset);
+                  // // print(dataset);
 
+                  // FreeLoading(context);
+                  // Dio()
+                  //     .post(
+                  //   "${server2}03iPPGETDATACHEM/SETI003DATA",
+                  //   data: dataset,
+                  // )
+                  //     .then((v) {
+                  //   //
+                  //   // Navigator.pop(P236FINISHEDGOODTRANFERHScontext);
+                  //   // Navigator.pop(context);
+                  //   Navigator.pop(context);
+                  //   P236FINISHEDGOODTRANFERHSVAR.Page = 1;
+                  //   setState(() {});
+                  //   print(v.data);
+                  // });
                   FreeLoading(context);
-                  Dio()
-                      .post(
-                    "${server2}03iPPGETDATACHEM/SETI003DATA",
-                    data: dataset,
-                  )
-                      .then((v) {
-                    //
-                    // Navigator.pop(P231FINISHEDGOODTRANFERcontext);
-                    // Navigator.pop(context);
-                    Navigator.pop(context);
-                    P231FINISHEDGOODTRANFERVAR.Page = 1;
-                    setState(() {});
-                    print(v.data);
+                  if (ConverstStr(P236FINISHEDGOODTRANFERHSVAR.GOOD) != '0') {
+                    Map<String, String> dataset = {
+                      "PROCESSORDER":
+                          P236FINISHEDGOODTRANFERHSVAR.PROCESS_ORDER,
+                      "POSTINGDATE": "01.04.2025",
+                      "MATERIAL": P236FINISHEDGOODTRANFERHSVAR.MATERIAL,
+                      "QUANTITY":
+                          (ConverstStr(P236FINISHEDGOODTRANFERHSVAR.GOOD)),
+                      "UNIT": P236FINISHEDGOODTRANFERHSVAR.UOM,
+                      "QUANTITYSTATUS": "GOOD"
+                    };
+
+                    Dio()
+                        .post(
+                      "${server2}10GETDATAFROMJOBBINGAQC/POSTTOSTORE",
+                      data: dataset,
+                    )
+                        .then((v) {
+                      //
+                      // Navigator.pop(P236FINISHEDGOODTRANFERHScontext);
+                      // Navigator.pop(context);
+
+                      print(v.data);
+                    });
+                  }
+                  Timer(Duration(seconds: 3), () {
+                    if (ConverstStr(P236FINISHEDGOODTRANFERHSVAR.NOGOOD) !=
+                        '0') {
+                      Map<String, String> dataset = {
+                        "PROCESSORDER":
+                            P236FINISHEDGOODTRANFERHSVAR.PROCESS_ORDER,
+                        "POSTINGDATE": "01.04.2025",
+                        "MATERIAL": P236FINISHEDGOODTRANFERHSVAR.MATERIAL,
+                        "QUANTITY":
+                            (ConverstStr(P236FINISHEDGOODTRANFERHSVAR.NOGOOD)),
+                        "UNIT": P236FINISHEDGOODTRANFERHSVAR.UOM,
+                        "QUANTITYSTATUS": "NG"
+                      };
+
+                      Dio()
+                          .post(
+                        "${server2}10GETDATAFROMJOBBINGAQC/POSTTOSTORE",
+                        data: dataset,
+                      )
+                          .then((v) {
+                        print(v.data);
+                        Navigator.pop(context);
+                        Navigator.pop(context);
+                      });
+                    } else {
+                      Navigator.pop(context);
+                      Navigator.pop(context);
+                    }
                   });
                 },
                 child: Container(
@@ -540,4 +608,4 @@ class __DATAGETSETState extends State<_DATAGETSET> {
   }
 }
 
-// //P231FINISHEDGOODTRANFERgetsubclass
+// //P236FINISHEDGOODTRANFERHSgetsubclass

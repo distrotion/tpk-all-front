@@ -11,8 +11,10 @@ import '../page1.dart';
 import '../page200.dart';
 import '../page203.dart';
 import '../page211.dart';
+import '../page236.dart';
 import '../page301.dart';
 import '../page302.dart';
+import '../page303.dart';
 import 'P204HANDSLISTvar.dart';
 
 class P204HANDSLISTmain extends StatefulWidget {
@@ -144,6 +146,12 @@ class _P204HANDSLISTmainBodyState extends State<P204HANDSLISTmainBody> {
                               if (s == 0) {
                                 MainBodyContext.read<ChangePage_Bloc>()
                                     .ChangePage_nodrower('', Page302());
+                              } else if (s == 1) {
+                                MainBodyContext.read<ChangePage_Bloc>()
+                                    .ChangePage_nodrower('', Page303());
+                              } else if (s == 2) {
+                                MainBodyContext.read<ChangePage_Bloc>()
+                                    .ChangePage_nodrower('', Page236());
                               }
                             },
                             child: AnimatedContainer(

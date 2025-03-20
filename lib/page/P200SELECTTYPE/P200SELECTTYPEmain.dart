@@ -244,7 +244,7 @@ class _P200SELECTTYPEmainBodyState extends State<P200SELECTTYPEmainBody> {
                           print(USERDATA.INSMASTER);
 
                           QUERYDATASET.PLANT = '1000';
-                          QUERYDATASET.LOT_ORI = '03';
+                          QUERYDATASET.LOT_ORI = '01';
 
                           MainBodyContext.read<ChangePage_Bloc>()
                               .ChangePage_nodrower('', Page202());

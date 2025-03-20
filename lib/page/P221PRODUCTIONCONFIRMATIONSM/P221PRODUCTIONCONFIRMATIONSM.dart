@@ -5,7 +5,7 @@ import 'package:intl/intl.dart';
 
 import '../../bloc/BlocEvent/ChangePageEvent.dart';
 
-import '../../bloc/BlocEvent/P221-01-P221PRODUCTIONCONFIRMATIONget.dart';
+import '../../bloc/BlocEvent/P221-01-P221PRODUCTIONCONFIRMATIONSMget.dart';
 import '../../bloc/BlocEvent/P301-02-P301QMMASTERgetINSP_SPEC.dart';
 import '../../bloc/Cubit/ChangePageEventCUBIT.dart';
 import '../../data/global.dart';
@@ -23,54 +23,54 @@ import '../../widget/table/PROGRESSMAIN.dart';
 import '../P310CHEMTANK/P310CHEMTANKVAR.dart';
 import '../page202.dart';
 import '../page310.dart';
-import 'P221PRODUCTIONCONFIRMATIONVAR.dart';
+import 'P221PRODUCTIONCONFIRMATIONSMVAR.dart';
 
-late BuildContext P221PRODUCTIONCONFIRMATIONcontext;
+late BuildContext P221PRODUCTIONCONFIRMATIONSMcontext;
 
-class P221PRODUCTIONCONFIRMATION extends StatefulWidget {
-  P221PRODUCTIONCONFIRMATION({
+class P221PRODUCTIONCONFIRMATIONSM extends StatefulWidget {
+  P221PRODUCTIONCONFIRMATIONSM({
     super.key,
     this.data,
   });
-  List<P221PRODUCTIONCONFIRMATIONgetclass>? data;
+  List<P221PRODUCTIONCONFIRMATIONSMgetclass>? data;
 
   @override
-  State<P221PRODUCTIONCONFIRMATION> createState() =>
-      _P221PRODUCTIONCONFIRMATIONState();
+  State<P221PRODUCTIONCONFIRMATIONSM> createState() =>
+      _P221PRODUCTIONCONFIRMATIONSMState();
 }
 
-class _P221PRODUCTIONCONFIRMATIONState
-    extends State<P221PRODUCTIONCONFIRMATION> {
+class _P221PRODUCTIONCONFIRMATIONSMState
+    extends State<P221PRODUCTIONCONFIRMATIONSM> {
   @override
   void initState() {
     super.initState();
     var now = DateTime.now();
-    // P221PRODUCTIONCONFIRMATIONVAR.formattedDate = DateFormat('dd-MM-yy').format(now);
-    P221PRODUCTIONCONFIRMATIONVAR.day = DateFormat('dd').format(now);
-    P221PRODUCTIONCONFIRMATIONVAR.month = DateFormat('MM').format(now);
-    P221PRODUCTIONCONFIRMATIONVAR.year = DateFormat('yyyy').format(now);
+    // P221PRODUCTIONCONFIRMATIONSMVAR.formattedDate = DateFormat('dd-MM-yy').format(now);
+    P221PRODUCTIONCONFIRMATIONSMVAR.day = DateFormat('dd').format(now);
+    P221PRODUCTIONCONFIRMATIONSMVAR.month = DateFormat('MM').format(now);
+    P221PRODUCTIONCONFIRMATIONSMVAR.year = DateFormat('yyyy').format(now);
 
-    // P221PRODUCTIONCONFIRMATIONVAR.day_next = DateFormat('dd').format(now);
-    // P221PRODUCTIONCONFIRMATIONVAR.month_next = DateFormat('MM').format(now);
-    // P221PRODUCTIONCONFIRMATIONVAR.year_next = DateFormat('yyyy').format(now);
+    // P221PRODUCTIONCONFIRMATIONSMVAR.day_next = DateFormat('dd').format(now);
+    // P221PRODUCTIONCONFIRMATIONSMVAR.month_next = DateFormat('MM').format(now);
+    // P221PRODUCTIONCONFIRMATIONSMVAR.year_next = DateFormat('yyyy').format(now);
 
-    P221PRODUCTIONCONFIRMATIONVAR.day_next = "05";
-    P221PRODUCTIONCONFIRMATIONVAR.month_next = "04";
-    P221PRODUCTIONCONFIRMATIONVAR.year_next = "2025";
+    P221PRODUCTIONCONFIRMATIONSMVAR.day_next = "05";
+    P221PRODUCTIONCONFIRMATIONSMVAR.month_next = "04";
+    P221PRODUCTIONCONFIRMATIONSMVAR.year_next = "2025";
 
-    P221PRODUCTIONCONFIRMATIONVAR.iscontrol = true;
-    P221PRODUCTIONCONFIRMATIONVAR.SEARCH = '';
-    P221PRODUCTIONCONFIRMATIONVAR.holding = 999;
+    P221PRODUCTIONCONFIRMATIONSMVAR.iscontrol = true;
+    P221PRODUCTIONCONFIRMATIONSMVAR.SEARCH = '';
+    P221PRODUCTIONCONFIRMATIONSMVAR.holding = 999;
     context
-        .read<P221PRODUCTIONCONFIRMATIONget_Bloc>()
-        .add(P221PRODUCTIONCONFIRMATIONget_GET());
+        .read<P221PRODUCTIONCONFIRMATIONSMget_Bloc>()
+        .add(P221PRODUCTIONCONFIRMATIONSMget_GET());
   }
 
   @override
   Widget build(BuildContext context) {
-    P221PRODUCTIONCONFIRMATIONcontext = context;
-    List<P221PRODUCTIONCONFIRMATIONgetclass> _datain = widget.data ?? [];
-    List<P221PRODUCTIONCONFIRMATIONgetclass> _datasearch = [];
+    P221PRODUCTIONCONFIRMATIONSMcontext = context;
+    List<P221PRODUCTIONCONFIRMATIONSMgetclass> _datain = widget.data ?? [];
+    List<P221PRODUCTIONCONFIRMATIONSMgetclass> _datasearch = [];
 
     return SingleChildScrollView(
       child: Padding(
@@ -198,14 +198,14 @@ class _P221PRODUCTIONCONFIRMATIONState
                       CalendaSelectDates(context, calendaset,
                           (day, month, year) {
                         //
-                        P221PRODUCTIONCONFIRMATIONVAR.day = day;
-                        P221PRODUCTIONCONFIRMATIONVAR.month = month;
-                        P221PRODUCTIONCONFIRMATIONVAR.year = year;
+                        P221PRODUCTIONCONFIRMATIONSMVAR.day = day;
+                        P221PRODUCTIONCONFIRMATIONSMVAR.month = month;
+                        P221PRODUCTIONCONFIRMATIONSMVAR.year = year;
 
                         setState(() {});
                         context
-                            .read<P221PRODUCTIONCONFIRMATIONget_Bloc>()
-                            .add(P221PRODUCTIONCONFIRMATIONget_GET());
+                            .read<P221PRODUCTIONCONFIRMATIONSMget_Bloc>()
+                            .add(P221PRODUCTIONCONFIRMATIONSMget_GET());
                       });
                     },
                     child: Container(
@@ -221,7 +221,7 @@ class _P221PRODUCTIONCONFIRMATIONState
                       ),
                       child: Center(
                         child: Text(
-                          "วันที่ : ${P221PRODUCTIONCONFIRMATIONVAR.day}-${P221PRODUCTIONCONFIRMATIONVAR.month}-${P221PRODUCTIONCONFIRMATIONVAR.year}",
+                          "วันที่ : ${P221PRODUCTIONCONFIRMATIONSMVAR.day}-${P221PRODUCTIONCONFIRMATIONSMVAR.month}-${P221PRODUCTIONCONFIRMATIONSMVAR.year}",
                           style: TextStyle(
                               fontWeight: FontWeight.bold, color: Colors.black),
                         ),
@@ -235,14 +235,14 @@ class _P221PRODUCTIONCONFIRMATIONState
                       CalendaSelectDates(context, calendaset,
                           (day, month, year) {
                         //
-                        P221PRODUCTIONCONFIRMATIONVAR.day_next = day;
-                        P221PRODUCTIONCONFIRMATIONVAR.month_next = month;
-                        P221PRODUCTIONCONFIRMATIONVAR.year_next = year;
+                        P221PRODUCTIONCONFIRMATIONSMVAR.day_next = day;
+                        P221PRODUCTIONCONFIRMATIONSMVAR.month_next = month;
+                        P221PRODUCTIONCONFIRMATIONSMVAR.year_next = year;
 
                         setState(() {});
                         context
-                            .read<P221PRODUCTIONCONFIRMATIONget_Bloc>()
-                            .add(P221PRODUCTIONCONFIRMATIONget_GET());
+                            .read<P221PRODUCTIONCONFIRMATIONSMget_Bloc>()
+                            .add(P221PRODUCTIONCONFIRMATIONSMget_GET());
                       });
                     },
                     child: Container(
@@ -258,7 +258,7 @@ class _P221PRODUCTIONCONFIRMATIONState
                       ),
                       child: Center(
                         child: Text(
-                          "ถึงวันที่ : ${P221PRODUCTIONCONFIRMATIONVAR.day_next}-${P221PRODUCTIONCONFIRMATIONVAR.month_next}-${P221PRODUCTIONCONFIRMATIONVAR.year_next}",
+                          "ถึงวันที่ : ${P221PRODUCTIONCONFIRMATIONSMVAR.day_next}-${P221PRODUCTIONCONFIRMATIONSMVAR.month_next}-${P221PRODUCTIONCONFIRMATIONSMVAR.year_next}",
                           style: TextStyle(
                               fontWeight: FontWeight.bold, color: Colors.black),
                         ),
@@ -280,7 +280,7 @@ class _P221PRODUCTIONCONFIRMATIONState
                               InkWell(
                                 onTap: () {
                                   //
-                                  P221PRODUCTIONCONFIRMATIONVAR
+                                  P221PRODUCTIONCONFIRMATIONSMVAR
                                           .PROCESS_ORDERselect =
                                       _datain[i].PROCESS_ORDER;
 
@@ -289,7 +289,7 @@ class _P221PRODUCTIONCONFIRMATIONState
                                   P310CHEMTANKVAR.ORDER =
                                       // _datain[i].PROCESS_ORDER;
                                       _datain[i].LINK_PROC_ORDER;
-                                  P221PRODUCTIONCONFIRMATIONVAR.datasetsend =
+                                  P221PRODUCTIONCONFIRMATIONSMVAR.datasetsend =
                                       _datain[i];
                                   _POPUPCREATEUSERSW(context);
 
@@ -299,12 +299,12 @@ class _P221PRODUCTIONCONFIRMATIONState
                                   //
                                   // print(v.toString() + ":" + i.toString());
                                   setState(() {
-                                    P221PRODUCTIONCONFIRMATIONVAR.holding = i;
+                                    P221PRODUCTIONCONFIRMATIONSMVAR.holding = i;
                                   });
                                 },
                                 child: PRODUCTIONCONFIRMATIONitem(
                                   holding:
-                                      P221PRODUCTIONCONFIRMATIONVAR.holding ==
+                                      P221PRODUCTIONCONFIRMATIONSMVAR.holding ==
                                           i,
                                   text01: _datain[i].PROCESS_ORDER,
                                   text02: _datain[i].MATERIAL,
@@ -318,7 +318,9 @@ class _P221PRODUCTIONCONFIRMATIONState
                                           _datain[i].UOM)
                                       : '',
                                   text08: _datain[i].STATUS,
-                                  text09: "-",
+                                  text09: "",
+                                  // text09: _datain[i].SYSTEM_STATUS,
+                                  //SYSTEM_STATUS
                                   text10: "-",
                                 ),
                               ),
@@ -390,9 +392,9 @@ void _POPUPCREATEUSERSW(BuildContext contextin) {
 //   @override
 //   Widget build(BuildContext context) {
 //     return BlocProvider(
-//         create: (_) => P221PRODUCTIONCONFIRMATIONgetsub_Bloc(),
-//         child: BlocBuilder<P221PRODUCTIONCONFIRMATIONgetsub_Bloc,
-//             List<P221PRODUCTIONCONFIRMATIONgetsubclass>>(
+//         create: (_) => P221PRODUCTIONCONFIRMATIONSMgetsub_Bloc(),
+//         child: BlocBuilder<P221PRODUCTIONCONFIRMATIONSMgetsub_Bloc,
+//             List<P221PRODUCTIONCONFIRMATIONSMgetsubclass>>(
 //           builder: (context, data) {
 //             return _DATAGETSET(
 //               data: data,
@@ -407,7 +409,7 @@ void _POPUPCREATEUSERSW(BuildContext contextin) {
 //     super.key,
 //     this.data,
 //   });
-//   List<P221PRODUCTIONCONFIRMATIONgetsubclass>? data;
+//   List<P221PRODUCTIONCONFIRMATIONSMgetsubclass>? data;
 
 //   @override
 //   State<_DATAGETSET> createState() => __DATAGETSETState();
@@ -419,13 +421,13 @@ void _POPUPCREATEUSERSW(BuildContext contextin) {
 //     // TODO: implement initState
 //     super.initState();
 //     context
-//         .read<P221PRODUCTIONCONFIRMATIONgetsub_Bloc>()
-//         .add(P221PRODUCTIONCONFIRMATIONgetsub_GET());
+//         .read<P221PRODUCTIONCONFIRMATIONSMgetsub_Bloc>()
+//         .add(P221PRODUCTIONCONFIRMATIONSMgetsub_GET());
 //   }
 
 //   @override
 //   Widget build(BuildContext context) {
-//     List<P221PRODUCTIONCONFIRMATIONgetsubclass> _data = widget.data ?? [];
+//     List<P221PRODUCTIONCONFIRMATIONSMgetsubclass> _data = widget.data ?? [];
 //     return Padding(
 //       padding: const EdgeInsets.all(12.0),
 //       child: Column(
@@ -460,4 +462,4 @@ void _POPUPCREATEUSERSW(BuildContext contextin) {
 //   }
 // }
 
-// //P221PRODUCTIONCONFIRMATIONgetsubclass
+// //P221PRODUCTIONCONFIRMATIONSMgetsubclass

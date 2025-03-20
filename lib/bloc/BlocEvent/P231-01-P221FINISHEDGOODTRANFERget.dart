@@ -112,17 +112,11 @@ class P231FINISHEDGOODTRANFERget_Bloc extends Bloc<
             ));
 
             final response2 = await Dio().post(
-              "${server3}datacentertest/getsoi8order-ro",
+              "${server2}datacentertest/getsoi8order-ro",
               data: {
                 "PLANT": '',
-                "ORDER": (
-                  databuff['HEADER_INFO'][i]['LINK_PROC_ORDER'].toString() ==
-                          'Manual Create'
-                      ? databuff['HEADER_INFO'][i]['ORDER_SEQ_NO'].toString()
-                      : databuff['HEADER_INFO'][i]['LINK_PROC_ORDER']
-                          .toString(),
-                  // ).toString().substring(4, 10),
-                ).toString().substring(5, 11),
+                "ORDER": (ConverstStr(buffer.LINK_PROC_ORDER)).substring(4, 10),
+                // ).toString().substring(5, 11),
               },
             );
             if (response2.statusCode == 200) {
@@ -140,17 +134,11 @@ class P231FINISHEDGOODTRANFERget_Bloc extends Bloc<
             }
 
             final response3 = await Dio().post(
-              "${server3}datacentertest/getsoi8order-pack-or",
+              "${server2}datacentertest/getsoi8order-pack-or",
               data: {
                 "PLANT": '',
-                "ORDER": (
-                  databuff['HEADER_INFO'][i]['LINK_PROC_ORDER'].toString() ==
-                          'Manual Create'
-                      ? databuff['HEADER_INFO'][i]['ORDER_SEQ_NO'].toString()
-                      : databuff['HEADER_INFO'][i]['LINK_PROC_ORDER']
-                          .toString(),
-                  // ).toString().substring(4, 10),
-                ).toString().substring(5, 11),
+                "ORDER": (ConverstStr(buffer.LINK_PROC_ORDER)).substring(4, 10),
+                // ).toString().substring(5, 11),
                 // "PLANT": "liquid",
                 // "ORDER": "227276"
               },

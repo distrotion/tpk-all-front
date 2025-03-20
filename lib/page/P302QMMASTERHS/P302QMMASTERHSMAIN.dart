@@ -633,19 +633,6 @@ class _NEWNEWREQUESTState extends State<NEWNEWREQUEST> {
                       }
                     }
 
-                    //     {
-//             "INSPLOT": "50000000224",
-//             "INSPOPER": "0010",
-//             "INSPCHAR": "0020",
-//             "INSPSAMPLE": "000001",
-//             "RES_NO": "0001",
-//             "RES_VALUE": "14.8",
-//             "REMARK": "POINT A ",
-//             "CODE1": " ",
-//             "CODE_GRP1": " ",
-//             "ORIGINAL_INPUT": " "
-//     },
-
                     Map<String, dynamic> output = {
                       "INSPLOT": P302QMMASTERHSVAR.INSP_LOTset,
                       "INSPOPER": "10",

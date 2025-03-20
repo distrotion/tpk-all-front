@@ -1,6 +1,6 @@
-import '../../bloc/BlocEvent/P221-01-P221PRODUCTIONCONFIRMATIONget.dart';
+import '../../bloc/BlocEvent/P222-01-P222PRODUCTIONCONFIRMATIONFGget.dart';
 
-class P221PRODUCTIONCONFIRMATIONVAR {
+class P222PRODUCTIONCONFIRMATIONFGVAR {
   static bool iscontrol = false;
   static String SEARCH = '';
   static bool isHoveredClear = false;
@@ -18,11 +18,11 @@ class P221PRODUCTIONCONFIRMATIONVAR {
 
   static String PROCESS_ORDERselect = '';
 
-  static List<P221PRODUCTIONCONFIRMATIONgetclass> dataFG = [];
-  static List<P221PRODUCTIONCONFIRMATIONgetclass> dataSEMI = [];
+  static List<P222PRODUCTIONCONFIRMATIONFGgetclass> dataFG = [];
+  static List<P222PRODUCTIONCONFIRMATIONFGgetclass> dataSEMI = [];
 
   static List<P221GETDETAILclass> dataCOMPO = [];
 
-  static P221PRODUCTIONCONFIRMATIONgetclass datasetsend =
-      P221PRODUCTIONCONFIRMATIONgetclass();
+  static P222PRODUCTIONCONFIRMATIONFGgetclass datasetsend =
+      P222PRODUCTIONCONFIRMATIONFGgetclass();
 }

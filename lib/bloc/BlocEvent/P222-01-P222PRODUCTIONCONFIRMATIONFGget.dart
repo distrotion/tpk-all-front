@@ -2,50 +2,51 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../data/global.dart';
-import '../../page/P221PRODUCTIONCONFIRMATION/P221PRODUCTIONCONFIRMATIONVAR.dart';
+
+import '../../page/P222PRODUCTIONCONFIRMATIONFG/P221PRODUCTIONCONFIRMATIONFGVAR.dart';
 import '../../widget/common/Loading.dart';
 import '../../widget/common/Safty.dart';
 //-------------------------------------------------
 
-abstract class P221PRODUCTIONCONFIRMATIONget_Event {}
+abstract class P222PRODUCTIONCONFIRMATIONFGget_Event {}
 
-class P221PRODUCTIONCONFIRMATIONget_GET
-    extends P221PRODUCTIONCONFIRMATIONget_Event {}
+class P222PRODUCTIONCONFIRMATIONFGget_GET
+    extends P222PRODUCTIONCONFIRMATIONFGget_Event {}
 
-class P221PRODUCTIONCONFIRMATIONget_GET2
-    extends P221PRODUCTIONCONFIRMATIONget_Event {}
+class P222PRODUCTIONCONFIRMATIONFGget_GET2
+    extends P222PRODUCTIONCONFIRMATIONFGget_Event {}
 
-class P221PRODUCTIONCONFIRMATIONget_GET3
-    extends P221PRODUCTIONCONFIRMATIONget_Event {}
+class P222PRODUCTIONCONFIRMATIONFGget_GET3
+    extends P222PRODUCTIONCONFIRMATIONFGget_Event {}
 
-class P221PRODUCTIONCONFIRMATIONget_FLUSH
-    extends P221PRODUCTIONCONFIRMATIONget_Event {}
+class P222PRODUCTIONCONFIRMATIONFGget_FLUSH
+    extends P222PRODUCTIONCONFIRMATIONFGget_Event {}
 
-class P221PRODUCTIONCONFIRMATIONget_Bloc extends Bloc<
-    P221PRODUCTIONCONFIRMATIONget_Event,
-    List<P221PRODUCTIONCONFIRMATIONgetclass>> {
-  P221PRODUCTIONCONFIRMATIONget_Bloc() : super([]) {
-    on<P221PRODUCTIONCONFIRMATIONget_GET>((event, emit) {
-      return _P221PRODUCTIONCONFIRMATIONget_GET([], emit);
+class P222PRODUCTIONCONFIRMATIONFGget_Bloc extends Bloc<
+    P222PRODUCTIONCONFIRMATIONFGget_Event,
+    List<P222PRODUCTIONCONFIRMATIONFGgetclass>> {
+  P222PRODUCTIONCONFIRMATIONFGget_Bloc() : super([]) {
+    on<P222PRODUCTIONCONFIRMATIONFGget_GET>((event, emit) {
+      return _P222PRODUCTIONCONFIRMATIONFGget_GET([], emit);
     });
 
-    on<P221PRODUCTIONCONFIRMATIONget_GET2>((event, emit) {
-      return _P221PRODUCTIONCONFIRMATIONget_GET2([], emit);
+    on<P222PRODUCTIONCONFIRMATIONFGget_GET2>((event, emit) {
+      return _P222PRODUCTIONCONFIRMATIONFGget_GET2([], emit);
     });
-    on<P221PRODUCTIONCONFIRMATIONget_GET3>((event, emit) {
-      return _P221PRODUCTIONCONFIRMATIONget_GET3([], emit);
+    on<P222PRODUCTIONCONFIRMATIONFGget_GET3>((event, emit) {
+      return _P222PRODUCTIONCONFIRMATIONFGget_GET3([], emit);
     });
-    on<P221PRODUCTIONCONFIRMATIONget_FLUSH>((event, emit) {
-      return _P221PRODUCTIONCONFIRMATIONget_FLUSH([], emit);
+    on<P222PRODUCTIONCONFIRMATIONFGget_FLUSH>((event, emit) {
+      return _P222PRODUCTIONCONFIRMATIONFGget_FLUSH([], emit);
     });
   }
 
-  Future<void> _P221PRODUCTIONCONFIRMATIONget_GET(
-      List<P221PRODUCTIONCONFIRMATIONgetclass> toAdd,
-      Emitter<List<P221PRODUCTIONCONFIRMATIONgetclass>> emit) async {
+  Future<void> _P222PRODUCTIONCONFIRMATIONFGget_GET(
+      List<P222PRODUCTIONCONFIRMATIONFGgetclass> toAdd,
+      Emitter<List<P222PRODUCTIONCONFIRMATIONFGgetclass>> emit) async {
     // FreeLoadingTan(CONTEXTFORUSEPAGE19TO25.LOADINGcontext);
-    List<P221PRODUCTIONCONFIRMATIONgetclass> output = [];
-    List<P221PRODUCTIONCONFIRMATIONgetclass> output2 = [];
+    List<P222PRODUCTIONCONFIRMATIONFGgetclass> output = [];
+    List<P222PRODUCTIONCONFIRMATIONFGgetclass> output2 = [];
     List<P221GETDETAILclass> output3 = [];
     //-------------------------------------------------------------------------------------
     final response = await Dio().post(
@@ -54,9 +55,9 @@ class P221PRODUCTIONCONFIRMATIONget_Bloc extends Bloc<
         "HEADER": {
           "PLANT": "1000",
           "ORD_ST_DATE_FR":
-              "${P221PRODUCTIONCONFIRMATIONVAR.day}.${P221PRODUCTIONCONFIRMATIONVAR.month}.${P221PRODUCTIONCONFIRMATIONVAR.year}",
+              "${P222PRODUCTIONCONFIRMATIONFGVAR.day}.${P222PRODUCTIONCONFIRMATIONFGVAR.month}.${P222PRODUCTIONCONFIRMATIONFGVAR.year}",
           "ORD_ST_DATE_TO":
-              "${P221PRODUCTIONCONFIRMATIONVAR.day_next}.${P221PRODUCTIONCONFIRMATIONVAR.month_next}.${P221PRODUCTIONCONFIRMATIONVAR.year_next}",
+              "${P222PRODUCTIONCONFIRMATIONFGVAR.day_next}.${P222PRODUCTIONCONFIRMATIONFGVAR.month_next}.${P222PRODUCTIONCONFIRMATIONFGVAR.year_next}",
           "ORDER_TYPE": "",
           "PROD_SUP": ""
         },
@@ -75,10 +76,10 @@ class P221PRODUCTIONCONFIRMATIONget_Bloc extends Bloc<
       if (databuff['HEADER_INFO'].length > 0) {
         for (var i = 0; i < databuff['HEADER_INFO'].length; i++) {
           if (databuff['HEADER_INFO'][i]['LINK_PROC_ORDER'].toString() != '') {
-            P221PRODUCTIONCONFIRMATIONgetclass buffer =
-                P221PRODUCTIONCONFIRMATIONgetclass();
+            P222PRODUCTIONCONFIRMATIONFGgetclass buffer =
+                P222PRODUCTIONCONFIRMATIONFGgetclass();
 
-            buffer = (P221PRODUCTIONCONFIRMATIONgetclass(
+            buffer = (P222PRODUCTIONCONFIRMATIONFGgetclass(
               PROCESS_ORDER:
                   databuff['HEADER_INFO'][i]['PROCESS_ORDER'].toString(),
               ORDER_TYPE: databuff['HEADER_INFO'][i]['ORDER_TYPE'].toString(),
@@ -115,18 +116,15 @@ class P221PRODUCTIONCONFIRMATIONget_Bloc extends Bloc<
                   : databuff['HEADER_INFO'][i]['LINK_PROC_ORDER'].toString(),
             ));
 
+            // print(buffer.LINK_PROC_ORDER.substring(4, 10));
+
+            // try {
             final response2 = await Dio().post(
-              "${server3}datacentertest/getsoi8order-ro",
+              "${server2}datacentertest/getsoi8order-ro",
               data: {
                 "PLANT": 'liquid',
-                "ORDER": (
-                  databuff['HEADER_INFO'][i]['LINK_PROC_ORDER'].toString() ==
-                          'Manual Create'
-                      ? databuff['HEADER_INFO'][i]['ORDER_SEQ_NO'].toString()
-                      : databuff['HEADER_INFO'][i]['LINK_PROC_ORDER']
-                          .toString(),
-                  // ).toString().substring(4, 10),
-                ).toString().substring(5, 11),
+                "ORDER": (ConverstStr(buffer.LINK_PROC_ORDER)).substring(4, 10),
+                // ).toString().substring(5, 11),
               },
             );
             if (response2.statusCode == 200) {
@@ -142,12 +140,13 @@ class P221PRODUCTIONCONFIRMATIONget_Bloc extends Bloc<
                 buffer.Yield = holddata.toStringAsFixed(2);
               }
             }
+            // } catch (s) {}
             output.add(buffer);
           } else {
-            P221PRODUCTIONCONFIRMATIONgetclass buffer =
-                P221PRODUCTIONCONFIRMATIONgetclass();
+            P222PRODUCTIONCONFIRMATIONFGgetclass buffer =
+                P222PRODUCTIONCONFIRMATIONFGgetclass();
 
-            buffer = (P221PRODUCTIONCONFIRMATIONgetclass(
+            buffer = (P222PRODUCTIONCONFIRMATIONFGgetclass(
               PROCESS_ORDER:
                   databuff['HEADER_INFO'][i]['PROCESS_ORDER'].toString(),
               ORDER_TYPE: databuff['HEADER_INFO'][i]['ORDER_TYPE'].toString(),
@@ -186,8 +185,8 @@ class P221PRODUCTIONCONFIRMATIONget_Bloc extends Bloc<
 
             output2.add(buffer);
           }
-          P221PRODUCTIONCONFIRMATIONVAR.dataFG = output;
-          P221PRODUCTIONCONFIRMATIONVAR.dataSEMI = output2;
+          P222PRODUCTIONCONFIRMATIONFGVAR.dataFG = output;
+          P222PRODUCTIONCONFIRMATIONFGVAR.dataSEMI = output2;
         }
       }
 
@@ -213,7 +212,7 @@ class P221PRODUCTIONCONFIRMATIONget_Bloc extends Bloc<
             OPERATION: databuff['COMPONENT_INFO'][i]['OPERATION'].toString(),
           ));
         }
-        P221PRODUCTIONCONFIRMATIONVAR.dataCOMPO = output3;
+        P222PRODUCTIONCONFIRMATIONFGVAR.dataCOMPO = output3;
       }
 
       // Navigator.pop(CONTEXTFORUSEPAGE19TO25.LOADINGcontext);
@@ -224,40 +223,40 @@ class P221PRODUCTIONCONFIRMATIONget_Bloc extends Bloc<
     emit(output);
   }
 
-  Future<void> _P221PRODUCTIONCONFIRMATIONget_GET2(
-      List<P221PRODUCTIONCONFIRMATIONgetclass> toAdd,
-      Emitter<List<P221PRODUCTIONCONFIRMATIONgetclass>> emit) async {
-    List<P221PRODUCTIONCONFIRMATIONgetclass> output = [];
+  Future<void> _P222PRODUCTIONCONFIRMATIONFGget_GET2(
+      List<P222PRODUCTIONCONFIRMATIONFGgetclass> toAdd,
+      Emitter<List<P222PRODUCTIONCONFIRMATIONFGgetclass>> emit) async {
+    List<P222PRODUCTIONCONFIRMATIONFGgetclass> output = [];
     //-------------------------------------------------------------------------------------
-    List<P221PRODUCTIONCONFIRMATIONgetclass> datadummy = [];
+    List<P222PRODUCTIONCONFIRMATIONFGgetclass> datadummy = [];
 
     //-------------------------------------------------------------------------------------
     output = datadummy;
     emit(output);
   }
 
-  Future<void> _P221PRODUCTIONCONFIRMATIONget_GET3(
-      List<P221PRODUCTIONCONFIRMATIONgetclass> toAdd,
-      Emitter<List<P221PRODUCTIONCONFIRMATIONgetclass>> emit) async {
-    List<P221PRODUCTIONCONFIRMATIONgetclass> output = [];
+  Future<void> _P222PRODUCTIONCONFIRMATIONFGget_GET3(
+      List<P222PRODUCTIONCONFIRMATIONFGgetclass> toAdd,
+      Emitter<List<P222PRODUCTIONCONFIRMATIONFGgetclass>> emit) async {
+    List<P222PRODUCTIONCONFIRMATIONFGgetclass> output = [];
     //-------------------------------------------------------------------------------------
-    List<P221PRODUCTIONCONFIRMATIONgetclass> datadummy = [];
+    List<P222PRODUCTIONCONFIRMATIONFGgetclass> datadummy = [];
 
     //-------------------------------------------------------------------------------------
     output = datadummy;
     emit(output);
   }
 
-  Future<void> _P221PRODUCTIONCONFIRMATIONget_FLUSH(
-      List<P221PRODUCTIONCONFIRMATIONgetclass> toAdd,
-      Emitter<List<P221PRODUCTIONCONFIRMATIONgetclass>> emit) async {
-    List<P221PRODUCTIONCONFIRMATIONgetclass> output = [];
+  Future<void> _P222PRODUCTIONCONFIRMATIONFGget_FLUSH(
+      List<P222PRODUCTIONCONFIRMATIONFGgetclass> toAdd,
+      Emitter<List<P222PRODUCTIONCONFIRMATIONFGgetclass>> emit) async {
+    List<P222PRODUCTIONCONFIRMATIONFGgetclass> output = [];
     emit(output);
   }
 }
 
-class P221PRODUCTIONCONFIRMATIONgetclass {
-  P221PRODUCTIONCONFIRMATIONgetclass({
+class P222PRODUCTIONCONFIRMATIONFGgetclass {
+  P222PRODUCTIONCONFIRMATIONFGgetclass({
     this.PROCESS_ORDER = '',
     this.ORDER_TYPE = '',
     this.ORDER_TYPE_DESC = '',

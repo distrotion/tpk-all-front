@@ -37,8 +37,9 @@ class P26TANKDATAPACKING_Bloc
     //-------------------------------------------------------------------------------------
     print(
         "-------------------------------------------------------------------------------------");
+    print(P310CHEMTANKVAR.ORDER.substring(4, 10));
     final response3 = await Dio().post(
-      "${server3}datacentertest/getsoi8order-pack-or",
+      "${server2}datacentertest/getsoi8order-pack-or",
       data: {
         "PLANT": P310CHEMTANKVAR.PLANT,
         "ORDER": P310CHEMTANKVAR.ORDER.substring(4, 10),

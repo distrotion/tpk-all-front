@@ -295,7 +295,7 @@ class _P211CHEMPLANINGState extends State<P211CHEMPLANING> {
                                   text06: _datain[i].BATCH,
                                   text07:
                                       '${_datain[i].TOTAL_QTY} ${_datain[i].UOM}',
-                                  text08: "-",
+                                  text08: _datain[i].STATUS,
                                 ),
                               ),
                             ],

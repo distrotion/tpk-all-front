@@ -2,53 +2,59 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../data/global.dart';
-import '../../page/P211CHEMPLANING/P211CHEMPLANINGVAR.dart';
+import '../../page/P236FINISHEDGOODTRANFERHS/P236FINISHEDGOODTRANFERHSVAR.dart';
 import '../../widget/common/Loading.dart';
 import '../../widget/common/Safty.dart';
 //-------------------------------------------------
 
-abstract class P211CHEMPLANINGget_Event {}
+abstract class P236FINISHEDGOODTRANFERHSget_Event {}
 
-class P211CHEMPLANINGget_GET extends P211CHEMPLANINGget_Event {}
+class P236FINISHEDGOODTRANFERHSget_GET
+    extends P236FINISHEDGOODTRANFERHSget_Event {}
 
-class P211CHEMPLANINGget_GET2 extends P211CHEMPLANINGget_Event {}
+class P236FINISHEDGOODTRANFERHSget_GET2
+    extends P236FINISHEDGOODTRANFERHSget_Event {}
 
-class P211CHEMPLANINGget_GET3 extends P211CHEMPLANINGget_Event {}
+class P236FINISHEDGOODTRANFERHSget_GET3
+    extends P236FINISHEDGOODTRANFERHSget_Event {}
 
-class P211CHEMPLANINGget_FLUSH extends P211CHEMPLANINGget_Event {}
+class P236FINISHEDGOODTRANFERHSget_FLUSH
+    extends P236FINISHEDGOODTRANFERHSget_Event {}
 
-class P211CHEMPLANINGget_Bloc
-    extends Bloc<P211CHEMPLANINGget_Event, List<P211CHEMPLANINGgetclass>> {
-  P211CHEMPLANINGget_Bloc() : super([]) {
-    on<P211CHEMPLANINGget_GET>((event, emit) {
-      return _P211CHEMPLANINGget_GET([], emit);
+class P236FINISHEDGOODTRANFERHSget_Bloc extends Bloc<
+    P236FINISHEDGOODTRANFERHSget_Event,
+    List<P236FINISHEDGOODTRANFERHSgetclass>> {
+  P236FINISHEDGOODTRANFERHSget_Bloc() : super([]) {
+    on<P236FINISHEDGOODTRANFERHSget_GET>((event, emit) {
+      return _P236FINISHEDGOODTRANFERHSget_GET([], emit);
     });
 
-    on<P211CHEMPLANINGget_GET2>((event, emit) {
-      return _P211CHEMPLANINGget_GET2([], emit);
+    on<P236FINISHEDGOODTRANFERHSget_GET2>((event, emit) {
+      return _P236FINISHEDGOODTRANFERHSget_GET2([], emit);
     });
-    on<P211CHEMPLANINGget_GET3>((event, emit) {
-      return _P211CHEMPLANINGget_GET3([], emit);
+    on<P236FINISHEDGOODTRANFERHSget_GET3>((event, emit) {
+      return _P236FINISHEDGOODTRANFERHSget_GET3([], emit);
     });
-    on<P211CHEMPLANINGget_FLUSH>((event, emit) {
-      return _P211CHEMPLANINGget_FLUSH([], emit);
+    on<P236FINISHEDGOODTRANFERHSget_FLUSH>((event, emit) {
+      return _P236FINISHEDGOODTRANFERHSget_FLUSH([], emit);
     });
   }
 
-  Future<void> _P211CHEMPLANINGget_GET(List<P211CHEMPLANINGgetclass> toAdd,
-      Emitter<List<P211CHEMPLANINGgetclass>> emit) async {
+  Future<void> _P236FINISHEDGOODTRANFERHSget_GET(
+      List<P236FINISHEDGOODTRANFERHSgetclass> toAdd,
+      Emitter<List<P236FINISHEDGOODTRANFERHSgetclass>> emit) async {
     // FreeLoadingTan(CONTEXTFORUSEPAGE19TO25.LOADINGcontext);
-    List<P211CHEMPLANINGgetclass> output = [];
+    List<P236FINISHEDGOODTRANFERHSgetclass> output = [];
     //-------------------------------------------------------------------------------------
     final response = await Dio().post(
-      "${server2}03iPPGETDATACHEM/GETDATA",
+      "${server2}10GETDATAFROMJOBBINGAQC/GETDATA",
       data: {
         "HEADER": {
-          "PLANT": "1000",
+          "PLANT": QUERYDATASET.PLANT,
           "ORD_ST_DATE_FR":
-              "${P211CHEMPLANINGVAR.day}.${P211CHEMPLANINGVAR.month}.${P211CHEMPLANINGVAR.year}",
+              "${P236FINISHEDGOODTRANFERHSVAR.day}.${P236FINISHEDGOODTRANFERHSVAR.month}.${P236FINISHEDGOODTRANFERHSVAR.year}",
           "ORD_ST_DATE_TO":
-              "${P211CHEMPLANINGVAR.day_next}.${P211CHEMPLANINGVAR.month_next}.${P211CHEMPLANINGVAR.year_next}",
+              "${P236FINISHEDGOODTRANFERHSVAR.day_next}.${P236FINISHEDGOODTRANFERHSVAR.month_next}.${P236FINISHEDGOODTRANFERHSVAR.year_next}",
           "ORDER_TYPE": "",
           "PROD_SUP": ""
         },
@@ -65,10 +71,12 @@ class P211CHEMPLANINGget_Bloc
       var databuff = response.data;
 
       if (databuff['HEADER_INFO'].length > 0) {
-        P211CHEMPLANINGgetclass buffer = P211CHEMPLANINGgetclass();
         for (var i = 0; i < databuff['HEADER_INFO'].length; i++) {
-          if (databuff['HEADER_INFO'][i]['LINK_PROC_ORDER'].toString() == '') {
-            buffer = P211CHEMPLANINGgetclass(
+          if (databuff['HEADER_INFO'][i]['LINK_PROC_ORDER'].toString() != '') {
+            P236FINISHEDGOODTRANFERHSgetclass buffer =
+                P236FINISHEDGOODTRANFERHSgetclass();
+
+            buffer = (P236FINISHEDGOODTRANFERHSgetclass(
               PROCESS_ORDER:
                   databuff['HEADER_INFO'][i]['PROCESS_ORDER'].toString(),
               ORDER_TYPE: databuff['HEADER_INFO'][i]['ORDER_TYPE'].toString(),
@@ -96,76 +104,76 @@ class P211CHEMPLANINGget_Bloc
                   databuff['HEADER_INFO'][i]['SYSTEM_STATUS'].toString(),
               OLD_MATERIAL:
                   databuff['HEADER_INFO'][i]['OLD_MATERIAL'].toString(),
-              MTART: databuff['HEADER_INFO'][i]['MTART'].toString(),
-              MTBEZ: databuff['HEADER_INFO'][i]['MTBEZ'].toString(),
-              LINK_PROC_ORDER: databuff['HEADER_INFO'][i]['LINK_PROC_ORDER']
-                          .toString() ==
-                      'Manual Create'
-                  ? databuff['HEADER_INFO'][i]['ORDER_SEQ_NO'].toString()
-                  : databuff['HEADER_INFO'][i]['LINK_PROC_ORDER'].toString(),
-            );
+            ));
 
-            final response2 = await Dio().post(
-              "${server2}datacentertest/getsoi8order-ro",
+            final response3 = await Dio().post(
+              "${server2}10GETDATAFROMJOBBINGAQC/GETDATAGOODNOGOOD",
               data: {
-                "PLANT": 'liquid',
-                "ORDER": (ConverstStr(buffer.PROCESS_ORDER)).substring(4, 10),
-                // ).toString().substring(5, 11),
+                "PROCESS_ORDER": '00' + ConverstStr(buffer.PROCESS_ORDER),
               },
             );
-            if (response2.statusCode == 200) {
-              var databuff = response2.data;
+            if (response3.statusCode == 200) {
+              // print(response3.statusCode);
+
+              var databuff = response3.data;
+              // input = databuff;
               if (databuff.length > 0) {
-                double holddata = 0;
-                for (var s = 0; s < databuff.length; s++) {
-                  buffer.STATUS = 'SCADA Complete';
-                }
+                buffer.GOOD = databuff[0]['GOOD'].toString();
+                buffer.NOGOOD = databuff[0]['NOGOOD'].toString();
               }
+
+              // Navigator.pop(P26PROGRESSMAINcontext);
+
+              emit(output);
             }
+
             output.add(buffer);
           }
         }
-      }
 
-      // Navigator.pop(CONTEXTFORUSEPAGE19TO25.LOADINGcontext);
-    } else {
-      print("where is my server");
+        // Navigator.pop(CONTEXTFORUSEPAGE19TO25.LOADINGcontext);
+      } else {
+        print("where is my server");
+      }
     }
 
     emit(output);
   }
 
-  Future<void> _P211CHEMPLANINGget_GET2(List<P211CHEMPLANINGgetclass> toAdd,
-      Emitter<List<P211CHEMPLANINGgetclass>> emit) async {
-    List<P211CHEMPLANINGgetclass> output = [];
+  Future<void> _P236FINISHEDGOODTRANFERHSget_GET2(
+      List<P236FINISHEDGOODTRANFERHSgetclass> toAdd,
+      Emitter<List<P236FINISHEDGOODTRANFERHSgetclass>> emit) async {
+    List<P236FINISHEDGOODTRANFERHSgetclass> output = [];
     //-------------------------------------------------------------------------------------
-    List<P211CHEMPLANINGgetclass> datadummy = [];
+    List<P236FINISHEDGOODTRANFERHSgetclass> datadummy = [];
 
     //-------------------------------------------------------------------------------------
     output = datadummy;
     emit(output);
   }
 
-  Future<void> _P211CHEMPLANINGget_GET3(List<P211CHEMPLANINGgetclass> toAdd,
-      Emitter<List<P211CHEMPLANINGgetclass>> emit) async {
-    List<P211CHEMPLANINGgetclass> output = [];
+  Future<void> _P236FINISHEDGOODTRANFERHSget_GET3(
+      List<P236FINISHEDGOODTRANFERHSgetclass> toAdd,
+      Emitter<List<P236FINISHEDGOODTRANFERHSgetclass>> emit) async {
+    List<P236FINISHEDGOODTRANFERHSgetclass> output = [];
     //-------------------------------------------------------------------------------------
-    List<P211CHEMPLANINGgetclass> datadummy = [];
+    List<P236FINISHEDGOODTRANFERHSgetclass> datadummy = [];
 
     //-------------------------------------------------------------------------------------
     output = datadummy;
     emit(output);
   }
 
-  Future<void> _P211CHEMPLANINGget_FLUSH(List<P211CHEMPLANINGgetclass> toAdd,
-      Emitter<List<P211CHEMPLANINGgetclass>> emit) async {
-    List<P211CHEMPLANINGgetclass> output = [];
+  Future<void> _P236FINISHEDGOODTRANFERHSget_FLUSH(
+      List<P236FINISHEDGOODTRANFERHSgetclass> toAdd,
+      Emitter<List<P236FINISHEDGOODTRANFERHSgetclass>> emit) async {
+    List<P236FINISHEDGOODTRANFERHSgetclass> output = [];
     emit(output);
   }
 }
 
-class P211CHEMPLANINGgetclass {
-  P211CHEMPLANINGgetclass({
+class P236FINISHEDGOODTRANFERHSgetclass {
+  P236FINISHEDGOODTRANFERHSgetclass({
     this.PROCESS_ORDER = '',
     this.ORDER_TYPE = '',
     this.ORDER_TYPE_DESC = '',
@@ -184,10 +192,11 @@ class P211CHEMPLANINGgetclass {
     this.INSP_LOT = '',
     this.SYSTEM_STATUS = '',
     this.OLD_MATERIAL = '',
-    this.MTART = '',
-    this.MTBEZ = '',
-    this.LINK_PROC_ORDER = '',
-    this.STATUS = '',
+    this.check = false,
+    this.GOOD = '',
+    this.NOGOOD = '',
+
+//
   });
 
   String PROCESS_ORDER;
@@ -208,10 +217,11 @@ class P211CHEMPLANINGgetclass {
   String INSP_LOT;
   String SYSTEM_STATUS;
   String OLD_MATERIAL;
-  String MTART;
-  String MTBEZ;
-  String LINK_PROC_ORDER;
-  String STATUS;
+  bool check;
+  String GOOD;
+  String NOGOOD;
+
+//
 }
 
 String savenull(input) {

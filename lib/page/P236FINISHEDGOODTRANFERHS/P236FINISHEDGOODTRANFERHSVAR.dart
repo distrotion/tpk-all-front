@@ -1,6 +1,6 @@
-import '../../bloc/BlocEvent/P231-01-P221FINISHEDGOODTRANFERget.dart';
+import '../../bloc/BlocEvent/P236-01-P236FINISHEDGOODTRANFERHSget.dart';
 
-class P231FINISHEDGOODTRANFERVAR {
+class P236FINISHEDGOODTRANFERHSVAR {
   static bool iscontrol = false;
   static String SEARCH = '';
   static bool isHoveredClear = false;
@@ -17,11 +17,18 @@ class P231FINISHEDGOODTRANFERVAR {
   static int holding = 999;
 
   static String PROCESS_ORDERselect = '';
-  static String FINALSEND = '';
+  static String GOOD = '';
+  static String NOGOOD = '';
   static String UNIT = '';
+
+  static String PROCESS_ORDER = '';
+
+  static String MATERIAL = '';
+
+  static String UOM = '';
 
   static int Page = 0;
 
-  static P231FINISHEDGOODTRANFERgetclass FGPOSTDATA =
-      P231FINISHEDGOODTRANFERgetclass();
+  static P236FINISHEDGOODTRANFERHSgetclass FGPOSTDATA =
+      P236FINISHEDGOODTRANFERHSgetclass();
 }
