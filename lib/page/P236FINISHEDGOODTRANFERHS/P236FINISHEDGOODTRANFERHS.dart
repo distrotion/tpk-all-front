@@ -54,20 +54,20 @@ class _P236FINISHEDGOODTRANFERHSState extends State<P236FINISHEDGOODTRANFERHS> {
     super.initState();
     var now = DateTime.now();
     // P236FINISHEDGOODTRANFERHSVAR.formattedDate = DateFormat('dd-MM-yy').format(now);
-    // P236FINISHEDGOODTRANFERHSVAR.day = DateFormat('dd').format(now);
-    // P236FINISHEDGOODTRANFERHSVAR.month = DateFormat('MM').format(now);
-    // P236FINISHEDGOODTRANFERHSVAR.year = DateFormat('yyyy').format(now);
+    P236FINISHEDGOODTRANFERHSVAR.day = DateFormat('dd').format(now);
+    P236FINISHEDGOODTRANFERHSVAR.month = DateFormat('MM').format(now);
+    P236FINISHEDGOODTRANFERHSVAR.year = DateFormat('yyyy').format(now);
 
-    // P236FINISHEDGOODTRANFERHSVAR.day_next = DateFormat('dd').format(now);
-    // P236FINISHEDGOODTRANFERHSVAR.month_next = DateFormat('MM').format(now);
-    // P236FINISHEDGOODTRANFERHSVAR.year_next = DateFormat('yyyy').format(now);
+    P236FINISHEDGOODTRANFERHSVAR.day_next = DateFormat('dd').format(now);
+    P236FINISHEDGOODTRANFERHSVAR.month_next = DateFormat('MM').format(now);
+    P236FINISHEDGOODTRANFERHSVAR.year_next = DateFormat('yyyy').format(now);
 
-    P236FINISHEDGOODTRANFERHSVAR.day = "05";
-    P236FINISHEDGOODTRANFERHSVAR.month = "03";
-    P236FINISHEDGOODTRANFERHSVAR.year = "2025";
-    P236FINISHEDGOODTRANFERHSVAR.day_next = "05";
-    P236FINISHEDGOODTRANFERHSVAR.month_next = "04";
-    P236FINISHEDGOODTRANFERHSVAR.year_next = "2025";
+    // P236FINISHEDGOODTRANFERHSVAR.day = "05";
+    // P236FINISHEDGOODTRANFERHSVAR.month = "03";
+    // P236FINISHEDGOODTRANFERHSVAR.year = "2025";
+    // P236FINISHEDGOODTRANFERHSVAR.day_next = "05";
+    // P236FINISHEDGOODTRANFERHSVAR.month_next = "04";
+    // P236FINISHEDGOODTRANFERHSVAR.year_next = "2025";
 
     P236FINISHEDGOODTRANFERHSVAR.iscontrol = true;
     P236FINISHEDGOODTRANFERHSVAR.SEARCH = '';
