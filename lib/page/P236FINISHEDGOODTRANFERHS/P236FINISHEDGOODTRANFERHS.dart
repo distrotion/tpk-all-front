@@ -213,6 +213,10 @@ class _P236FINISHEDGOODTRANFERHSState extends State<P236FINISHEDGOODTRANFERHS> {
                         P236FINISHEDGOODTRANFERHSVAR.month = month;
                         P236FINISHEDGOODTRANFERHSVAR.year = year;
 
+                        context
+                            .read<P236FINISHEDGOODTRANFERHSget_Bloc>()
+                            .add(P236FINISHEDGOODTRANFERHSget_GET());
+
                         setState(() {});
                       });
                     },
@@ -246,6 +250,10 @@ class _P236FINISHEDGOODTRANFERHSState extends State<P236FINISHEDGOODTRANFERHS> {
                         P236FINISHEDGOODTRANFERHSVAR.day_next = day;
                         P236FINISHEDGOODTRANFERHSVAR.month_next = month;
                         P236FINISHEDGOODTRANFERHSVAR.year_next = year;
+
+                        context
+                            .read<P236FINISHEDGOODTRANFERHSget_Bloc>()
+                            .add(P236FINISHEDGOODTRANFERHSget_GET());
 
                         setState(() {});
                       });
