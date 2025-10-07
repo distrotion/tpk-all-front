@@ -3,6 +3,7 @@ import '../../bloc/BlocEvent/P301-02-P301QMMASTERgetINSP_SPEC.dart';
 class P301QMMASTERVAR {
   static bool iscontrol = false;
   static String SEARCH = '';
+  static String FILTER = '';
   static bool isHoveredClear = false;
   // static String formattedDate = '';
 

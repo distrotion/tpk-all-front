@@ -1,0 +1,545 @@
+import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../data/global.dart';
+
+import '../../page/P402UDGR/P402UDGRMAIN.dart';
+import '../../page/P402UDGR/P402UDGRVAR.dart';
+import '../../widget/common/Loading.dart';
+//-------------------------------------------------
+
+abstract class P402UDGRget_Event {}
+
+class P402UDGRget_GET extends P402UDGRget_Event {}
+
+class P402UDGRget_GET2 extends P402UDGRget_Event {}
+
+class P402UDGRget_GET3 extends P402UDGRget_Event {}
+
+class P402UDGRget_FLUSH extends P402UDGRget_Event {}
+
+class P402UDGRget_Bloc extends Bloc<P402UDGRget_Event, List<P402UDGRgetclass>> {
+  P402UDGRget_Bloc() : super([]) {
+    on<P402UDGRget_GET>((event, emit) {
+      return _P402UDGRget_GET([], emit);
+    });
+
+    on<P402UDGRget_GET2>((event, emit) {
+      return _P402UDGRget_GET2([], emit);
+    });
+    on<P402UDGRget_GET3>((event, emit) {
+      return _P402UDGRget_GET3([], emit);
+    });
+    on<P402UDGRget_FLUSH>((event, emit) {
+      return _P402UDGRget_FLUSH([], emit);
+    });
+  }
+
+  Future<void> _P402UDGRget_GET(List<P402UDGRgetclass> toAdd,
+      Emitter<List<P402UDGRgetclass>> emit) async {
+    // FreeLoadingTan(CONTEXTFORUSEPAGE19TO25.LOADINGcontext);
+    FreeLoading(P402UDGRMAINcontext);
+    List<P402UDGRgetclass> output = [];
+    //-------------------------------------------------------------------------------------
+    final response = await Dio().post(
+      "${server2}QMINCOMING/GETDATA",
+      data: {
+        "HEADER": {
+          "FROM_DATE":
+              "${P402UDGRVAR.day}.${P402UDGRVAR.month}.${P402UDGRVAR.year}",
+          "TO_DATE":
+              "${P402UDGRVAR.day_next}.${P402UDGRVAR.month_next}.${P402UDGRVAR.year_next}",
+          "PLANT": P402UDGRVAR.PLANT,
+          // "LOT_ORI": P402UDGRVAR.LOT_ORI,
+          "LOT_ORI": "03",
+          "MATERIAL": "",
+          "BATCH": "",
+          "LOT_NO": ""
+        }
+      },
+    );
+    var input = [];
+    // Navigator.pop(P19PROGRESSMAINcontext);
+    if (response.statusCode == 200) {
+      // print(response.statusCode);
+      // print(response.data);
+      var databuff = response.data;
+      // print(databuff);
+//INSP_LOT
+      if (databuff['INSP_LOT'].length > 0) {
+        for (var i = 0; i < databuff['INSP_LOT'].length; i++) {
+          String datastore1 = '';
+          String datastore2 = '';
+          if (BRANCHNUMBER.PLANT1 != '') {
+            // if (databuff['INSP_LOT'][i]['STORAGE'].toString().length > 2) {
+            //   datastore =
+            //       databuff['INSP_LOT'][i]['STORAGE'].toString().substring(0, 2);
+            // }
+            if (BRANCHNUMBER.PLANT2 == 'BP12GAS') {
+              datastore1 = '00231';
+              datastore2 = '00232';
+            } else if (BRANCHNUMBER.PLANT2 == 'BP12PH') {
+              datastore1 = '00211';
+              datastore2 = '00212';
+            } else if (BRANCHNUMBER.PLANT2 == 'BP12KNG') {
+              datastore1 = '00251';
+              datastore2 = '00252';
+            } else if (BRANCHNUMBER.PLANT2 == 'BP12PVD') {
+              datastore1 = '00241';
+              datastore2 = 'xxx';
+            } else if (BRANCHNUMBER.PLANT2 == 'BP12PAL') {
+              datastore1 = '00221';
+              datastore2 = 'xxx';
+            } else if (BRANCHNUMBER.PLANT2 == 'GWGAS') {
+              datastore1 = '00261';
+              datastore2 = '262';
+            } else if (BRANCHNUMBER.PLANT2 == 'HESGAS') {
+              datastore1 = '00341';
+              datastore2 = '342';
+            } else if (BRANCHNUMBER.PLANT2 == 'HESPH') {
+              datastore1 = '00311';
+              datastore2 = '312';
+            } else if (BRANCHNUMBER.PLANT2 == 'HESISN') {
+              datastore1 = '00331';
+              datastore2 = '332';
+            } else if (BRANCHNUMBER.PLANT2 == 'HESHYD') {
+              datastore1 = '00351';
+              datastore2 = 'xxx';
+            } else if (BRANCHNUMBER.PLANT2 == 'HESPAL') {
+              datastore1 = '00321';
+              datastore2 = '00322';
+            } else if (BRANCHNUMBER.PLANT2 == 'HESDELTA') {
+              datastore1 = '00361';
+              datastore2 = '00362';
+            }
+            // print(databuff['INSP_LOT'][i]['PROCESS_ORDER']
+            //     .toString()
+            //     .substring(0, 5));
+            // print(datastore1);
+
+            if (datastore1 ==
+                    databuff['INSP_LOT'][i]['PROCESS_ORDER']
+                        .toString()
+                        .substring(0, 5) ||
+                datastore2 ==
+                    databuff['INSP_LOT'][i]['PROCESS_ORDER']
+                        .toString()
+                        .substring(0, 5) ||
+                datastore2 ==
+                    databuff['INSP_LOT'][i]['PROCESS_ORDER']
+                        .toString()
+                        .substring(0, 5)) {
+              output.add(P402UDGRgetclass(
+                INSP_LOT: databuff['INSP_LOT'][i]['INSP_LOT'].toString(),
+                INSP_LOT_STATUS:
+                    databuff['INSP_LOT'][i]['INSP_LOT_STATUS'].toString(),
+                INSP_LOT_ORIGIN:
+                    databuff['INSP_LOT'][i]['INSP_LOT_ORIGIN'].toString(),
+                PLANT: databuff['INSP_LOT'][i]['PLANT'].toString(),
+                INSPTYPE: databuff['INSP_LOT'][i]['INSPTYPE'].toString(),
+                CREATED_ON: databuff['INSP_LOT'][i]['CREATED_ON'].toString(),
+                CREATED_TIME:
+                    databuff['INSP_LOT'][i]['CREATED_TIME'].toString(),
+                CREATED_BY: databuff['INSP_LOT'][i]['CREATED_BY'].toString(),
+                MATERIAL: databuff['INSP_LOT'][i]['MATERIAL'].toString(),
+                MAT_DESC: databuff['INSP_LOT'][i]['MAT_DESC'].toString(),
+                OLD_MAT: databuff['INSP_LOT'][i]['OLD_MAT'].toString(),
+                TTSL: databuff['INSP_LOT'][i]['TTSL'].toString(),
+                TTSL_PERIOD: databuff['INSP_LOT'][i]['TTSL_PERIOD'].toString(),
+                MIN_TTSL: databuff['INSP_LOT'][i]['MIN_TTSL'].toString(),
+                INSP_QTY: databuff['INSP_LOT'][i]['INSP_QTY'].toString(),
+                INSP_UOM: databuff['INSP_LOT'][i]['INSP_UOM'].toString(),
+                BATCH: databuff['INSP_LOT'][i]['BATCH'].toString(),
+                STORAGE: databuff['INSP_LOT'][i]['STORAGE'].toString(),
+                BATCH_IND: databuff['INSP_LOT'][i]['BATCH_IND'].toString(),
+                TASK_LIST_TYPE:
+                    databuff['INSP_LOT'][i]['TASK_LIST_TYPE'].toString(),
+                GROUP: databuff['INSP_LOT'][i]['GROUP'].toString(),
+                USAGE: databuff['INSP_LOT'][i]['USAGE'].toString(),
+                GROUP_COUNTER:
+                    databuff['INSP_LOT'][i]['GROUP_COUNTER'].toString(),
+                INSP_POINT: databuff['INSP_LOT'][i]['INSP_POINT'].toString(),
+                KEY_DATE: databuff['INSP_LOT'][i]['KEY_DATE'].toString(),
+                PROCESS_ORDER:
+                    databuff['INSP_LOT'][i]['PROCESS_ORDER'].toString(),
+                CUSTOMER: databuff['INSP_LOT'][i]['CUSTOMER'].toString(),
+                CUST_NAME1: databuff['INSP_LOT'][i]['CUST_NAME1'].toString(),
+                CUST_NAME2: databuff['INSP_LOT'][i]['CUST_NAME2'].toString(),
+                SUPPLIER: databuff['INSP_LOT'][i]['SUPPLIER'].toString(),
+                SUPPLIER_NAME1:
+                    databuff['INSP_LOT'][i]['SUPPLIER_NAME1'].toString(),
+                SUPPLIER_NAME2:
+                    databuff['INSP_LOT'][i]['SUPPLIER_NAME2'].toString(),
+                PUR_ORG: databuff['INSP_LOT'][i]['PUR_ORG'].toString(),
+                PUR_DOC: databuff['INSP_LOT'][i]['PUR_DOC'].toString(),
+                PUR_ITEM: databuff['INSP_LOT'][i]['PUR_ITEM'].toString(),
+                MATDOC_YEAR: databuff['INSP_LOT'][i]['MATDOC_YEAR'].toString(),
+                MATDOC: databuff['INSP_LOT'][i]['MATDOC'].toString(),
+                MATDOC_ITEM: databuff['INSP_LOT'][i]['MATDOC_ITEM'].toString(),
+                POSTING_DATE:
+                    databuff['INSP_LOT'][i]['POSTING_DATE'].toString(),
+                MVT: databuff['INSP_LOT'][i]['MVT'].toString(),
+                SHORT_TEXT: databuff['INSP_LOT'][i]['SHORT_TEXT'].toString(),
+                UD_PLANT: databuff['INSP_LOT'][i]['UD_PLANT'].toString(),
+                UD_SELECTEDSET:
+                    databuff['INSP_LOT'][i]['UD_SELECTEDSET'].toString(),
+                UD_CODEGROUP:
+                    databuff['INSP_LOT'][i]['UD_CODEGROUP'].toString(),
+                UD_CODE: databuff['INSP_LOT'][i]['UD_CODE'].toString(),
+                VALUATION: databuff['INSP_LOT'][i]['VALUATION'].toString(),
+                UD_MADEBY: databuff['INSP_LOT'][i]['UD_MADEBY'].toString(),
+                UD_MADEON: databuff['INSP_LOT'][i]['UD_MADEON'].toString(),
+                UD_MADETIME: databuff['INSP_LOT'][i]['UD_MADETIME'].toString(),
+                UD_MADE: databuff['INSP_LOT'][i]['UD_MADE'].toString(),
+                UD_POSTINGCOMP:
+                    databuff['INSP_LOT'][i]['UD_POSTINGCOMP'].toString(),
+                UD_POSTQTY: databuff['INSP_LOT'][i]['UD_POSTQTY'].toString(),
+                UD_POSTUR: databuff['INSP_LOT'][i]['UD_POSTUR'].toString(),
+                UD_POSTBLOCK:
+                    databuff['INSP_LOT'][i]['UD_POSTBLOCK'].toString(),
+                UD_POSTSUPPLIER:
+                    databuff['INSP_LOT'][i]['UD_POSTSUPPLIER'].toString(),
+                UD_MASTER: databuff['INSP_LOT'][i]['UD_MASTER'].toString(),
+              ));
+            }
+          } else {
+            output.add(P402UDGRgetclass(
+              INSP_LOT: databuff['INSP_LOT'][i]['INSP_LOT'].toString(),
+              INSP_LOT_STATUS:
+                  databuff['INSP_LOT'][i]['INSP_LOT_STATUS'].toString(),
+              INSP_LOT_ORIGIN:
+                  databuff['INSP_LOT'][i]['INSP_LOT_ORIGIN'].toString(),
+              PLANT: databuff['INSP_LOT'][i]['PLANT'].toString(),
+              INSPTYPE: databuff['INSP_LOT'][i]['INSPTYPE'].toString(),
+              CREATED_ON: databuff['INSP_LOT'][i]['CREATED_ON'].toString(),
+              CREATED_TIME: databuff['INSP_LOT'][i]['CREATED_TIME'].toString(),
+              CREATED_BY: databuff['INSP_LOT'][i]['CREATED_BY'].toString(),
+              MATERIAL: databuff['INSP_LOT'][i]['MATERIAL'].toString(),
+              MAT_DESC: databuff['INSP_LOT'][i]['MAT_DESC'].toString(),
+              OLD_MAT: databuff['INSP_LOT'][i]['OLD_MAT'].toString(),
+              TTSL: databuff['INSP_LOT'][i]['TTSL'].toString(),
+              TTSL_PERIOD: databuff['INSP_LOT'][i]['TTSL_PERIOD'].toString(),
+              MIN_TTSL: databuff['INSP_LOT'][i]['MIN_TTSL'].toString(),
+              INSP_QTY: databuff['INSP_LOT'][i]['INSP_QTY'].toString(),
+              INSP_UOM: databuff['INSP_LOT'][i]['INSP_UOM'].toString(),
+              BATCH: databuff['INSP_LOT'][i]['BATCH'].toString(),
+              STORAGE: databuff['INSP_LOT'][i]['STORAGE'].toString(),
+              BATCH_IND: databuff['INSP_LOT'][i]['BATCH_IND'].toString(),
+              TASK_LIST_TYPE:
+                  databuff['INSP_LOT'][i]['TASK_LIST_TYPE'].toString(),
+              GROUP: databuff['INSP_LOT'][i]['GROUP'].toString(),
+              USAGE: databuff['INSP_LOT'][i]['USAGE'].toString(),
+              GROUP_COUNTER:
+                  databuff['INSP_LOT'][i]['GROUP_COUNTER'].toString(),
+              INSP_POINT: databuff['INSP_LOT'][i]['INSP_POINT'].toString(),
+              KEY_DATE: databuff['INSP_LOT'][i]['KEY_DATE'].toString(),
+              PROCESS_ORDER:
+                  databuff['INSP_LOT'][i]['PROCESS_ORDER'].toString(),
+              CUSTOMER: databuff['INSP_LOT'][i]['CUSTOMER'].toString(),
+              CUST_NAME1: databuff['INSP_LOT'][i]['CUST_NAME1'].toString(),
+              CUST_NAME2: databuff['INSP_LOT'][i]['CUST_NAME2'].toString(),
+              SUPPLIER: databuff['INSP_LOT'][i]['SUPPLIER'].toString(),
+              SUPPLIER_NAME1:
+                  databuff['INSP_LOT'][i]['SUPPLIER_NAME1'].toString(),
+              SUPPLIER_NAME2:
+                  databuff['INSP_LOT'][i]['SUPPLIER_NAME2'].toString(),
+              PUR_ORG: databuff['INSP_LOT'][i]['PUR_ORG'].toString(),
+              PUR_DOC: databuff['INSP_LOT'][i]['PUR_DOC'].toString(),
+              PUR_ITEM: databuff['INSP_LOT'][i]['PUR_ITEM'].toString(),
+              MATDOC_YEAR: databuff['INSP_LOT'][i]['MATDOC_YEAR'].toString(),
+              MATDOC: databuff['INSP_LOT'][i]['MATDOC'].toString(),
+              MATDOC_ITEM: databuff['INSP_LOT'][i]['MATDOC_ITEM'].toString(),
+              POSTING_DATE: databuff['INSP_LOT'][i]['POSTING_DATE'].toString(),
+              MVT: databuff['INSP_LOT'][i]['MVT'].toString(),
+              SHORT_TEXT: databuff['INSP_LOT'][i]['SHORT_TEXT'].toString(),
+              UD_PLANT: databuff['INSP_LOT'][i]['UD_PLANT'].toString(),
+              UD_SELECTEDSET:
+                  databuff['INSP_LOT'][i]['UD_SELECTEDSET'].toString(),
+              UD_CODEGROUP: databuff['INSP_LOT'][i]['UD_CODEGROUP'].toString(),
+              UD_CODE: databuff['INSP_LOT'][i]['UD_CODE'].toString(),
+              VALUATION: databuff['INSP_LOT'][i]['VALUATION'].toString(),
+              UD_MADEBY: databuff['INSP_LOT'][i]['UD_MADEBY'].toString(),
+              UD_MADEON: databuff['INSP_LOT'][i]['UD_MADEON'].toString(),
+              UD_MADETIME: databuff['INSP_LOT'][i]['UD_MADETIME'].toString(),
+              UD_MADE: databuff['INSP_LOT'][i]['UD_MADE'].toString(),
+              UD_POSTINGCOMP:
+                  databuff['INSP_LOT'][i]['UD_POSTINGCOMP'].toString(),
+              UD_POSTQTY: databuff['INSP_LOT'][i]['UD_POSTQTY'].toString(),
+              UD_POSTUR: databuff['INSP_LOT'][i]['UD_POSTUR'].toString(),
+              UD_POSTBLOCK: databuff['INSP_LOT'][i]['UD_POSTBLOCK'].toString(),
+              UD_POSTSUPPLIER:
+                  databuff['INSP_LOT'][i]['UD_POSTSUPPLIER'].toString(),
+              UD_MASTER: databuff['INSP_LOT'][i]['UD_MASTER'].toString(),
+            ));
+          }
+        }
+      }
+
+      // Navigator.pop(CONTEXTFORUSEPAGE19TO25.LOADINGcontext);
+    } else {
+      print("where is my server");
+    }
+
+    List<String> searchorder = [];
+    for (var i = 0; i < output.length; i++) {
+      // print(output[i].PROCESS_ORDER);
+      searchorder.add(output[i].PROCESS_ORDER);
+    }
+
+    final response2 = await Dio().post(
+      "${server2}10GETDATAFROMJOBBINGAQC/GETQCFNLIST",
+      data: {
+        "PROCESS_ORDER_LIST": searchorder,
+      },
+    );
+    if (response2.statusCode == 200) {
+      // print(response.statusCode);
+      // print(response.data);
+      var databuff = response2.data;
+      print(databuff);
+      for (var i = 0; i < output.length; i++) {
+        for (var j = 0; j < databuff.length; j++) {
+          if (output[i].PROCESS_ORDER ==
+              databuff[j]['PROCESS_ORDER'].toString()) {
+            output[i].QCFN = databuff[j]['QCFN'].toString();
+            output[i].STATUSQCFN = databuff[j]['STATUS'].toString();
+          }
+        }
+      }
+    }
+
+    final response3 = await Dio().post(
+      "${server2}10GETDATAFROMJOBBINGAQC/GETGRLIST",
+      data: {
+        "PROCESS_ORDER_LIST": searchorder,
+      },
+    );
+    if (response3.statusCode == 200) {
+      // print(response.statusCode);
+      // print(response.data);
+      var databuff = response3.data;
+      print(databuff);
+      for (var i = 0; i < output.length; i++) {
+        for (var j = 0; j < databuff.length; j++) {
+          if (output[i].PROCESS_ORDER ==
+              databuff[j]['PROCESS_ORDER'].toString()) {
+            output[i].GOOD = databuff[j]['GOOD'].toString();
+            output[i].NOGOOD = databuff[j]['NOGOOD'].toString();
+          }
+        }
+      }
+    }
+
+    final response4 = await Dio().post(
+      "${server2}10GETDATAFROMJOBBINGAQC/GETDATA",
+      data: {
+        "HEADER": {
+          "PLANT": P402UDGRVAR.PLANT,
+          "ORD_ST_DATE_FR":
+              "${P402UDGRVAR.day}.${P402UDGRVAR.month}.${P402UDGRVAR.year}",
+          "ORD_ST_DATE_TO":
+              "${P402UDGRVAR.day_next}.${P402UDGRVAR.month_next}.${P402UDGRVAR.year_next}",
+          "ORDER_TYPE": "",
+          "PROD_SUP": ""
+        },
+        "PROC_ORD": [
+          {
+            "PROCESS_ORDER": "",
+            "MATERIAL": "",
+            "COMPONENT": "",
+          }
+        ]
+      },
+    );
+    if (response4.statusCode == 200) {
+      var dataset = response4.data;
+      for (var i = 0; i < dataset['HEADER_INFO'].length; i++) {
+        //
+        // print(dataset['HEADER_INFO'][i]['PROCESS_ORDER']);
+        for (var j = 0; j < output.length; j++) {
+          // print(dataset['HEADER_INFO'][i]['PROCESS_ORDER'].toString());
+          // print(dataset['HEADER_INFO'][i]['SYSTEM_STATUS'].toString());
+          if (output[j].PROCESS_ORDER ==
+              '00' + dataset['HEADER_INFO'][i]['PROCESS_ORDER'].toString()) {
+            //SYSTEM_STATUS
+            // print(dataset['HEADER_INFO'][i]['PROCESS_ORDER']);
+
+            output[j].SAPSTATUS =
+                dataset['HEADER_INFO'][i]['SYSTEM_STATUS'].toString();
+
+            break;
+          }
+        }
+      }
+    }
+    Navigator.pop(P402UDGRMAINcontext);
+    emit(output);
+  }
+
+  Future<void> _P402UDGRget_GET2(List<P402UDGRgetclass> toAdd,
+      Emitter<List<P402UDGRgetclass>> emit) async {
+    List<P402UDGRgetclass> output = [];
+    //-------------------------------------------------------------------------------------
+    List<P402UDGRgetclass> datadummy = [];
+
+    //-------------------------------------------------------------------------------------
+    output = datadummy;
+    emit(output);
+  }
+
+  Future<void> _P402UDGRget_GET3(List<P402UDGRgetclass> toAdd,
+      Emitter<List<P402UDGRgetclass>> emit) async {
+    List<P402UDGRgetclass> output = [];
+    //-------------------------------------------------------------------------------------
+    List<P402UDGRgetclass> datadummy = [];
+
+    //-------------------------------------------------------------------------------------
+    output = datadummy;
+    emit(output);
+  }
+
+  Future<void> _P402UDGRget_FLUSH(List<P402UDGRgetclass> toAdd,
+      Emitter<List<P402UDGRgetclass>> emit) async {
+    List<P402UDGRgetclass> output = [];
+    emit(output);
+  }
+}
+
+class P402UDGRgetclass {
+  P402UDGRgetclass({
+    this.INSP_LOT = '',
+    this.INSP_LOT_STATUS = '',
+    this.INSP_LOT_ORIGIN = '',
+    this.PLANT = '',
+    this.INSPTYPE = '',
+    this.CREATED_ON = '',
+    this.CREATED_TIME = '',
+    this.CREATED_BY = '',
+    this.MATERIAL = '',
+    this.MAT_DESC = '',
+    this.OLD_MAT = '',
+    this.TTSL = '',
+    this.TTSL_PERIOD = '',
+    this.MIN_TTSL = '',
+    this.INSP_QTY = '',
+    this.INSP_UOM = '',
+    this.BATCH = '',
+    this.STORAGE = '',
+    this.BATCH_IND = '',
+    this.TASK_LIST_TYPE = '',
+    this.GROUP = '',
+    this.USAGE = '',
+    this.GROUP_COUNTER = '',
+    this.INSP_POINT = '',
+    this.KEY_DATE = '',
+    this.PROCESS_ORDER = '',
+    this.CUSTOMER = '',
+    this.CUST_NAME1 = '',
+    this.CUST_NAME2 = '',
+    this.SUPPLIER = '',
+    this.SUPPLIER_NAME1 = '',
+    this.SUPPLIER_NAME2 = '',
+    this.PUR_ORG = '',
+    this.PUR_DOC = '',
+    this.PUR_ITEM = '',
+    this.MATDOC_YEAR = '',
+    this.MATDOC = '',
+    this.MATDOC_ITEM = '',
+    this.POSTING_DATE = '',
+    this.MVT = '',
+    this.SHORT_TEXT = '',
+    this.UD_PLANT = '',
+    this.UD_SELECTEDSET = '',
+    this.UD_CODEGROUP = '',
+    this.UD_CODE = '',
+    this.VALUATION = '',
+    this.UD_MADEBY = '',
+    this.UD_MADEON = '',
+    this.UD_MADETIME = '',
+    this.UD_MADE = '',
+    this.UD_POSTINGCOMP = '',
+    this.UD_POSTQTY = '',
+    this.UD_POSTUR = '',
+    this.UD_POSTBLOCK = '',
+    this.UD_POSTSUPPLIER = '',
+    this.UD_MASTER = '',
+    this.QCFN = '',
+    this.STATUSQCFN = '',
+    this.GOOD = '',
+    this.NOGOOD = '',
+    this.SAPSTATUS = '',
+  });
+
+  String INSP_LOT;
+  String INSP_LOT_STATUS;
+  String INSP_LOT_ORIGIN;
+  String PLANT;
+  String INSPTYPE;
+  String CREATED_ON;
+  String CREATED_TIME;
+  String CREATED_BY;
+  String MATERIAL;
+  String MAT_DESC;
+  String OLD_MAT;
+  String TTSL;
+  String TTSL_PERIOD;
+  String MIN_TTSL;
+  String INSP_QTY;
+  String INSP_UOM;
+  String BATCH;
+  String STORAGE;
+  String BATCH_IND;
+  String TASK_LIST_TYPE;
+  String GROUP;
+  String USAGE;
+  String GROUP_COUNTER;
+  String INSP_POINT;
+  String KEY_DATE;
+  String PROCESS_ORDER;
+  String CUSTOMER;
+  String CUST_NAME1;
+  String CUST_NAME2;
+  String SUPPLIER;
+  String SUPPLIER_NAME1;
+  String SUPPLIER_NAME2;
+  String PUR_ORG;
+  String PUR_DOC;
+  String PUR_ITEM;
+  String MATDOC_YEAR;
+  String MATDOC;
+  String MATDOC_ITEM;
+  String POSTING_DATE;
+  String MVT;
+  String SHORT_TEXT;
+  String UD_PLANT;
+  String UD_SELECTEDSET;
+  String UD_CODEGROUP;
+  String UD_CODE;
+  String VALUATION;
+  String UD_MADEBY;
+  String UD_MADEON;
+  String UD_MADETIME;
+  String UD_MADE;
+  String UD_POSTINGCOMP;
+  String UD_POSTQTY;
+  String UD_POSTUR;
+  String UD_POSTBLOCK;
+  String UD_POSTSUPPLIER;
+  String UD_MASTER;
+
+  String QCFN;
+  String STATUSQCFN;
+
+  String GOOD;
+  String NOGOOD;
+
+  String SAPSTATUS;
+}
+
+String savenull(input) {
+  String output = '-';
+  if (input != null) {
+    output = input.toString();
+  }
+  return output;
+}

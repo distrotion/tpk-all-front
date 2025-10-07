@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../data/global.dart';
+import '../../page/P301QMMASTER/P301QMMASTERMAIN.dart';
 import '../../page/P301QMMASTER/P301QMMASTERVAR.dart';
 import '../../widget/common/Loading.dart';
 //-------------------------------------------------
@@ -39,6 +40,7 @@ class P301QMMASTERget_Bloc
     // FreeLoadingTan(CONTEXTFORUSEPAGE19TO25.LOADINGcontext);
     List<P301QMMASTERgetclass> output = [];
     //-------------------------------------------------------------------------------------
+    FreeLoadingTan(P301QMMASTERMAINcontext);
     final response = await Dio().post(
       "${server2}QMINCOMING/GETDATA",
       data: {
@@ -61,7 +63,7 @@ class P301QMMASTERget_Bloc
       // print(response.statusCode);
       // print(response.data);
       var databuff = response.data;
-      // print(databuff);
+      print(databuff);
 //INSP_LOT
       if (databuff['INSP_LOT'].length > 0) {
         for (var i = 0; i < databuff['INSP_LOT'].length; i++) {
@@ -138,7 +140,7 @@ class P301QMMASTERget_Bloc
     } else {
       print("where is my server");
     }
-
+    Navigator.pop(P301QMMASTERMAINcontext);
     emit(output);
   }
 

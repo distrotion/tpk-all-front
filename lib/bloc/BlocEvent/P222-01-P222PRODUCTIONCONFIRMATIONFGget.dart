@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../data/global.dart';
 
-import '../../page/P222PRODUCTIONCONFIRMATIONFG/P221PRODUCTIONCONFIRMATIONFGVAR.dart';
+import '../../page/P222PRODUCTIONCONFIRMATIONFG/P222PRODUCTIONCONFIRMATIONFGVAR.dart';
 import '../../widget/common/Loading.dart';
 import '../../widget/common/Safty.dart';
 //-------------------------------------------------
@@ -47,7 +47,7 @@ class P222PRODUCTIONCONFIRMATIONFGget_Bloc extends Bloc<
     // FreeLoadingTan(CONTEXTFORUSEPAGE19TO25.LOADINGcontext);
     List<P222PRODUCTIONCONFIRMATIONFGgetclass> output = [];
     List<P222PRODUCTIONCONFIRMATIONFGgetclass> output2 = [];
-    List<P221GETDETAILclass> output3 = [];
+    List<P222GETDETAILclass> output3 = [];
     //-------------------------------------------------------------------------------------
     final response = await Dio().post(
       "${server2}03iPPGETDATACHEM/GETDATA",
@@ -119,25 +119,28 @@ class P222PRODUCTIONCONFIRMATIONFGget_Bloc extends Bloc<
             // print(buffer.LINK_PROC_ORDER.substring(4, 10));
 
             // try {
-            final response2 = await Dio().post(
-              "${server2}datacentertest/getsoi8order-ro",
-              data: {
-                "PLANT": 'liquid',
-                "ORDER": (ConverstStr(buffer.LINK_PROC_ORDER)).substring(4, 10),
-                // ).toString().substring(5, 11),
-              },
-            );
-            if (response2.statusCode == 200) {
-              var databuff = response2.data;
-              if (databuff.length > 0) {
-                buffer.STATUS = 'Complete';
-                double holddata = 0;
-                for (var s = 0; s < databuff.length; s++) {
-                  holddata = holddata +
-                      double.parse(
-                          ConverstStr(databuff[s]['NumAct'].toString()));
+            if (buffer.LINK_PROC_ORDER.length > 9) {
+              final response2 = await Dio().post(
+                "${server2}datacentertest/getsoi8order-ro",
+                data: {
+                  "PLANT": 'liquid',
+                  "ORDER":
+                      (ConverstStr(buffer.LINK_PROC_ORDER)).substring(4, 10),
+                  // ).toString().substring(5, 11),
+                },
+              );
+              if (response2.statusCode == 200) {
+                var databuff = response2.data;
+                if (databuff.length > 0) {
+                  buffer.STATUS = 'Complete';
+                  double holddata = 0;
+                  for (var s = 0; s < databuff.length; s++) {
+                    holddata = holddata +
+                        double.parse(
+                            ConverstStr(databuff[s]['NumAct'].toString()));
+                  }
+                  buffer.Yield = holddata.toStringAsFixed(2);
                 }
-                buffer.Yield = holddata.toStringAsFixed(2);
               }
             }
             // } catch (s) {}
@@ -192,7 +195,7 @@ class P222PRODUCTIONCONFIRMATIONFGget_Bloc extends Bloc<
 
       if (databuff['COMPONENT_INFO'].length > 0) {
         for (var i = 0; i < databuff['COMPONENT_INFO'].length; i++) {
-          output3.add(P221GETDETAILclass(
+          output3.add(P222GETDETAILclass(
             PROCESS_ORDER:
                 databuff['COMPONENT_INFO'][i]['PROCESS_ORDER'].toString(),
             ITEM: databuff['COMPONENT_INFO'][i]['ITEM'].toString(),
@@ -308,8 +311,8 @@ class P222PRODUCTIONCONFIRMATIONFGgetclass {
   String Yield;
 }
 
-class P221GETDETAILclass {
-  P221GETDETAILclass({
+class P222GETDETAILclass {
+  P222GETDETAILclass({
     this.PROCESS_ORDER = '',
     this.ITEM = '',
     this.MATERIAL = '',

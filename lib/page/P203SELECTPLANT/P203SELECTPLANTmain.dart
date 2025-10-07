@@ -116,79 +116,113 @@ class _P203SELECTPLANTmainBodyState extends State<P203SELECTPLANTmainBody> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     if (USERDATA.BRANCH == 'BP12') ...[
-                      for (int s = 0; s < 5; s++) ...[
-                        Padding(
-                          padding: const EdgeInsets.all(10.0),
-                          child: MouseRegion(
-                            onEnter: (_) {
-                              setState(() {
-                                P203SELECTPLANTvar.isHoveredList[s] = true;
-                              });
-                            },
-                            onExit: (_) {
-                              setState(() {
-                                P203SELECTPLANTvar.isHoveredList[s] = false;
-                              });
-                            },
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: InkWell(
-                                onTap: () {
-                                  setState(() {
-                                    P203SELECTPLANTvar.isHoveredList[s] = false;
-                                  });
+                      for (int s = 0; s < 15; s++) ...[
+                        if ((s == 0 &&
+                                USERDATA.LOCATION.contains("BP12-GAS")) ||
+                            (s == 1 && USERDATA.LOCATION.contains("BP12-PH")) ||
+                            (s == 4 &&
+                                USERDATA.LOCATION.contains("BP12-PAL")) ||
+                            (s == 3 &&
+                                USERDATA.LOCATION.contains("BP12-PAL12")) ||
+                            (s == 3 &&
+                                USERDATA.LOCATION.contains("BP12-PVD")) ||
+                            (s == 2 &&
+                                USERDATA.LOCATION.contains("BP12-KNG")) ||
+                            (s == 12)) ...[
+                          Padding(
+                            padding: const EdgeInsets.all(10.0),
+                            child: MouseRegion(
+                              onEnter: (_) {
+                                setState(() {
+                                  P203SELECTPLANTvar.isHoveredList[s] = true;
+                                });
+                              },
+                              onExit: (_) {
+                                setState(() {
+                                  P203SELECTPLANTvar.isHoveredList[s] = false;
+                                });
+                              },
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: InkWell(
+                                  onTap: () {
+                                    setState(() {
+                                      P203SELECTPLANTvar.isHoveredList[s] =
+                                          false;
+                                    });
 
-                                  MainBodyContext.read<ChangePage_Bloc>()
-                                      .ChangePage_nodrower('', Page204());
-                                },
-                                child: AnimatedContainer(
-                                  duration: Duration(milliseconds: 200),
-                                  height: P203SELECTPLANTvar.isHoveredList[s]
-                                      ? 170
-                                      : 150,
-                                  width: P203SELECTPLANTvar.isHoveredList[s]
-                                      ? 170
-                                      : 150,
-                                  decoration: BoxDecoration(
-                                    gradient: LinearGradient(
-                                      colors:
-                                          P203SELECTPLANTvar.isHoveredList[s]
-                                              ? [
-                                                  Colors.greenAccent,
-                                                  Colors.lightGreen
-                                                ]
-                                              : [Colors.green, Colors.teal],
-                                      begin: Alignment.topLeft,
-                                      end: Alignment.bottomRight,
-                                    ),
-                                    border: Border.all(
-                                      color: Colors.black87,
-                                      width: 2.0,
-                                    ),
-                                    boxShadow: [
-                                      BoxShadow(
-                                        color: Colors.black.withOpacity(0.3),
-                                        spreadRadius: 2,
-                                        blurRadius: 5,
-                                        offset: Offset(2, 3),
+                                    if (s == 0) {
+                                      BRANCHNUMBER.PLANT1 = '27';
+                                      BRANCHNUMBER.PLANT2 = 'BP12GAS';
+                                    } else if (s == 1) {
+                                      BRANCHNUMBER.PLANT1 = '26';
+                                      BRANCHNUMBER.PLANT2 = 'BP12PH';
+                                    } else if (s == 2) {
+                                      BRANCHNUMBER.PLANT1 = '23';
+                                      BRANCHNUMBER.PLANT2 = 'BP12KNG';
+                                    } else if (s == 3) {
+                                      BRANCHNUMBER.PLANT1 = '22';
+                                      BRANCHNUMBER.PLANT2 = 'BP12PVD';
+                                    } else if (s == 4) {
+                                      BRANCHNUMBER.PLANT1 = '25';
+                                      BRANCHNUMBER.PLANT2 = 'BP12PAL';
+                                    } else {
+                                      BRANCHNUMBER.PLANT1 = '';
+                                      BRANCHNUMBER.PLANT2 = '';
+                                    }
+
+                                    MainBodyContext.read<ChangePage_Bloc>()
+                                        .ChangePage_nodrower('', Page204());
+                                  },
+                                  child: AnimatedContainer(
+                                    duration: Duration(milliseconds: 200),
+                                    height: P203SELECTPLANTvar.isHoveredList[s]
+                                        ? 170
+                                        : 150,
+                                    width: P203SELECTPLANTvar.isHoveredList[s]
+                                        ? 170
+                                        : 150,
+                                    decoration: BoxDecoration(
+                                      gradient: LinearGradient(
+                                        colors:
+                                            P203SELECTPLANTvar.isHoveredList[s]
+                                                ? [
+                                                    Colors.greenAccent,
+                                                    Colors.lightGreen
+                                                  ]
+                                                : [Colors.green, Colors.teal],
+                                        begin: Alignment.topLeft,
+                                        end: Alignment.bottomRight,
                                       ),
-                                    ],
-                                    borderRadius: BorderRadius.circular(15),
-                                  ),
-                                  child: Center(
-                                    child: Text(
-                                      P203SELECTPLANTvar.NameList[s],
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.bold,
-                                        shadows: const [
-                                          Shadow(
-                                            blurRadius: 5.0,
-                                            color: Colors.black45,
-                                            offset: Offset(2, 2),
-                                          ),
-                                        ],
+                                      border: Border.all(
+                                        color: Colors.black87,
+                                        width: 2.0,
+                                      ),
+                                      boxShadow: [
+                                        BoxShadow(
+                                          color: Colors.black.withOpacity(0.3),
+                                          spreadRadius: 2,
+                                          blurRadius: 5,
+                                          offset: Offset(2, 3),
+                                        ),
+                                      ],
+                                      borderRadius: BorderRadius.circular(15),
+                                    ),
+                                    child: Center(
+                                      child: Text(
+                                        P203SELECTPLANTvar.NameList[s],
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.bold,
+                                          shadows: const [
+                                            Shadow(
+                                              blurRadius: 5.0,
+                                              color: Colors.black45,
+                                              offset: Offset(2, 2),
+                                            ),
+                                          ],
+                                        ),
                                       ),
                                     ),
                                   ),
@@ -196,82 +230,93 @@ class _P203SELECTPLANTmainBodyState extends State<P203SELECTPLANTmainBody> {
                               ),
                             ),
                           ),
-                        ),
+                        ],
                       ],
                     ] else if (USERDATA.BRANCH == 'GW') ...[
-                      for (int s = 5; s < 6; s++) ...[
-                        Padding(
-                          padding: const EdgeInsets.all(10.0),
-                          child: MouseRegion(
-                            onEnter: (_) {
-                              setState(() {
-                                P203SELECTPLANTvar.isHoveredList[s] = true;
-                              });
-                            },
-                            onExit: (_) {
-                              setState(() {
-                                P203SELECTPLANTvar.isHoveredList[s] = false;
-                              });
-                            },
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: InkWell(
-                                onTap: () {
-                                  setState(() {
-                                    P203SELECTPLANTvar.isHoveredList[s] = false;
-                                  });
+                      for (int s = 5; s < 15; s++) ...[
+                        if ((s == 5 && USERDATA.LOCATION.contains("GW-GAS")) ||
+                            (s == 13)) ...[
+                          Padding(
+                            padding: const EdgeInsets.all(10.0),
+                            child: MouseRegion(
+                              onEnter: (_) {
+                                setState(() {
+                                  P203SELECTPLANTvar.isHoveredList[s] = true;
+                                });
+                              },
+                              onExit: (_) {
+                                setState(() {
+                                  P203SELECTPLANTvar.isHoveredList[s] = false;
+                                });
+                              },
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: InkWell(
+                                  onTap: () {
+                                    setState(() {
+                                      P203SELECTPLANTvar.isHoveredList[s] =
+                                          false;
+                                    });
+                                    if (s == 5) {
+                                      BRANCHNUMBER.PLANT1 = '31';
+                                      BRANCHNUMBER.PLANT2 = 'GWGAS';
+                                    } else {
+                                      BRANCHNUMBER.PLANT1 = '';
+                                      BRANCHNUMBER.PLANT2 = '';
+                                    }
 
-                                  MainBodyContext.read<ChangePage_Bloc>()
-                                      .ChangePage_nodrower('', Page204());
-                                },
-                                child: AnimatedContainer(
-                                  duration: Duration(milliseconds: 200),
-                                  height: P203SELECTPLANTvar.isHoveredList[s]
-                                      ? 170
-                                      : 150,
-                                  width: P203SELECTPLANTvar.isHoveredList[s]
-                                      ? 170
-                                      : 150,
-                                  decoration: BoxDecoration(
-                                    gradient: LinearGradient(
-                                      colors:
-                                          P203SELECTPLANTvar.isHoveredList[s]
-                                              ? [
-                                                  Colors.redAccent,
-                                                  Colors.orangeAccent
-                                                ]
-                                              : [Colors.red, Colors.orange],
-                                      begin: Alignment.topLeft,
-                                      end: Alignment.bottomRight,
-                                    ),
-                                    border: Border.all(
-                                      color: Colors.black87,
-                                      width: 2.0,
-                                    ),
-                                    boxShadow: [
-                                      BoxShadow(
-                                        color: Colors.black.withOpacity(0.3),
-                                        spreadRadius: 2,
-                                        blurRadius: 5,
-                                        offset: Offset(2, 3),
+                                    MainBodyContext.read<ChangePage_Bloc>()
+                                        .ChangePage_nodrower('', Page204());
+                                  },
+                                  child: AnimatedContainer(
+                                    duration: Duration(milliseconds: 200),
+                                    height: P203SELECTPLANTvar.isHoveredList[s]
+                                        ? 170
+                                        : 150,
+                                    width: P203SELECTPLANTvar.isHoveredList[s]
+                                        ? 170
+                                        : 150,
+                                    decoration: BoxDecoration(
+                                      gradient: LinearGradient(
+                                        colors:
+                                            P203SELECTPLANTvar.isHoveredList[s]
+                                                ? [
+                                                    Colors.redAccent,
+                                                    Colors.orangeAccent
+                                                  ]
+                                                : [Colors.red, Colors.orange],
+                                        begin: Alignment.topLeft,
+                                        end: Alignment.bottomRight,
                                       ),
-                                    ],
-                                    borderRadius: BorderRadius.circular(15),
-                                  ),
-                                  child: Center(
-                                    child: Text(
-                                      P203SELECTPLANTvar.NameList[s],
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.bold,
-                                        shadows: const [
-                                          Shadow(
-                                            blurRadius: 5.0,
-                                            color: Colors.black45,
-                                            offset: Offset(2, 2),
-                                          ),
-                                        ],
+                                      border: Border.all(
+                                        color: Colors.black87,
+                                        width: 2.0,
+                                      ),
+                                      boxShadow: [
+                                        BoxShadow(
+                                          color: Colors.black.withOpacity(0.3),
+                                          spreadRadius: 2,
+                                          blurRadius: 5,
+                                          offset: Offset(2, 3),
+                                        ),
+                                      ],
+                                      borderRadius: BorderRadius.circular(15),
+                                    ),
+                                    child: Center(
+                                      child: Text(
+                                        P203SELECTPLANTvar.NameList[s],
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.bold,
+                                          shadows: const [
+                                            Shadow(
+                                              blurRadius: 5.0,
+                                              color: Colors.black45,
+                                              offset: Offset(2, 2),
+                                            ),
+                                          ],
+                                        ),
                                       ),
                                     ),
                                   ),
@@ -279,85 +324,119 @@ class _P203SELECTPLANTmainBodyState extends State<P203SELECTPLANTmainBody> {
                               ),
                             ),
                           ),
-                        ),
+                        ],
                       ],
                     ] else if (USERDATA.BRANCH == 'ESIE1') ...[
-                      for (int s = 6; s < 11; s++) ...[
-                        Padding(
-                          padding: const EdgeInsets.all(10.0),
-                          child: MouseRegion(
-                            onEnter: (_) {
-                              setState(() {
-                                P203SELECTPLANTvar.isHoveredList[s] = true;
-                              });
-                            },
-                            onExit: (_) {
-                              setState(() {
-                                P203SELECTPLANTvar.isHoveredList[s] = false;
-                              });
-                            },
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: InkWell(
-                                onTap: () {
-                                  setState(() {
-                                    P203SELECTPLANTvar.isHoveredList[s] = false;
-                                  });
-                                  MainBodyContext.read<ChangePage_Bloc>()
-                                      .ChangePage_nodrower('', Page204());
-                                },
-                                child: AnimatedContainer(
-                                  duration: Duration(milliseconds: 200),
-                                  height: P203SELECTPLANTvar.isHoveredList[s]
-                                      ? 170
-                                      : 150,
-                                  width: P203SELECTPLANTvar.isHoveredList[s]
-                                      ? 170
-                                      : 150,
-                                  decoration: BoxDecoration(
-                                    gradient: LinearGradient(
-                                      colors:
-                                          P203SELECTPLANTvar.isHoveredList[s]
-                                              ? [
-                                                  Colors.blueAccent,
-                                                  Colors.lightBlue
-                                                ]
-                                              : [
-                                                  Colors.blue,
-                                                  const Color.fromARGB(
-                                                      255, 0, 85, 150)
-                                                ],
-                                      begin: Alignment.topLeft,
-                                      end: Alignment.bottomRight,
-                                    ),
-                                    border: Border.all(
-                                      color: Colors.black87,
-                                      width: 2.0,
-                                    ),
-                                    boxShadow: [
-                                      BoxShadow(
-                                        color: Colors.black.withOpacity(0.3),
-                                        spreadRadius: 2,
-                                        blurRadius: 5,
-                                        offset: Offset(2, 3),
+                      for (int s = 6; s < 15; s++) ...[
+                        if ((s == 7 && USERDATA.LOCATION.contains("HES-PH")) ||
+                            (s == 6 && USERDATA.LOCATION.contains("HES-GAS")) ||
+                            (s == 8 && USERDATA.LOCATION.contains("HES-ISN")) ||
+                            (s == 14) ||
+                            (s == 10 &&
+                                USERDATA.LOCATION.contains("HES-HYD")) ||
+                            (s == 11 &&
+                                USERDATA.LOCATION.contains("HES-DEL")) ||
+                            (s == 9 &&
+                                USERDATA.LOCATION.contains("HES-PAL"))) ...[
+                          Padding(
+                            padding: const EdgeInsets.all(10.0),
+                            child: MouseRegion(
+                              onEnter: (_) {
+                                setState(() {
+                                  P203SELECTPLANTvar.isHoveredList[s] = true;
+                                });
+                              },
+                              onExit: (_) {
+                                setState(() {
+                                  P203SELECTPLANTvar.isHoveredList[s] = false;
+                                });
+                              },
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: InkWell(
+                                  onTap: () {
+                                    setState(() {
+                                      P203SELECTPLANTvar.isHoveredList[s] =
+                                          false;
+                                    });
+                                    if (s == 6) {
+                                      BRANCHNUMBER.PLANT1 = '51';
+                                      BRANCHNUMBER.PLANT2 = 'HESGAS';
+                                    } else if (s == 7) {
+                                      BRANCHNUMBER.PLANT1 = '52';
+                                      BRANCHNUMBER.PLANT2 = 'HESPH';
+                                    } else if (s == 8) {
+                                      BRANCHNUMBER.PLANT1 = '54';
+                                      BRANCHNUMBER.PLANT2 = 'HESISN';
+                                    } else if (s == 9) {
+                                      BRANCHNUMBER.PLANT1 = '53';
+                                      BRANCHNUMBER.PLANT2 = 'HESHYD';
+                                    } else if (s == 10) {
+                                      BRANCHNUMBER.PLANT1 = '55';
+                                      BRANCHNUMBER.PLANT2 = 'HESPAL';
+                                    } else if (s == 11) {
+                                      BRANCHNUMBER.PLANT1 = '56';
+                                      BRANCHNUMBER.PLANT2 = 'HESDELTA';
+                                    } else {
+                                      BRANCHNUMBER.PLANT1 = '';
+                                      BRANCHNUMBER.PLANT2 = '';
+                                    }
+                                    MainBodyContext.read<ChangePage_Bloc>()
+                                        .ChangePage_nodrower('', Page204());
+                                  },
+                                  child: AnimatedContainer(
+                                    duration: Duration(milliseconds: 200),
+                                    height: P203SELECTPLANTvar.isHoveredList[s]
+                                        ? 170
+                                        : 150,
+                                    width: P203SELECTPLANTvar.isHoveredList[s]
+                                        ? 170
+                                        : 150,
+                                    decoration: BoxDecoration(
+                                      gradient: LinearGradient(
+                                        colors:
+                                            P203SELECTPLANTvar.isHoveredList[s]
+                                                ? [
+                                                    Colors.blueAccent,
+                                                    Colors.lightBlue
+                                                  ]
+                                                : [
+                                                    Colors.blue,
+                                                    const Color.fromARGB(
+                                                        255, 0, 85, 150)
+                                                  ],
+                                        begin: Alignment.topLeft,
+                                        end: Alignment.bottomRight,
                                       ),
-                                    ],
-                                    borderRadius: BorderRadius.circular(15),
-                                  ),
-                                  child: Center(
-                                    child: Text(
-                                      P203SELECTPLANTvar.NameList[s],
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.bold,
-                                        shadows: const [
-                                          Shadow(
-                                            blurRadius: 5.0,
-                                            color: Colors.black45,
-                                            offset: Offset(2, 2),
-                                          ),
-                                        ],
+                                      border: Border.all(
+                                        color: Colors.black87,
+                                        width: 2.0,
+                                      ),
+                                      boxShadow: [
+                                        BoxShadow(
+                                          color: Colors.black.withOpacity(0.3),
+                                          spreadRadius: 2,
+                                          blurRadius: 5,
+                                          offset: Offset(2, 3),
+                                        ),
+                                      ],
+                                      borderRadius: BorderRadius.circular(15),
+                                    ),
+                                    child: Center(
+                                      child: Text(
+                                        P203SELECTPLANTvar.NameList[s],
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.bold,
+                                          shadows: const [
+                                            Shadow(
+                                              blurRadius: 5.0,
+                                              color: Colors.black45,
+                                              offset: Offset(2, 2),
+                                            ),
+                                          ],
+                                        ),
                                       ),
                                     ),
                                   ),
@@ -365,7 +444,7 @@ class _P203SELECTPLANTmainBodyState extends State<P203SELECTPLANTmainBody> {
                               ),
                             ),
                           ),
-                        ),
+                        ],
                       ],
                     ]
                   ],

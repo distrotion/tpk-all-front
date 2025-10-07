@@ -67,7 +67,8 @@ class P211CHEMPLANINGget_Bloc
       if (databuff['HEADER_INFO'].length > 0) {
         P211CHEMPLANINGgetclass buffer = P211CHEMPLANINGgetclass();
         for (var i = 0; i < databuff['HEADER_INFO'].length; i++) {
-          if (databuff['HEADER_INFO'][i]['LINK_PROC_ORDER'].toString() == '') {
+          // if (databuff['HEADER_INFO'][i]['LINK_PROC_ORDER'].toString() == '') {
+          if (true) {
             buffer = P211CHEMPLANINGgetclass(
               PROCESS_ORDER:
                   databuff['HEADER_INFO'][i]['PROCESS_ORDER'].toString(),

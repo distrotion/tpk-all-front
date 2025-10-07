@@ -9,12 +9,12 @@ class P203SELECTPLANTvar {
     "GAS",
     "PH",
     "ISN",
-    "PVD",
+    "HYD",
     "PAL",
     "DELTA",
-    "",
-    "",
-    "",
+    "ALL BP12",
+    "ALL GW",
+    "ALL HES",
     "",
   ];
 

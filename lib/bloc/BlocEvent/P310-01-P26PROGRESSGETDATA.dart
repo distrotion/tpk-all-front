@@ -42,6 +42,7 @@ class P310CHEMTANKGETDATA_Bloc
     FreeLoadingTan(P310CHEMTANKMAINcontext);
     List<P310CHEMTANKGETDATAclass> output = [];
     //-------------------------------------------------------------------------------------
+
     final response = await Dio().post(
       // "${server3}datacentertest/getsoi8order",
       "${server2}datacentertest/getsoi8order-ro",
@@ -85,12 +86,12 @@ class P310CHEMTANKGETDATA_Bloc
       Navigator.pop(P310CHEMTANKMAINcontext);
 
       output = outputdata;
-      emit(output);
     } else {
       print("where is my server");
       output = [];
-      emit(output);
     }
+
+    emit(output);
   }
 
   Future<void> _P310CHEMTANKGETDATA_GET2(List<P310CHEMTANKGETDATAclass> toAdd,

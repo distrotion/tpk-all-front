@@ -12,6 +12,7 @@ import '../../bloc/BlocEvent/P301-02-P301QMMASTERgetINSP_SPEC.dart';
 import '../../bloc/Cubit/ChangePageEventCUBIT.dart';
 import '../../data/global.dart';
 import '../../mainBody.dart';
+import '../../widget/common/Advancedropdown.dart';
 import '../../widget/common/Calendarwid.dart';
 import '../../widget/common/ComInputText.dart';
 import '../../widget/common/ComInputTextTan.dart';
@@ -71,6 +72,40 @@ class _P301QMMASTERMAINState extends State<P301QMMASTERMAIN> {
     P301QMMASTERMAINcontext = context;
     List<P301QMMASTERgetclass> _datain = widget.data ?? [];
     List<P301QMMASTERgetclass> _datasearch = [];
+
+    // List<P301QMMASTERgetclass> _data_exp = [];
+
+    // for (int i = 0; i < _datain.length; i++) {
+    //   if (_datain[i].PROCESS_ORDER.contains(P301QMMASTERVAR.SEARCH) ||
+    //       _datain[i].MATERIAL.contains(P301QMMASTERVAR.SEARCH) ||
+    //       _datain[i].MAT_DESC.contains(P301QMMASTERVAR.SEARCH) ||
+    //       _datain[i].OLD_MAT.contains(P301QMMASTERVAR.SEARCH) ||
+    //       _datain[i].BATCH.contains(P301QMMASTERVAR.SEARCH)) {
+    //     _data_exp.add(_datain[i]);
+    //   }
+    // }
+    if (P301QMMASTERVAR.FILTER == 'ALL') {
+      _datasearch = _datain;
+    } else {
+      // _datasearch = _datain;
+      for (var i = 0; i < _datain.length; i++) {
+        if (_datain[i].INSP_LOT_STATUS.contains("UD") == false) {
+          _datasearch.add(_datain[i]);
+        }
+      }
+    }
+
+    List<P301QMMASTERgetclass> _data_exp = [];
+
+    for (int i = 0; i < _datasearch.length; i++) {
+      if (_datasearch[i].PROCESS_ORDER.contains(P301QMMASTERVAR.SEARCH) ||
+          _datasearch[i].MATERIAL.contains(P301QMMASTERVAR.SEARCH) ||
+          _datasearch[i].MAT_DESC.contains(P301QMMASTERVAR.SEARCH) ||
+          _datasearch[i].OLD_MAT.contains(P301QMMASTERVAR.SEARCH) ||
+          _datasearch[i].BATCH.contains(P301QMMASTERVAR.SEARCH)) {
+        _data_exp.add(_datasearch[i]);
+      }
+    }
 
     return SingleChildScrollView(
       child: Padding(
@@ -267,6 +302,44 @@ class _P301QMMASTERMAINState extends State<P301QMMASTERMAIN> {
                       ),
                     ),
                   ),
+                  Row(
+                    children: [
+                      Container(
+                        height: 60,
+                        // width: 900,
+                        decoration: BoxDecoration(
+                          // color: Colors.blue.shade900,
+                          border: Border(
+                            top: BorderSide(),
+                            left: BorderSide(),
+                            right: BorderSide(),
+                          ),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Center(
+                            child: ComInputText(
+                              height: 40,
+                              width: 500,
+                              isContr: P301QMMASTERVAR.iscontrol,
+                              fnContr: (input) {
+                                setState(() {
+                                  P301QMMASTERVAR.iscontrol = input;
+                                });
+                              },
+                              sPlaceholder: "search",
+                              sValue: P301QMMASTERVAR.SEARCH,
+                              returnfunc: (String s) {
+                                setState(() {
+                                  P301QMMASTERVAR.SEARCH = s;
+                                });
+                              },
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                   QMMAASTERtable(),
                   // if (_datasearch
                   //     .any((item) => item.PLANT == 'noxrust'))
@@ -277,22 +350,33 @@ class _P301QMMASTERMAINState extends State<P301QMMASTERMAIN> {
                         // width: 1100,
                         child: Column(
                           children: [
-                            for (int i = 0; i < _datain.length; i++) ...[
+                            for (int i = 0; i < _data_exp.length; i++) ...[
                               // for (int i = 0; i < 10; i++) ...[
                               InkWell(
                                 onTap: () {
                                   //
-                                  P301QMMASTERVAR.pagepop = 0;
-                                  P301QMMASTERVAR.INSP_LOTset =
-                                      _datain[i].INSP_LOT;
-                                  P301QMMASTERVAR.TO_UR = _datain[i].INSP_QTY;
-                                  P301QMMASTERVAR.TO_ALL = _datain[i].INSP_QTY;
-                                  P301QMMASTERVAR.TO_BL = "";
-                                  P301QMMASTERVAR.INSP_SPECdata = [];
-                                  P301QMMASTERVAR.SELECTED_SETdata = [];
-                                  P301QMMASTERVAR.UDCODEdata = [];
+                                  if (_data_exp[i]
+                                              .INSP_LOT_STATUS
+                                              .contains("UD") ==
+                                          false &&
+                                      _data_exp[i]
+                                              .INSP_LOT_STATUS
+                                              .contains("CRTD") ==
+                                          false) {
+                                    P301QMMASTERVAR.pagepop = 0;
+                                    P301QMMASTERVAR.INSP_LOTset =
+                                        _data_exp[i].INSP_LOT;
+                                    P301QMMASTERVAR.TO_UR =
+                                        _data_exp[i].INSP_QTY;
+                                    P301QMMASTERVAR.TO_ALL =
+                                        _data_exp[i].INSP_QTY;
+                                    P301QMMASTERVAR.TO_BL = "";
+                                    P301QMMASTERVAR.INSP_SPECdata = [];
+                                    P301QMMASTERVAR.SELECTED_SETdata = [];
+                                    P301QMMASTERVAR.UDCODEdata = [];
 
-                                  _QMI003POP(context);
+                                    _QMI003POP(context);
+                                  }
                                 },
                                 onHover: (v) {
                                   //
@@ -303,16 +387,16 @@ class _P301QMMASTERMAINState extends State<P301QMMASTERMAIN> {
                                 },
                                 child: QMMAASTERitem(
                                   holding: P301QMMASTERVAR.holding == i,
-                                  text01: _datain[i].MATERIAL,
-                                  text02: _datain[i].CUST_NAME1,
-                                  text03: _datain[i].MAT_DESC,
-                                  text04: _datain[i].OLD_MAT,
-                                  text05: _datain[i].BATCH,
-                                  text06: _datain[i].INSP_LOT,
-                                  text07: _datain[i].INSP_QTY +
+                                  text01: _data_exp[i].MATERIAL,
+                                  text02: _data_exp[i].CUST_NAME1,
+                                  text03: _data_exp[i].MAT_DESC,
+                                  text04: _data_exp[i].OLD_MAT,
+                                  text05: _data_exp[i].BATCH,
+                                  text06: _data_exp[i].INSP_LOT,
+                                  text07: _data_exp[i].INSP_QTY +
                                       ' ' +
-                                      _datain[i].INSP_UOM,
-                                  text08: _datain[i].INSP_LOT_STATUS,
+                                      _data_exp[i].INSP_UOM,
+                                  text08: _data_exp[i].INSP_LOT_STATUS,
                                 ),
                               ),
                             ],
@@ -773,20 +857,20 @@ class _NEWNEWREQUESTState extends State<NEWNEWREQUEST> {
                           children: [
                             for (int i = 0; i < _datain.UDCODE.length; i++) ...[
                               if (_datain.UDCODE[i].CODE == 'A2' &&
-                                  int.parse(ConverstStr(
+                                  double.parse(ConverstStr(
                                           P301QMMASTERVAR.TO_ALL)) ==
-                                      int.parse(
+                                      double.parse(
                                           ConverstStr(P301QMMASTERVAR.TO_UR)) &&
                                   (P301QMMASTERVAR.EVASET == 'OK')) ...[
                                 Padding(
                                   padding: const EdgeInsets.all(8.0),
                                   child: InkWell(
                                     onTap: () {
-                                      if (int.parse(ConverstStr(
+                                      if (double.parse(ConverstStr(
                                               P301QMMASTERVAR.TO_ALL)) ==
-                                          (int.parse(ConverstStr(
+                                          (double.parse(ConverstStr(
                                                   P301QMMASTERVAR.TO_UR))) +
-                                              (int.parse(ConverstStr(
+                                              (double.parse(ConverstStr(
                                                   P301QMMASTERVAR.TO_BL)))) {
                                         Map<String, String> output = {
                                           "INSPLOT":
@@ -834,9 +918,9 @@ class _NEWNEWREQUESTState extends State<NEWNEWREQUEST> {
                                 ),
                               ],
                               if (_datain.UDCODE[i].CODE == 'A3' &&
-                                  int.parse(ConverstStr(
+                                  double.parse(ConverstStr(
                                           P301QMMASTERVAR.TO_ALL)) ==
-                                      int.parse(
+                                      double.parse(
                                           ConverstStr(P301QMMASTERVAR.TO_UR)) &&
                                   (P301QMMASTERVAR.EVASET == 'NOK')) ...[
                                 Padding(
@@ -862,11 +946,11 @@ class _NEWNEWREQUESTState extends State<NEWNEWREQUEST> {
                                   padding: const EdgeInsets.all(8.0),
                                   child: InkWell(
                                     onTap: () {
-                                      if (int.parse(ConverstStr(
+                                      if (double.parse(ConverstStr(
                                               P301QMMASTERVAR.TO_ALL)) ==
-                                          (int.parse(ConverstStr(
+                                          (double.parse(ConverstStr(
                                                   P301QMMASTERVAR.TO_UR))) +
-                                              (int.parse(ConverstStr(
+                                              (double.parse(ConverstStr(
                                                   P301QMMASTERVAR.TO_BL)))) {
                                         Map<String, String> output = {
                                           "INSPLOT":
@@ -914,13 +998,13 @@ class _NEWNEWREQUESTState extends State<NEWNEWREQUEST> {
                                 ),
                               ],
                               if (_datain.UDCODE[i].CODE == 'A6' &&
-                                  int.parse(ConverstStr(
+                                  double.parse(ConverstStr(
                                           P301QMMASTERVAR.TO_ALL)) !=
-                                      int.parse(
+                                      double.parse(
                                           ConverstStr(P301QMMASTERVAR.TO_UR)) &&
-                                  (int.parse(ConverstStr(
+                                  (double.parse(ConverstStr(
                                           P301QMMASTERVAR.TO_ALL)) !=
-                                      int.parse(ConverstStr(
+                                      double.parse(ConverstStr(
                                           P301QMMASTERVAR.TO_BL)))) ...[
                                 Padding(
                                   padding: const EdgeInsets.all(8.0),
@@ -944,11 +1028,11 @@ class _NEWNEWREQUESTState extends State<NEWNEWREQUEST> {
                                   padding: const EdgeInsets.all(8.0),
                                   child: InkWell(
                                     onTap: () {
-                                      if (int.parse(ConverstStr(
+                                      if (double.parse(ConverstStr(
                                               P301QMMASTERVAR.TO_ALL)) ==
-                                          (int.parse(ConverstStr(
+                                          (double.parse(ConverstStr(
                                                   P301QMMASTERVAR.TO_UR))) +
-                                              (int.parse(ConverstStr(
+                                              (double.parse(ConverstStr(
                                                   P301QMMASTERVAR.TO_BL)))) {
                                         Map<String, String> output = {
                                           "INSPLOT":
@@ -996,9 +1080,9 @@ class _NEWNEWREQUESTState extends State<NEWNEWREQUEST> {
                                 ),
                               ],
                               if (_datain.UDCODE[i].CODE == 'R3' &&
-                                  int.parse(ConverstStr(
+                                  double.parse(ConverstStr(
                                           P301QMMASTERVAR.TO_ALL)) ==
-                                      int.parse(ConverstStr(
+                                      double.parse(ConverstStr(
                                           P301QMMASTERVAR.TO_BL))) ...[
                                 Padding(
                                   padding: const EdgeInsets.all(8.0),
@@ -1022,11 +1106,11 @@ class _NEWNEWREQUESTState extends State<NEWNEWREQUEST> {
                                   padding: const EdgeInsets.all(8.0),
                                   child: InkWell(
                                     onTap: () {
-                                      if (int.parse(ConverstStr(
+                                      if (double.parse(ConverstStr(
                                               P301QMMASTERVAR.TO_ALL)) ==
-                                          (int.parse(ConverstStr(
+                                          (double.parse(ConverstStr(
                                                   P301QMMASTERVAR.TO_UR))) +
-                                              (int.parse(ConverstStr(
+                                              (double.parse(ConverstStr(
                                                   P301QMMASTERVAR.TO_BL)))) {
                                         Map<String, String> output = {
                                           "INSPLOT":
@@ -1074,19 +1158,19 @@ class _NEWNEWREQUESTState extends State<NEWNEWREQUEST> {
                                 ),
                               ],
                               //   if (_datain.UDCODE[i].CODE == 'R99' &&
-                              //       (int.parse(ConverstStr(
+                              //       (double.parse(ConverstStr(
                               //               P301QMMASTERVAR.TO_ALL)) ==
-                              //           int.parse(ConverstStr(
+                              //           double.parse(ConverstStr(
                               //               P301QMMASTERVAR.TO_BL)))) ...[
                               //     Padding(
                               //       padding: const EdgeInsets.all(8.0),
                               //       child: InkWell(
                               //         onTap: () {
-                              //           // if (int.parse(ConverstStr(
+                              //           // if (double.parse(ConverstStr(
                               //           //         P301QMMASTERVAR.TO_ALL)) ==
-                              //           //     (int.parse(ConverstStr(
+                              //           //     (double.parse(ConverstStr(
                               //           //             P301QMMASTERVAR.TO_UR))) +
-                              //           //         (int.parse(ConverstStr(
+                              //           //         (double.parse(ConverstStr(
                               //           //             P301QMMASTERVAR.TO_BL)))) {
                               //           //   Map<String, String> output = {
                               //           //     "INSPLOT":

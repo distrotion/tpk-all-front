@@ -14,6 +14,7 @@ import '../page202.dart';
 import '../page203.dart';
 import '../page211.dart';
 import '../page221.dart';
+import '../page222.dart';
 import '../page231.dart';
 import '../page301.dart';
 import 'P202SELECTCHEMLISTvar.dart';
@@ -122,7 +123,7 @@ class _P202SELECTCHEMLISTmainBodyState
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    for (int s = 0; s < 5; s++) ...[
+                    for (int s = 0; s < 6; s++) ...[
                       Padding(
                         padding: const EdgeInsets.all(5.0),
                         child: MouseRegion(
@@ -155,6 +156,10 @@ class _P202SELECTCHEMLISTmainBodyState
                                     .ChangePage_nodrower('', Page221());
                               }
                               if (s == 4) {
+                                MainBodyContext.read<ChangePage_Bloc>()
+                                    .ChangePage_nodrower('', Page222());
+                              }
+                              if (s == 5) {
                                 MainBodyContext.read<ChangePage_Bloc>()
                                     .ChangePage_nodrower('', Page231());
                               }

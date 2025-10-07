@@ -11,15 +11,17 @@ import '../../bloc/BlocEvent/P302-02-P302QMMASTERHSgetINSP_SPEC.dart';
 import '../../bloc/Cubit/ChangePageEventCUBIT.dart';
 import '../../data/global.dart';
 import '../../mainBody.dart';
+import '../../widget/common/Advancedropdown.dart';
 import '../../widget/common/Calendarwid.dart';
 import '../../widget/common/ComInputText.dart';
 import '../../widget/common/ComInputTextTan.dart';
+import '../../widget/common/ErrorPopup.dart';
+import '../../widget/common/Error_NO_Popup.dart';
 import '../../widget/common/Safty.dart';
 import '../../widget/common/popup.dart';
 import '../../widget/newtable/INSP_SPECtable.dart';
 import '../../widget/newtable/QMMAASTERtable.dart';
 import '../../widget/table/PROGRESSMAIN.dart';
-
 import '../page202.dart';
 import '../page204.dart';
 import 'P302QMMASTERHSVAR.dart';
@@ -70,6 +72,29 @@ class _P302QMMASTERHSMAINState extends State<P302QMMASTERHSMAIN> {
     P302QMMASTERHSMAINcontext = context;
     List<P302QMMASTERHSgetclass> _datain = widget.data ?? [];
     List<P302QMMASTERHSgetclass> _datasearch = [];
+
+    if (P302QMMASTERHSVAR.FILTER == 'ALL') {
+      _datasearch = _datain;
+    } else {
+      // _datasearch = _datain;
+      for (var i = 0; i < _datain.length; i++) {
+        if (_datain[i].INSP_LOT_STATUS.contains("UD") == false) {
+          _datasearch.add(_datain[i]);
+        }
+      }
+    }
+
+    List<P302QMMASTERHSgetclass> _data_exp = [];
+
+    for (int i = 0; i < _datasearch.length; i++) {
+      if (_datasearch[i].PROCESS_ORDER.contains(P302QMMASTERHSVAR.SEARCH) ||
+          _datasearch[i].MATERIAL.contains(P302QMMASTERHSVAR.SEARCH) ||
+          _datasearch[i].MAT_DESC.contains(P302QMMASTERHSVAR.SEARCH) ||
+          _datasearch[i].OLD_MAT.contains(P302QMMASTERHSVAR.SEARCH) ||
+          _datasearch[i].BATCH.contains(P302QMMASTERHSVAR.SEARCH)) {
+        _data_exp.add(_datasearch[i]);
+      }
+    }
 
     return SingleChildScrollView(
       child: Padding(
@@ -266,6 +291,63 @@ class _P302QMMASTERHSMAINState extends State<P302QMMASTERHSMAIN> {
                       ),
                     ),
                   ),
+                  Container(
+                    height: 60,
+                    // width: 900,
+                    decoration: BoxDecoration(
+                      // color: Colors.blue.shade900,
+                      border: Border(
+                        top: BorderSide(),
+                        left: BorderSide(),
+                        right: BorderSide(),
+                      ),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Center(
+                        child: Row(
+                          children: [
+                            ComInputText(
+                              height: 40,
+                              width: 500,
+                              isContr: P302QMMASTERHSVAR.iscontrol,
+                              fnContr: (input) {
+                                setState(() {
+                                  P302QMMASTERHSVAR.iscontrol = input;
+                                });
+                              },
+                              sPlaceholder: "search",
+                              sValue: P302QMMASTERHSVAR.SEARCH,
+                              returnfunc: (String s) {
+                                setState(() {
+                                  P302QMMASTERHSVAR.SEARCH = s;
+                                });
+                              },
+                            ),
+                            SizedBox(
+                              height: 64,
+                              width: 100,
+                              child: AdvanceDropDown(
+                                imgpath: 'assets/icons/icon-down_4@3x.png',
+                                listdropdown: const [
+                                  MapEntry("NO UD", ""),
+                                  MapEntry("ALL", "ALL")
+                                ],
+                                onChangeinside: (d, k) {
+                                  setState(() {
+                                    P302QMMASTERHSVAR.FILTER = d;
+                                  });
+                                },
+                                value: P302QMMASTERHSVAR.FILTER,
+                                height: 40,
+                                width: 100,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
                   QMMAASTERtable(),
                   // if (_datasearch
                   //     .any((item) => item.PLANT == 'noxrust'))
@@ -276,23 +358,33 @@ class _P302QMMASTERHSMAINState extends State<P302QMMASTERHSMAIN> {
                         // width: 1100,
                         child: Column(
                           children: [
-                            for (int i = 0; i < _datain.length; i++) ...[
+                            for (int i = 0; i < _data_exp.length; i++) ...[
                               // for (int i = 0; i < 10; i++) ...[
                               InkWell(
                                 onTap: () {
                                   //
-                                  P302QMMASTERHSVAR.pagepop = 0;
-                                  P302QMMASTERHSVAR.INSP_LOTset =
-                                      _datain[i].INSP_LOT;
-                                  P302QMMASTERHSVAR.TO_UR = _datain[i].INSP_QTY;
-                                  P302QMMASTERHSVAR.TO_ALL =
-                                      _datain[i].INSP_QTY;
-                                  P302QMMASTERHSVAR.TO_BL = "";
-                                  P302QMMASTERHSVAR.INSP_SPECdata = [];
-                                  P302QMMASTERHSVAR.SELECTED_SETdata = [];
-                                  P302QMMASTERHSVAR.UDCODEdata = [];
+                                  if (_data_exp[i]
+                                              .INSP_LOT_STATUS
+                                              .contains("UD") ==
+                                          false &&
+                                      _data_exp[i]
+                                              .INSP_LOT_STATUS
+                                              .contains("CRTD") ==
+                                          false) {
+                                    P302QMMASTERHSVAR.pagepop = 0;
+                                    P302QMMASTERHSVAR.INSP_LOTset =
+                                        _data_exp[i].INSP_LOT;
+                                    P302QMMASTERHSVAR.TO_UR =
+                                        _data_exp[i].INSP_QTY;
+                                    P302QMMASTERHSVAR.TO_ALL =
+                                        _data_exp[i].INSP_QTY;
+                                    P302QMMASTERHSVAR.TO_BL = "";
+                                    P302QMMASTERHSVAR.INSP_SPECdata = [];
+                                    P302QMMASTERHSVAR.SELECTED_SETdata = [];
+                                    P302QMMASTERHSVAR.UDCODEdata = [];
 
-                                  _QMI003POP(context);
+                                    _QMI003POP(context);
+                                  }
                                 },
                                 onHover: (v) {
                                   //
@@ -303,16 +395,16 @@ class _P302QMMASTERHSMAINState extends State<P302QMMASTERHSMAIN> {
                                 },
                                 child: QMMAASTERitem(
                                   holding: P302QMMASTERHSVAR.holding == i,
-                                  text01: _datain[i].MATERIAL,
-                                  text02: _datain[i].CUST_NAME1,
-                                  text03: _datain[i].MAT_DESC,
-                                  text04: _datain[i].OLD_MAT,
-                                  text05: _datain[i].BATCH,
-                                  text06: _datain[i].INSP_LOT,
-                                  text07: _datain[i].INSP_QTY +
+                                  text01: _data_exp[i].MATERIAL,
+                                  text02: _data_exp[i].CUST_NAME1,
+                                  text03: _data_exp[i].MAT_DESC,
+                                  text04: _data_exp[i].OLD_MAT,
+                                  text05: _data_exp[i].BATCH,
+                                  text06: _data_exp[i].INSP_LOT,
+                                  text07: _data_exp[i].INSP_QTY +
                                       ' ' +
-                                      _datain[i].INSP_UOM,
-                                  text08: _datain[i].INSP_LOT_STATUS,
+                                      _data_exp[i].INSP_UOM,
+                                  text08: _data_exp[i].INSP_LOT_STATUS,
                                 ),
                               ),
                             ],
@@ -461,6 +553,7 @@ class _NEWNEWREQUESTState extends State<NEWNEWREQUEST> {
                           child: Text("INSP_SPEC"),
                         ),
                       ),
+
                       INSP_SPECtable(),
                       // if (_datasearch
                       //     .any((item) => item.PLANT == 'noxrust'))
@@ -655,6 +748,15 @@ class _NEWNEWREQUESTState extends State<NEWNEWREQUEST> {
                         .then((v) {
                       //
                       print(v.data);
+
+                      if (v.data['TYPE'] != null) {
+                        if (v.data['TYPE'].toString() == 'E') {
+                          showErrorPopup(context, v.data.toString());
+                        } else {
+                          showGoodPopup(context, v.data.toString());
+                        }
+                      }
+
                       P302QMMASTERHSVAR.pagepop = 1;
                       setState(() {});
                     });
@@ -763,20 +865,20 @@ class _NEWNEWREQUESTState extends State<NEWNEWREQUEST> {
                           children: [
                             for (int i = 0; i < _datain.UDCODE.length; i++) ...[
                               if (_datain.UDCODE[i].CODE == 'A1' &&
-                                  int.parse(ConverstStr(
+                                  double.parse(ConverstStr(
                                           P302QMMASTERHSVAR.TO_ALL)) ==
-                                      int.parse(ConverstStr(
+                                      double.parse(ConverstStr(
                                           P302QMMASTERHSVAR.TO_UR)) &&
                                   (P302QMMASTERHSVAR.EVASET == 'OK')) ...[
                                 Padding(
                                   padding: const EdgeInsets.all(8.0),
                                   child: InkWell(
                                     onTap: () {
-                                      if (int.parse(ConverstStr(
+                                      if (double.parse(ConverstStr(
                                               P302QMMASTERHSVAR.TO_ALL)) ==
-                                          (int.parse(ConverstStr(
+                                          (double.parse(ConverstStr(
                                                   P302QMMASTERHSVAR.TO_UR))) +
-                                              (int.parse(ConverstStr(
+                                              (double.parse(ConverstStr(
                                                   P302QMMASTERHSVAR.TO_BL)))) {
                                         Map<String, String> output = {
                                           "INSPLOT":
@@ -802,6 +904,22 @@ class _NEWNEWREQUESTState extends State<NEWNEWREQUEST> {
                                                   P302QMMASTERHSget_Bloc>()
                                               .add(P302QMMASTERHSget_GET());
                                           //
+                                          if (v.data.length > 0) {
+                                            if (v.data[0]['TYPE'] != null) {
+                                              if (v.data[0]['TYPE']
+                                                      .toString() ==
+                                                  'E') {
+                                                showErrorPopup(
+                                                    P302QMMASTERHSMAINcontext,
+                                                    v.data.toString());
+                                              } else {
+                                                showGoodPopup(
+                                                    P302QMMASTERHSMAINcontext,
+                                                    v.data.toString());
+                                              }
+                                            }
+                                          }
+
                                           print(v.data);
                                         });
                                       } else {
@@ -824,9 +942,9 @@ class _NEWNEWREQUESTState extends State<NEWNEWREQUEST> {
                                 ),
                               ],
                               if (_datain.UDCODE[i].CODE == 'A4' &&
-                                  int.parse(ConverstStr(
+                                  double.parse(ConverstStr(
                                           P302QMMASTERHSVAR.TO_ALL)) ==
-                                      int.parse(ConverstStr(
+                                      double.parse(ConverstStr(
                                           P302QMMASTERHSVAR.TO_UR)) &&
                                   (P302QMMASTERHSVAR.EVASET == 'NOK')) ...[
                                 Padding(
@@ -852,11 +970,11 @@ class _NEWNEWREQUESTState extends State<NEWNEWREQUEST> {
                                   padding: const EdgeInsets.all(8.0),
                                   child: InkWell(
                                     onTap: () {
-                                      if (int.parse(ConverstStr(
+                                      if (double.parse(ConverstStr(
                                               P302QMMASTERHSVAR.TO_ALL)) ==
-                                          (int.parse(ConverstStr(
+                                          (double.parse(ConverstStr(
                                                   P302QMMASTERHSVAR.TO_UR))) +
-                                              (int.parse(ConverstStr(
+                                              (double.parse(ConverstStr(
                                                   P302QMMASTERHSVAR.TO_BL)))) {
                                         Map<String, String> output = {
                                           "INSPLOT":
@@ -883,6 +1001,21 @@ class _NEWNEWREQUESTState extends State<NEWNEWREQUEST> {
                                               .add(P302QMMASTERHSget_GET());
                                           //
                                           print(v.data);
+                                          if (v.data.length > 0) {
+                                            if (v.data[0]['TYPE'] != null) {
+                                              if (v.data[0]['TYPE']
+                                                      .toString() ==
+                                                  'E') {
+                                                showErrorPopup(
+                                                    P302QMMASTERHSMAINcontext,
+                                                    v.data.toString());
+                                              } else {
+                                                showGoodPopup(
+                                                    P302QMMASTERHSMAINcontext,
+                                                    v.data.toString());
+                                              }
+                                            }
+                                          }
                                         });
                                       } else {
                                         //
@@ -904,13 +1037,13 @@ class _NEWNEWREQUESTState extends State<NEWNEWREQUEST> {
                                 ),
                               ],
                               if (_datain.UDCODE[i].CODE == 'A6' &&
-                                  int.parse(ConverstStr(
+                                  double.parse(ConverstStr(
                                           P302QMMASTERHSVAR.TO_ALL)) !=
-                                      int.parse(ConverstStr(
+                                      double.parse(ConverstStr(
                                           P302QMMASTERHSVAR.TO_UR)) &&
-                                  (int.parse(ConverstStr(
+                                  (double.parse(ConverstStr(
                                           P302QMMASTERHSVAR.TO_ALL)) !=
-                                      int.parse(ConverstStr(
+                                      double.parse(ConverstStr(
                                           P302QMMASTERHSVAR.TO_BL)))) ...[
                                 Padding(
                                   padding: const EdgeInsets.all(8.0),
@@ -934,11 +1067,11 @@ class _NEWNEWREQUESTState extends State<NEWNEWREQUEST> {
                                   padding: const EdgeInsets.all(8.0),
                                   child: InkWell(
                                     onTap: () {
-                                      if (int.parse(ConverstStr(
+                                      if (double.parse(ConverstStr(
                                               P302QMMASTERHSVAR.TO_ALL)) ==
-                                          (int.parse(ConverstStr(
+                                          (double.parse(ConverstStr(
                                                   P302QMMASTERHSVAR.TO_UR))) +
-                                              (int.parse(ConverstStr(
+                                              (double.parse(ConverstStr(
                                                   P302QMMASTERHSVAR.TO_BL)))) {
                                         Map<String, String> output = {
                                           "INSPLOT":
@@ -965,6 +1098,21 @@ class _NEWNEWREQUESTState extends State<NEWNEWREQUEST> {
                                               .add(P302QMMASTERHSget_GET());
                                           //
                                           print(v.data);
+                                          if (v.data.length > 0) {
+                                            if (v.data[0]['TYPE'] != null) {
+                                              if (v.data[0]['TYPE']
+                                                      .toString() ==
+                                                  'E') {
+                                                showErrorPopup(
+                                                    P302QMMASTERHSMAINcontext,
+                                                    v.data.toString());
+                                              } else {
+                                                showGoodPopup(
+                                                    P302QMMASTERHSMAINcontext,
+                                                    v.data.toString());
+                                              }
+                                            }
+                                          }
                                         });
                                       } else {
                                         //
@@ -986,9 +1134,9 @@ class _NEWNEWREQUESTState extends State<NEWNEWREQUEST> {
                                 ),
                               ],
                               if (_datain.UDCODE[i].CODE == 'R1' &&
-                                  int.parse(ConverstStr(
+                                  double.parse(ConverstStr(
                                           P302QMMASTERHSVAR.TO_ALL)) ==
-                                      int.parse(ConverstStr(
+                                      double.parse(ConverstStr(
                                           P302QMMASTERHSVAR.TO_BL))) ...[
                                 Padding(
                                   padding: const EdgeInsets.all(8.0),
@@ -1012,11 +1160,11 @@ class _NEWNEWREQUESTState extends State<NEWNEWREQUEST> {
                                   padding: const EdgeInsets.all(8.0),
                                   child: InkWell(
                                     onTap: () {
-                                      if (int.parse(ConverstStr(
+                                      if (double.parse(ConverstStr(
                                               P302QMMASTERHSVAR.TO_ALL)) ==
-                                          (int.parse(ConverstStr(
+                                          (double.parse(ConverstStr(
                                                   P302QMMASTERHSVAR.TO_UR))) +
-                                              (int.parse(ConverstStr(
+                                              (double.parse(ConverstStr(
                                                   P302QMMASTERHSVAR.TO_BL)))) {
                                         Map<String, String> output = {
                                           "INSPLOT":
@@ -1043,6 +1191,21 @@ class _NEWNEWREQUESTState extends State<NEWNEWREQUEST> {
                                               .add(P302QMMASTERHSget_GET());
                                           //
                                           print(v.data);
+                                          if (v.data.length > 0) {
+                                            if (v.data[0]['TYPE'] != null) {
+                                              if (v.data[0]['TYPE']
+                                                      .toString() ==
+                                                  'E') {
+                                                showErrorPopup(
+                                                    P302QMMASTERHSMAINcontext,
+                                                    v.data.toString());
+                                              } else {
+                                                showGoodPopup(
+                                                    P302QMMASTERHSMAINcontext,
+                                                    v.data.toString());
+                                              }
+                                            }
+                                          }
                                         });
                                       } else {
                                         //
@@ -1064,19 +1227,19 @@ class _NEWNEWREQUESTState extends State<NEWNEWREQUEST> {
                                 ),
                               ],
                               //   if (_datain.UDCODE[i].CODE == 'R99' &&
-                              //       (int.parse(ConverstStr(
+                              //       (double.parse(ConverstStr(
                               //               P302QMMASTERHSVAR.TO_ALL)) ==
-                              //           int.parse(ConverstStr(
+                              //           double.parse(ConverstStr(
                               //               P302QMMASTERHSVAR.TO_BL)))) ...[
                               //     Padding(
                               //       padding: const EdgeInsets.all(8.0),
                               //       child: InkWell(
                               //         onTap: () {
-                              //           // if (int.parse(ConverstStr(
+                              //           // if (double.parse(ConverstStr(
                               //           //         P302QMMASTERHSVAR.TO_ALL)) ==
-                              //           //     (int.parse(ConverstStr(
+                              //           //     (double.parse(ConverstStr(
                               //           //             P302QMMASTERHSVAR.TO_UR))) +
-                              //           //         (int.parse(ConverstStr(
+                              //           //         (double.parse(ConverstStr(
                               //           //             P302QMMASTERHSVAR.TO_BL)))) {
                               //           //   Map<String, String> output = {
                               //           //     "INSPLOT":

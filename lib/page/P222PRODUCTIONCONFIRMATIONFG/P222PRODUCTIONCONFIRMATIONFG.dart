@@ -20,10 +20,11 @@ import '../../widget/newtable/PRODUCTIONCONFIRMATIONtable.dart';
 import '../../widget/newtable/QMMAASTERtable.dart';
 import '../../widget/table/PROGRESSMAIN.dart';
 
-import '../P310CHEMTANK/P310CHEMTANKVAR.dart';
+import '../P311CHEMTANKFG/P311CHEMTANKFGVAR.dart';
 import '../page202.dart';
-import '../page310.dart';
-import 'P221PRODUCTIONCONFIRMATIONFGVAR.dart';
+
+import '../page311.dart';
+import 'P222PRODUCTIONCONFIRMATIONFGVAR.dart';
 
 late BuildContext P222PRODUCTIONCONFIRMATIONFGcontext;
 
@@ -50,13 +51,13 @@ class _P222PRODUCTIONCONFIRMATIONFGState
     P222PRODUCTIONCONFIRMATIONFGVAR.month = DateFormat('MM').format(now);
     P222PRODUCTIONCONFIRMATIONFGVAR.year = DateFormat('yyyy').format(now);
 
-    // P222PRODUCTIONCONFIRMATIONFGVAR.day_next = DateFormat('dd').format(now);
-    // P222PRODUCTIONCONFIRMATIONFGVAR.month_next = DateFormat('MM').format(now);
-    // P222PRODUCTIONCONFIRMATIONFGVAR.year_next = DateFormat('yyyy').format(now);
+    P222PRODUCTIONCONFIRMATIONFGVAR.day_next = DateFormat('dd').format(now);
+    P222PRODUCTIONCONFIRMATIONFGVAR.month_next = DateFormat('MM').format(now);
+    P222PRODUCTIONCONFIRMATIONFGVAR.year_next = DateFormat('yyyy').format(now);
 
-    P222PRODUCTIONCONFIRMATIONFGVAR.day_next = "05";
-    P222PRODUCTIONCONFIRMATIONFGVAR.month_next = "04";
-    P222PRODUCTIONCONFIRMATIONFGVAR.year_next = "2025";
+    // P222PRODUCTIONCONFIRMATIONFGVAR.day_next = "05";
+    // P222PRODUCTIONCONFIRMATIONFGVAR.month_next = "04";
+    // P222PRODUCTIONCONFIRMATIONFGVAR.year_next = "2025";
 
     P222PRODUCTIONCONFIRMATIONFGVAR.iscontrol = true;
     P222PRODUCTIONCONFIRMATIONFGVAR.SEARCH = '';
@@ -284,9 +285,9 @@ class _P222PRODUCTIONCONFIRMATIONFGState
                                           .PROCESS_ORDERselect =
                                       _datain[i].PROCESS_ORDER;
 
-                                  P310CHEMTANKVAR.PLANT =
+                                  P311CHEMTANKFGVAR.PLANT =
                                       _datain[i].PROD_SUP_DESC;
-                                  P310CHEMTANKVAR.ORDER =
+                                  P311CHEMTANKFGVAR.ORDER =
                                       // _datain[i].PROCESS_ORDER;
                                       _datain[i].LINK_PROC_ORDER;
                                   P222PRODUCTIONCONFIRMATIONFGVAR.datasetsend =
@@ -352,7 +353,7 @@ void _POPUPCREATEUSERSW(BuildContext contextin) {
             child: SizedBox(
               height: 600,
               width: 800,
-              child: Page310(),
+              child: Page311(),
             ),
           ),
         ),

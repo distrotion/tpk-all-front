@@ -22,6 +22,14 @@ class USERDATA {
   static String TANK = '';
   static String ORDER = '';
   static String CONTEXT = '';
+
+  static String LV = '';
+  static String Section = '';
+  static String Def = '';
+  static String LOCATION = '';
+
+  static List<String> DefList = [];
+  static List<String> LOCATIONList = [];
 }
 
 class logindata {
@@ -49,6 +57,9 @@ class BRANCHNUMBER {
   static String BP = '2100';
   static String GW = '2200';
   static String ESIE1 = '2300';
+
+  static String PLANT1 = '';
+  static String PLANT2 = '';
 }
 
 class CONTEXTFORUSEPAGE19TO25 {
@@ -58,11 +69,12 @@ class CONTEXTFORUSEPAGE19TO25 {
 bool PAgeorPOP = false;
 
 // String server = 'http://127.0.0.1:16714/';
-String server = 'http://172.23.10.40:16714/';
+// String server = 'http://172.23.10.40:16714/';
 // String server2 = 'http://172.23.10.34:14090/';
 // String server2 = 'http://127.0.0.1:14094/';
-String server2 = 'http://172.23.10.40:14094/';
+String server2 = 'http://172.23.10.168:14094/';
 // String server3 = 'http://127.0.0.1:14090/';
+String GLOserver = 'http://172.23.10.40:16714/';
 
 class QUERYDATASET {
   static String PLANT = '';

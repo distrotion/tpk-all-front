@@ -54,7 +54,13 @@ class QMMAASTERQCtable extends StatelessWidget {
         Expanded(
           flex: 1,
           child: rowbox_type0(
-            Head: "STATUS",
+            Head: "STATUS SAP",
+          ),
+        ),
+        Expanded(
+          flex: 1,
+          child: rowbox_type0(
+            Head: "STATUS QCFN",
           ),
         ),
       ],
@@ -145,6 +151,13 @@ class QMMAASTERQCitem extends StatelessWidget {
           flex: 1,
           child: rowbox_type0_NB_BIG(
             Head: text08,
+            Colorss: holding ?? false ? Colors.grey.shade300 : Colors.white,
+          ),
+        ),
+        Expanded(
+          flex: 1,
+          child: rowbox_type0_NB_BIG(
+            Head: text09,
             Colorss: holding ?? false ? Colors.grey.shade300 : Colors.white,
           ),
         ),

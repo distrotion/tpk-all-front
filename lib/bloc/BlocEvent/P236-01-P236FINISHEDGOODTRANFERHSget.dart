@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../data/global.dart';
+import '../../page/P236FINISHEDGOODTRANFERHS/P236FINISHEDGOODTRANFERHS.dart';
 import '../../page/P236FINISHEDGOODTRANFERHS/P236FINISHEDGOODTRANFERHSVAR.dart';
 import '../../widget/common/Loading.dart';
 import '../../widget/common/Safty.dart';
@@ -46,6 +47,7 @@ class P236FINISHEDGOODTRANFERHSget_Bloc extends Bloc<
     // FreeLoadingTan(CONTEXTFORUSEPAGE19TO25.LOADINGcontext);
     List<P236FINISHEDGOODTRANFERHSgetclass> output = [];
     //-------------------------------------------------------------------------------------
+    FreeLoading(P236FINISHEDGOODTRANFERHScontext);
     final response = await Dio().post(
       "${server2}10GETDATAFROMJOBBINGAQC/GETDATA",
       data: {
@@ -113,18 +115,18 @@ class P236FINISHEDGOODTRANFERHSget_Bloc extends Bloc<
               },
             );
             if (response3.statusCode == 200) {
-              // print(response3.statusCode);
+              print(response3.statusCode);
 
-              var databuff = response3.data;
+              var databuffs = response3.data;
               // input = databuff;
-              if (databuff.length > 0) {
-                buffer.GOOD = databuff[0]['GOOD'].toString();
-                buffer.NOGOOD = databuff[0]['NOGOOD'].toString();
+              if (databuffs.length > 0) {
+                buffer.GOOD = databuffs[0]['GOOD'].toString();
+                buffer.NOGOOD = databuffs[0]['NOGOOD'].toString();
               }
 
-              // Navigator.pop(P26PROGRESSMAINcontext);
+              //   // Navigator.pop(P26PROGRESSMAINcontext);
 
-              emit(output);
+              //   emit(output);
             }
 
             output.add(buffer);
@@ -132,8 +134,10 @@ class P236FINISHEDGOODTRANFERHSget_Bloc extends Bloc<
         }
 
         // Navigator.pop(CONTEXTFORUSEPAGE19TO25.LOADINGcontext);
+        Navigator.pop(P236FINISHEDGOODTRANFERHScontext);
       } else {
         print("where is my server");
+        Navigator.pop(P236FINISHEDGOODTRANFERHScontext);
       }
     }
 

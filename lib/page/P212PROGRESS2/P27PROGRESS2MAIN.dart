@@ -33,12 +33,12 @@ class _P27PROGRESS2MAINState extends State<P27PROGRESS2MAIN> {
     super.initState();
     var now = DateTime.now();
     // P27PROGRESS2VAR.formattedDate = DateFormat('dd-MM-yy').format(now);
-    // P27PROGRESS2VAR.day = DateFormat('dd').format(now);
-    // P27PROGRESS2VAR.month = DateFormat('MM').format(now);
-    // P27PROGRESS2VAR.year = DateFormat('yyyy').format(now);
-    P27PROGRESS2VAR.day = "7";
-    P27PROGRESS2VAR.month = "02";
-    P27PROGRESS2VAR.year = "2025";
+    P27PROGRESS2VAR.day = DateFormat('dd').format(now);
+    P27PROGRESS2VAR.month = DateFormat('MM').format(now);
+    P27PROGRESS2VAR.year = DateFormat('yyyy').format(now);
+    // P27PROGRESS2VAR.day = "7";
+    // P27PROGRESS2VAR.month = "02";
+    // P27PROGRESS2VAR.year = "2025";
 
     P27PROGRESS2VAR.iscontrol = true;
     P27PROGRESS2VAR.SEARCH = '';

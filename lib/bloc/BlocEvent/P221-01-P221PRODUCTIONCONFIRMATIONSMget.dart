@@ -75,7 +75,7 @@ class P221PRODUCTIONCONFIRMATIONSMget_Bloc extends Bloc<
 
       if (databuff['HEADER_INFO'].length > 0) {
         for (var i = 0; i < databuff['HEADER_INFO'].length; i++) {
-          if (databuff['HEADER_INFO'][i]['LINK_PROC_ORDER'].toString() != '') {
+          if (databuff['HEADER_INFO'][i]['LINK_PROC_ORDER'].toString() == '') {
             P221PRODUCTIONCONFIRMATIONSMgetclass buffer =
                 P221PRODUCTIONCONFIRMATIONSMgetclass();
 
@@ -109,37 +109,42 @@ class P221PRODUCTIONCONFIRMATIONSMget_Bloc extends Bloc<
                   databuff['HEADER_INFO'][i]['OLD_MATERIAL'].toString(),
               MTART: databuff['HEADER_INFO'][i]['MTART'].toString(),
               MTBEZ: databuff['HEADER_INFO'][i]['MTBEZ'].toString(),
-              LINK_PROC_ORDER: databuff['HEADER_INFO'][i]['LINK_PROC_ORDER']
-                          .toString() ==
-                      'Manual Create'
-                  ? databuff['HEADER_INFO'][i]['ORDER_SEQ_NO'].toString()
-                  : databuff['HEADER_INFO'][i]['LINK_PROC_ORDER'].toString(),
+              // LINK_PROC_ORDER: databuff['HEADER_INFO'][i]['LINK_PROC_ORDER']
+              //             .toString() ==
+              //         'Manual Create'
+              //     ? databuff['HEADER_INFO'][i]['ORDER_SEQ_NO'].toString()
+              //     : databuff['HEADER_INFO'][i]['LINK_PROC_ORDER'].toString(),
+              LINK_PROC_ORDER:
+                  databuff['HEADER_INFO'][i]['PROCESS_ORDER'].toString(),
             ));
 
-            // print(buffer.LINK_PROC_ORDER.substring(4, 10));
-
-            // try {
-            final response2 = await Dio().post(
-              "${server2}datacentertest/getsoi8order-ro",
-              data: {
-                "PLANT": 'liquid',
-                "ORDER": (ConverstStr(buffer.LINK_PROC_ORDER)).substring(4, 10),
-                // ).toString().substring(5, 11),
-              },
-            );
-            if (response2.statusCode == 200) {
-              var databuff = response2.data;
-              if (databuff.length > 0) {
-                buffer.STATUS = 'Complete';
-                double holddata = 0;
-                for (var s = 0; s < databuff.length; s++) {
-                  holddata = holddata +
-                      double.parse(
-                          ConverstStr(databuff[s]['NumAct'].toString()));
+            if (buffer.LINK_PROC_ORDER.length > 9) {
+              final response2 = await Dio().post(
+                "${server2}datacentertest/getsoi8order-ro",
+                data: {
+                  "PLANT": 'liquid',
+                  "ORDER":
+                      (ConverstStr(buffer.LINK_PROC_ORDER)).substring(4, 10),
+                  // ).toString().substring(5, 11),
+                },
+              );
+              if (response2.statusCode == 200) {
+                var databuff = response2.data;
+                if (databuff.length > 0) {
+                  buffer.STATUS = 'Complete';
+                  double holddata = 0;
+                  for (var s = 0; s < databuff.length; s++) {
+                    holddata = holddata +
+                        double.parse(
+                            ConverstStr(databuff[s]['NumAct'].toString()));
+                  }
+                  buffer.Yield = holddata.toStringAsFixed(2);
                 }
-                buffer.Yield = holddata.toStringAsFixed(2);
               }
             }
+
+            // try {
+
             // } catch (s) {}
             output.add(buffer);
           } else {
@@ -185,8 +190,8 @@ class P221PRODUCTIONCONFIRMATIONSMget_Bloc extends Bloc<
 
             output2.add(buffer);
           }
-          P221PRODUCTIONCONFIRMATIONSMVAR.dataFG = output;
-          P221PRODUCTIONCONFIRMATIONSMVAR.dataSEMI = output2;
+          P221PRODUCTIONCONFIRMATIONSMVAR.dataFG = output2;
+          P221PRODUCTIONCONFIRMATIONSMVAR.dataSEMI = output;
         }
       }
 

@@ -110,57 +110,58 @@ class P231FINISHEDGOODTRANFERget_Bloc extends Bloc<
                   ? databuff['HEADER_INFO'][i]['ORDER_SEQ_NO'].toString()
                   : databuff['HEADER_INFO'][i]['LINK_PROC_ORDER'].toString(),
             ));
-
-            final response2 = await Dio().post(
-              "${server2}datacentertest/getsoi8order-ro",
-              data: {
-                "PLANT": '',
-                "ORDER": (ConverstStr(buffer.LINK_PROC_ORDER)).substring(4, 10),
-                // ).toString().substring(5, 11),
-              },
-            );
-            if (response2.statusCode == 200) {
-              var databuff = response2.data;
-              if (databuff.length > 0) {
-                buffer.STATUS = 'Complete';
-                double holddata = 0;
-                for (var s = 0; s < databuff.length; s++) {
-                  holddata = holddata +
-                      double.parse(
-                          ConverstStr(databuff[s]['NumAct'].toString()));
+            if (buffer.LINK_PROC_ORDER.length > 9) {
+              final response2 = await Dio().post(
+                "${server2}datacentertest/getsoi8order-ro",
+                data: {
+                  "PLANT": '',
+                  "ORDER":
+                      (ConverstStr(buffer.LINK_PROC_ORDER)).substring(4, 10),
+                  // ).toString().substring(5, 11),
+                },
+              );
+              if (response2.statusCode == 200) {
+                var databuff = response2.data;
+                if (databuff.length > 0) {
+                  buffer.STATUS = 'Complete';
+                  double holddata = 0;
+                  for (var s = 0; s < databuff.length; s++) {
+                    holddata = holddata +
+                        double.parse(
+                            ConverstStr(databuff[s]['NumAct'].toString()));
+                  }
+                  buffer.Yield = holddata.toStringAsFixed(2);
                 }
-                buffer.Yield = holddata.toStringAsFixed(2);
-              }
-            }
-
-            final response3 = await Dio().post(
-              "${server2}datacentertest/getsoi8order-pack-or",
-              data: {
-                "PLANT": '',
-                "ORDER": (ConverstStr(buffer.LINK_PROC_ORDER)).substring(4, 10),
-                // ).toString().substring(5, 11),
-                // "PLANT": "liquid",
-                // "ORDER": "227276"
-              },
-            );
-            if (response3.statusCode == 200) {
-              // print(response3.statusCode);
-              print(response3.data);
-              var databuff = response3.data;
-              // input = databuff;
-              if (databuff.length > 0) {
-                buffer.NumOrder = savenull(databuff[0]['NumOrder']);
-                buffer.NumPackSize1 = savenull(databuff[0]['NumPackSize1']);
-                buffer.NumQuantity1 = savenull(databuff[0]['NumQuantity1']);
-                buffer.NumPackSize2 = savenull(databuff[0]['NumPackSize2']);
-                buffer.NumQuantity2 = savenull(databuff[0]['NumQuantity2']);
-                buffer.NumPackSize3 = savenull(databuff[0]['NumPackSize3']);
-                buffer.NumQuantity3 = savenull(databuff[0]['NumQuantity3']);
               }
 
-              // Navigator.pop(P26PROGRESSMAINcontext);
+              final response3 = await Dio().post(
+                "${server2}datacentertest/getsoi8order-pack-or",
+                data: {
+                  "PLANT": '',
+                  "ORDER":
+                      (ConverstStr(buffer.LINK_PROC_ORDER)).substring(4, 10),
+                  // ).toString().substring(5, 11),
+                  // "PLANT": "liquid",
+                  // "ORDER": "227276"
+                },
+              );
+              if (response3.statusCode == 200) {
+                // print(response3.statusCode);
+                print(response3.data);
+                var databuff = response3.data;
+                // input = databuff;
+                if (databuff.length > 0) {
+                  buffer.NumOrder = savenull(databuff[0]['NumOrder']);
+                  buffer.NumPackSize1 = savenull(databuff[0]['NumPackSize1']);
+                  buffer.NumQuantity1 = savenull(databuff[0]['NumQuantity1']);
+                  buffer.NumPackSize2 = savenull(databuff[0]['NumPackSize2']);
+                  buffer.NumQuantity2 = savenull(databuff[0]['NumQuantity2']);
+                  buffer.NumPackSize3 = savenull(databuff[0]['NumPackSize3']);
+                  buffer.NumQuantity3 = savenull(databuff[0]['NumQuantity3']);
+                }
 
-              emit(output);
+                // Navigator.pop(P26PROGRESSMAINcontext);
+              }
             }
             output.add(buffer);
           }

@@ -21,7 +21,7 @@ class P222PRODUCTIONCONFIRMATIONFGVAR {
   static List<P222PRODUCTIONCONFIRMATIONFGgetclass> dataFG = [];
   static List<P222PRODUCTIONCONFIRMATIONFGgetclass> dataSEMI = [];
 
-  static List<P221GETDETAILclass> dataCOMPO = [];
+  static List<P222GETDETAILclass> dataCOMPO = [];
 
   static P222PRODUCTIONCONFIRMATIONFGgetclass datasetsend =
       P222PRODUCTIONCONFIRMATIONFGgetclass();

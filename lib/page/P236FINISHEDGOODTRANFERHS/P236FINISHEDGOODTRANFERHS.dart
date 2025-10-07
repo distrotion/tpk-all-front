@@ -292,18 +292,18 @@ class _P236FINISHEDGOODTRANFERHSState extends State<P236FINISHEDGOODTRANFERHS> {
                               // for (int i = 0; i < 10; i++) ...[
                               InkWell(
                                 onTap: () {
-                                  P236FINISHEDGOODTRANFERHSVAR.PROCESS_ORDER =
-                                      _datain[i].PROCESS_ORDER;
-                                  P236FINISHEDGOODTRANFERHSVAR.MATERIAL =
-                                      _datain[i].MATERIAL;
+                                  // P236FINISHEDGOODTRANFERHSVAR.PROCESS_ORDER =
+                                  //     _datain[i].PROCESS_ORDER;
+                                  // P236FINISHEDGOODTRANFERHSVAR.MATERIAL =
+                                  //     _datain[i].MATERIAL;
 
-                                  P236FINISHEDGOODTRANFERHSVAR.UOM =
-                                      _datain[i].UOM;
-                                  P236FINISHEDGOODTRANFERHSVAR.GOOD =
-                                      _datain[i].GOOD;
-                                  P236FINISHEDGOODTRANFERHSVAR.NOGOOD =
-                                      _datain[i].NOGOOD;
-                                  _POPUPCREATEUSERSW(context);
+                                  // P236FINISHEDGOODTRANFERHSVAR.UOM =
+                                  //     _datain[i].UOM;
+                                  // P236FINISHEDGOODTRANFERHSVAR.GOOD =
+                                  //     _datain[i].GOOD;
+                                  // P236FINISHEDGOODTRANFERHSVAR.NOGOOD =
+                                  //     _datain[i].NOGOOD;
+                                  // _POPUPCREATEUSERSW(context);
                                 },
                                 onHover: (v) {
                                   //
@@ -333,7 +333,7 @@ class _P236FINISHEDGOODTRANFERHSState extends State<P236FINISHEDGOODTRANFERHS> {
                                   text08: "",
                                   text09: "",
                                   text10: "-",
-                                  text11: "-",
+                                  text11: _datain[i].SYSTEM_STATUS,
                                   text12: "-",
                                 ),
                               ),

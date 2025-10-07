@@ -3,6 +3,7 @@ import '../../bloc/BlocEvent/P302-02-P302QMMASTERHSgetINSP_SPEC.dart';
 class P302QMMASTERHSVAR {
   static bool iscontrol = false;
   static String SEARCH = '';
+  static String FILTER = '';
   static bool isHoveredClear = false;
   // static String formattedDate = '';
 

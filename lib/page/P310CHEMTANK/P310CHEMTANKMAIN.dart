@@ -43,9 +43,9 @@ class _P310CHEMTANKMAINState extends State<P310CHEMTANKMAIN> {
   void initState() {
     super.initState();
     context.read<P310CHEMTANKGETDATA_Bloc>().add(P310CHEMTANKGETDATA_GET());
-    Timer(Duration(seconds: 1), () {
-      context.read<P26TANKDATAPACKING_Bloc>().add(P26TANKDATAPACKING_GET());
-    });
+    // Timer(Duration(seconds: 1), () {
+    //   context.read<P26TANKDATAPACKING_Bloc>().add(P26TANKDATAPACKING_GET());
+    // });
 
     P310CHEMTANKVAR.iscontrol = true;
     P310CHEMTANKVAR.SEARCH = '';
@@ -463,764 +463,765 @@ class _P310CHEMTANKMAINState extends State<P310CHEMTANKMAIN> {
                           SizedBox(
                             height: 16,
                           ),
-                          Row(
-                            children: [
-                              Container(
-                                height: 30,
-                                width: 100,
-                                decoration: BoxDecoration(
-                                  color: Colors.green.shade100,
-                                  border: Border(
-                                    top: BorderSide(
-                                      color: Colors.black,
-                                      width: 1.0,
-                                    ),
-                                    left: BorderSide(
-                                      color: Colors.black,
-                                      width: 1.0,
-                                    ),
-                                    bottom: BorderSide(
-                                      color: Colors.black,
-                                      width: 1.0,
-                                    ),
-                                  ),
-                                ),
-                                child: Center(
-                                  child: Text(
-                                    'NO',
-                                    style:
-                                        TextStyle(fontWeight: FontWeight.bold),
-                                  ),
-                                ),
-                              ),
-                              Container(
-                                height: 30,
-                                width: 100,
-                                decoration: BoxDecoration(
-                                  color: Colors.green.shade100,
-                                  border: Border(
-                                    top: BorderSide(
-                                      color: Colors.black,
-                                      width: 1.0,
-                                    ),
-                                    left: BorderSide(
-                                      color: Colors.black,
-                                      width: 1.0,
-                                    ),
-                                    bottom: BorderSide(
-                                      color: Colors.black,
-                                      width: 1.0,
-                                    ),
-                                  ),
-                                ),
-                                child: Center(
-                                  child: Text(
-                                    'PACKET Size',
-                                    style:
-                                        TextStyle(fontWeight: FontWeight.bold),
-                                  ),
-                                ),
-                              ),
-                              Container(
-                                height: 30,
-                                width: 100,
-                                decoration: BoxDecoration(
-                                  color: Colors.green.shade100,
-                                  border: Border(
-                                    top: BorderSide(
-                                      color: Colors.black,
-                                      width: 1.0,
-                                    ),
-                                    left: BorderSide(
-                                      color: Colors.black,
-                                      width: 1.0,
-                                    ),
-                                    bottom: BorderSide(
-                                      color: Colors.black,
-                                      width: 1.0,
-                                    ),
-                                  ),
-                                ),
-                                child: Center(
-                                  child: Text(
-                                    'PACKET QTY',
-                                    style:
-                                        TextStyle(fontWeight: FontWeight.bold),
-                                  ),
-                                ),
-                              ),
-                              Container(
-                                height: 30,
-                                width: 100,
-                                decoration: BoxDecoration(
-                                  color: Colors.green.shade100,
-                                  border: Border(
-                                    top: BorderSide(
-                                      color: Colors.black,
-                                      width: 1.0,
-                                    ),
-                                    left: BorderSide(
-                                      color: Colors.black,
-                                      width: 1.0,
-                                    ),
-                                    bottom: BorderSide(
-                                      color: Colors.black,
-                                      width: 1.0,
-                                    ),
-                                    right: BorderSide(
-                                      color: Colors.black,
-                                      width: 1.0,
-                                    ),
-                                  ),
-                                ),
-                                child: Center(
-                                  child: Text(
-                                    'Total',
-                                    style:
-                                        TextStyle(fontWeight: FontWeight.bold),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                          Row(
-                            children: [
-                              Container(
-                                height: 30,
-                                width: 100,
-                                decoration: BoxDecoration(
-                                  color: Colors.green.shade100,
-                                  border: Border(
-                                    top: BorderSide(
-                                      color: Colors.black,
-                                      width: 1.0,
-                                    ),
-                                    left: BorderSide(
-                                      color: Colors.black,
-                                      width: 1.0,
-                                    ),
-                                    bottom: BorderSide(
-                                      color: Colors.black,
-                                      width: 1.0,
-                                    ),
-                                  ),
-                                ),
-                                child: Center(
-                                  child: Text(
-                                    '1',
-                                    style:
-                                        TextStyle(fontWeight: FontWeight.bold),
-                                  ),
-                                ),
-                              ),
-                              Container(
-                                height: 30,
-                                width: 100,
-                                decoration: BoxDecoration(
-                                  color: Colors.green.shade100,
-                                  border: Border(
-                                    top: BorderSide(
-                                      color: Colors.black,
-                                      width: 1.0,
-                                    ),
-                                    left: BorderSide(
-                                      color: Colors.black,
-                                      width: 1.0,
-                                    ),
-                                    bottom: BorderSide(
-                                      color: Colors.black,
-                                      width: 1.0,
-                                    ),
-                                  ),
-                                ),
-                                child: Center(
-                                  child: Text(
-                                    _wg.NumPackSize1,
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                              ),
+                          // Row(
+                          //   children: [
+                          //     Container(
+                          //       height: 30,
+                          //       width: 100,
+                          //       decoration: BoxDecoration(
+                          //         color: Colors.green.shade100,
+                          //         border: Border(
+                          //           top: BorderSide(
+                          //             color: Colors.black,
+                          //             width: 1.0,
+                          //           ),
+                          //           left: BorderSide(
+                          //             color: Colors.black,
+                          //             width: 1.0,
+                          //           ),
+                          //           bottom: BorderSide(
+                          //             color: Colors.black,
+                          //             width: 1.0,
+                          //           ),
+                          //         ),
+                          //       ),
+                          //       child: Center(
+                          //         child: Text(
+                          //           'NO',
+                          //           style:
+                          //               TextStyle(fontWeight: FontWeight.bold),
+                          //         ),
+                          //       ),
+                          //     ),
+                          //     Container(
+                          //       height: 30,
+                          //       width: 100,
+                          //       decoration: BoxDecoration(
+                          //         color: Colors.green.shade100,
+                          //         border: Border(
+                          //           top: BorderSide(
+                          //             color: Colors.black,
+                          //             width: 1.0,
+                          //           ),
+                          //           left: BorderSide(
+                          //             color: Colors.black,
+                          //             width: 1.0,
+                          //           ),
+                          //           bottom: BorderSide(
+                          //             color: Colors.black,
+                          //             width: 1.0,
+                          //           ),
+                          //         ),
+                          //       ),
+                          //       child: Center(
+                          //         child: Text(
+                          //           'PACKET Size',
+                          //           style:
+                          //               TextStyle(fontWeight: FontWeight.bold),
+                          //         ),
+                          //       ),
+                          //     ),
+                          //     Container(
+                          //       height: 30,
+                          //       width: 100,
+                          //       decoration: BoxDecoration(
+                          //         color: Colors.green.shade100,
+                          //         border: Border(
+                          //           top: BorderSide(
+                          //             color: Colors.black,
+                          //             width: 1.0,
+                          //           ),
+                          //           left: BorderSide(
+                          //             color: Colors.black,
+                          //             width: 1.0,
+                          //           ),
+                          //           bottom: BorderSide(
+                          //             color: Colors.black,
+                          //             width: 1.0,
+                          //           ),
+                          //         ),
+                          //       ),
+                          //       child: Center(
+                          //         child: Text(
+                          //           'PACKET QTY',
+                          //           style:
+                          //               TextStyle(fontWeight: FontWeight.bold),
+                          //         ),
+                          //       ),
+                          //     ),
+                          //     Container(
+                          //       height: 30,
+                          //       width: 100,
+                          //       decoration: BoxDecoration(
+                          //         color: Colors.green.shade100,
+                          //         border: Border(
+                          //           top: BorderSide(
+                          //             color: Colors.black,
+                          //             width: 1.0,
+                          //           ),
+                          //           left: BorderSide(
+                          //             color: Colors.black,
+                          //             width: 1.0,
+                          //           ),
+                          //           bottom: BorderSide(
+                          //             color: Colors.black,
+                          //             width: 1.0,
+                          //           ),
+                          //           right: BorderSide(
+                          //             color: Colors.black,
+                          //             width: 1.0,
+                          //           ),
+                          //         ),
+                          //       ),
+                          //       child: Center(
+                          //         child: Text(
+                          //           'Total',
+                          //           style:
+                          //               TextStyle(fontWeight: FontWeight.bold),
+                          //         ),
+                          //       ),
+                          //     ),
+                          //   ],
+                          // ),
+                          // Row(
+                          //   children: [
+                          //     Container(
+                          //       height: 30,
+                          //       width: 100,
+                          //       decoration: BoxDecoration(
+                          //         color: Colors.green.shade100,
+                          //         border: Border(
+                          //           top: BorderSide(
+                          //             color: Colors.black,
+                          //             width: 1.0,
+                          //           ),
+                          //           left: BorderSide(
+                          //             color: Colors.black,
+                          //             width: 1.0,
+                          //           ),
+                          //           bottom: BorderSide(
+                          //             color: Colors.black,
+                          //             width: 1.0,
+                          //           ),
+                          //         ),
+                          //       ),
+                          //       child: Center(
+                          //         child: Text(
+                          //           '1',
+                          //           style:
+                          //               TextStyle(fontWeight: FontWeight.bold),
+                          //         ),
+                          //       ),
+                          //     ),
+                          //     Container(
+                          //       height: 30,
+                          //       width: 100,
+                          //       decoration: BoxDecoration(
+                          //         color: Colors.green.shade100,
+                          //         border: Border(
+                          //           top: BorderSide(
+                          //             color: Colors.black,
+                          //             width: 1.0,
+                          //           ),
+                          //           left: BorderSide(
+                          //             color: Colors.black,
+                          //             width: 1.0,
+                          //           ),
+                          //           bottom: BorderSide(
+                          //             color: Colors.black,
+                          //             width: 1.0,
+                          //           ),
+                          //         ),
+                          //       ),
+                          //       child: Center(
+                          //         child: Text(
+                          //           _wg.NumPackSize1,
+                          //           style: TextStyle(
+                          //             fontWeight: FontWeight.bold,
+                          //           ),
+                          //         ),
+                          //       ),
+                          //     ),
 
-                              Container(
-                                height: 30,
-                                width: 100.5,
-                                decoration: BoxDecoration(
-                                  color: Colors.green.shade100,
-                                  border: Border(
-                                    top: BorderSide(
-                                      color: Colors.black,
-                                      width: 1.0,
-                                    ),
-                                    left: BorderSide(
-                                      color: Colors.black,
-                                      width: 1.0,
-                                    ),
-                                    right: BorderSide(
-                                      color: Colors.black,
-                                      width: 1.0,
-                                    ),
-                                    bottom: BorderSide(
-                                      color: Colors.black,
-                                      width: 1.0,
-                                    ),
-                                  ),
-                                ),
-                                child: Center(
-                                  child: Text(
-                                    _wg.NumQuantity1,
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              //
+                          //     Container(
+                          //       height: 30,
+                          //       width: 100.5,
+                          //       decoration: BoxDecoration(
+                          //         color: Colors.green.shade100,
+                          //         border: Border(
+                          //           top: BorderSide(
+                          //             color: Colors.black,
+                          //             width: 1.0,
+                          //           ),
+                          //           left: BorderSide(
+                          //             color: Colors.black,
+                          //             width: 1.0,
+                          //           ),
+                          //           right: BorderSide(
+                          //             color: Colors.black,
+                          //             width: 1.0,
+                          //           ),
+                          //           bottom: BorderSide(
+                          //             color: Colors.black,
+                          //             width: 1.0,
+                          //           ),
+                          //         ),
+                          //       ),
+                          //       child: Center(
+                          //         child: Text(
+                          //           _wg.NumQuantity1,
+                          //           style: TextStyle(
+                          //             fontWeight: FontWeight.bold,
+                          //           ),
+                          //         ),
+                          //       ),
+                          //     ),
+                          //     //
 
-                              Container(
-                                height: 30,
-                                width: 100.5,
-                                decoration: BoxDecoration(
-                                  color: Colors.green.shade100,
-                                  border: Border(
-                                    top: BorderSide(
-                                      color: Colors.black,
-                                      width: 1.0,
-                                    ),
-                                    left: BorderSide(
-                                      color: Colors.black,
-                                      width: 1.0,
-                                    ),
-                                    right: BorderSide(
-                                      color: Colors.black,
-                                      width: 1.0,
-                                    ),
-                                    bottom: BorderSide(
-                                      color: Colors.black,
-                                      width: 1.0,
-                                    ),
-                                  ),
-                                ),
-                                child: Center(
-                                  child: Text(
-                                    "${double.parse(ConverstStr(_wg.NumQuantity1)) * double.parse(ConverstStr(_wg.NumPackSize1))}",
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                          Row(
-                            children: [
-                              Container(
-                                height: 30,
-                                width: 100,
-                                decoration: BoxDecoration(
-                                  color: Colors.green.shade100,
-                                  border: Border(
-                                    top: BorderSide(
-                                      color: Colors.black,
-                                      width: 1.0,
-                                    ),
-                                    left: BorderSide(
-                                      color: Colors.black,
-                                      width: 1.0,
-                                    ),
-                                    bottom: BorderSide(
-                                      color: Colors.black,
-                                      width: 1.0,
-                                    ),
-                                  ),
-                                ),
-                                child: Center(
-                                  child: Text(
-                                    '2',
-                                    style:
-                                        TextStyle(fontWeight: FontWeight.bold),
-                                  ),
-                                ),
-                              ),
-                              Container(
-                                height: 30,
-                                width: 100,
-                                decoration: BoxDecoration(
-                                  color: Colors.green.shade100,
-                                  border: Border(
-                                    top: BorderSide(
-                                      color: Colors.black,
-                                      width: 1.0,
-                                    ),
-                                    left: BorderSide(
-                                      color: Colors.black,
-                                      width: 1.0,
-                                    ),
-                                    bottom: BorderSide(
-                                      color: Colors.black,
-                                      width: 1.0,
-                                    ),
-                                  ),
-                                ),
-                                child: Center(
-                                  child: Text(
-                                    _wg.NumPackSize2,
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              Container(
-                                height: 30,
-                                width: 100.5,
-                                decoration: BoxDecoration(
-                                  color: Colors.green.shade100,
-                                  border: Border(
-                                    top: BorderSide(
-                                      color: Colors.black,
-                                      width: 1.0,
-                                    ),
-                                    left: BorderSide(
-                                      color: Colors.black,
-                                      width: 1.0,
-                                    ),
-                                    right: BorderSide(
-                                      color: Colors.black,
-                                      width: 1.0,
-                                    ),
-                                    bottom: BorderSide(
-                                      color: Colors.black,
-                                      width: 1.0,
-                                    ),
-                                  ),
-                                ),
-                                child: Center(
-                                  child: Text(
-                                    _wg.NumQuantity2,
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              Container(
-                                height: 30,
-                                width: 100.5,
-                                decoration: BoxDecoration(
-                                  color: Colors.green.shade100,
-                                  border: Border(
-                                    top: BorderSide(
-                                      color: Colors.black,
-                                      width: 1.0,
-                                    ),
-                                    left: BorderSide(
-                                      color: Colors.black,
-                                      width: 1.0,
-                                    ),
-                                    right: BorderSide(
-                                      color: Colors.black,
-                                      width: 1.0,
-                                    ),
-                                    bottom: BorderSide(
-                                      color: Colors.black,
-                                      width: 1.0,
-                                    ),
-                                  ),
-                                ),
-                                child: Center(
-                                  child: Text(
-                                    "${double.parse(ConverstStr(_wg.NumQuantity2)) * double.parse(ConverstStr(_wg.NumPackSize2))}",
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                          Row(
-                            children: [
-                              Container(
-                                height: 30,
-                                width: 100,
-                                decoration: BoxDecoration(
-                                  color: Colors.green.shade100,
-                                  border: Border(
-                                    top: BorderSide(
-                                      color: Colors.black,
-                                      width: 1.0,
-                                    ),
-                                    left: BorderSide(
-                                      color: Colors.black,
-                                      width: 1.0,
-                                    ),
-                                    bottom: BorderSide(
-                                      color: Colors.black,
-                                      width: 1.0,
-                                    ),
-                                  ),
-                                ),
-                                child: Center(
-                                  child: Text(
-                                    '3',
-                                    style:
-                                        TextStyle(fontWeight: FontWeight.bold),
-                                  ),
-                                ),
-                              ),
-                              Container(
-                                height: 30,
-                                width: 100,
-                                decoration: BoxDecoration(
-                                  color: Colors.green.shade100,
-                                  border: Border(
-                                    top: BorderSide(
-                                      color: Colors.black,
-                                      width: 1.0,
-                                    ),
-                                    left: BorderSide(
-                                      color: Colors.black,
-                                      width: 1.0,
-                                    ),
-                                    bottom: BorderSide(
-                                      color: Colors.black,
-                                      width: 1.0,
-                                    ),
-                                  ),
-                                ),
-                                child: Center(
-                                  child: Text(
-                                    _wg.NumPackSize3,
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              Container(
-                                height: 30,
-                                width: 100.5,
-                                decoration: BoxDecoration(
-                                  color: Colors.green.shade100,
-                                  border: Border(
-                                    top: BorderSide(
-                                      color: Colors.black,
-                                      width: 1.0,
-                                    ),
-                                    left: BorderSide(
-                                      color: Colors.black,
-                                      width: 1.0,
-                                    ),
-                                    right: BorderSide(
-                                      color: Colors.black,
-                                      width: 1.0,
-                                    ),
-                                    bottom: BorderSide(
-                                      color: Colors.black,
-                                      width: 1.0,
-                                    ),
-                                  ),
-                                ),
-                                child: Center(
-                                  child: Text(
-                                    _wg.NumQuantity3,
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              Container(
-                                height: 30,
-                                width: 100.5,
-                                decoration: BoxDecoration(
-                                  color: Colors.green.shade100,
-                                  border: Border(
-                                    top: BorderSide(
-                                      color: Colors.black,
-                                      width: 1.0,
-                                    ),
-                                    left: BorderSide(
-                                      color: Colors.black,
-                                      width: 1.0,
-                                    ),
-                                    right: BorderSide(
-                                      color: Colors.black,
-                                      width: 1.0,
-                                    ),
-                                    bottom: BorderSide(
-                                      color: Colors.black,
-                                      width: 1.0,
-                                    ),
-                                  ),
-                                ),
-                                child: Center(
-                                  child: Text(
-                                    "${double.parse(ConverstStr(_wg.NumQuantity3)) * double.parse(ConverstStr(_wg.NumPackSize3))}",
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                          Row(
-                            children: [
-                              Container(
-                                height: 30,
-                                width: 100,
-                                // decoration: BoxDecoration(
-                                //   color: Colors.green.shade100,
-                                //   border: Border(
-                                //     top: BorderSide(
-                                //       color: Colors.black,
-                                //       width: 1.0,
-                                //     ),
-                                //     left: BorderSide(
-                                //       color: Colors.black,
-                                //       width: 1.0,
-                                //     ),
-                                //     bottom: BorderSide(
-                                //       color: Colors.black,
-                                //       width: 1.0,
-                                //     ),
-                                //   ),
-                                // ),
-                                child: Center(
-                                  child: Text(
-                                    '',
-                                    style:
-                                        TextStyle(fontWeight: FontWeight.bold),
-                                  ),
-                                ),
-                              ),
-                              Container(
-                                height: 30,
-                                width: 100,
-                                // decoration: BoxDecoration(
-                                //   color: Colors.green.shade100,
-                                //   border: Border(
-                                //     top: BorderSide(
-                                //       color: Colors.black,
-                                //       width: 1.0,
-                                //     ),
-                                //     left: BorderSide(
-                                //       color: Colors.black,
-                                //       width: 1.0,
-                                //     ),
-                                //     bottom: BorderSide(
-                                //       color: Colors.black,
-                                //       width: 1.0,
-                                //     ),
-                                //   ),
-                                // ),
-                                child: Center(
-                                    // child: Text(
-                                    //   _wg.NumPackSize3,
-                                    //   style: TextStyle(
-                                    //     fontWeight: FontWeight.bold,
-                                    //   ),
-                                    // ),
-                                    ),
-                              ),
-                              Container(
-                                height: 30,
-                                width: 100.5,
-                                decoration: BoxDecoration(
-                                  color: Colors.green.shade100,
-                                  border: Border(
-                                    top: BorderSide(
-                                      color: Colors.black,
-                                      width: 1.0,
-                                    ),
-                                    left: BorderSide(
-                                      color: Colors.black,
-                                      width: 1.0,
-                                    ),
-                                    right: BorderSide(
-                                      color: Colors.black,
-                                      width: 1.0,
-                                    ),
-                                    bottom: BorderSide(
-                                      color: Colors.black,
-                                      width: 1.0,
-                                    ),
-                                  ),
-                                ),
-                                child: Center(
-                                  child: Text(
-                                    "TATAL",
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              Container(
-                                height: 30,
-                                width: 100.5,
-                                decoration: BoxDecoration(
-                                  color: Colors.green.shade100,
-                                  border: Border(
-                                    top: BorderSide(
-                                      color: Colors.black,
-                                      width: 1.0,
-                                    ),
-                                    left: BorderSide(
-                                      color: Colors.black,
-                                      width: 1.0,
-                                    ),
-                                    right: BorderSide(
-                                      color: Colors.black,
-                                      width: 1.0,
-                                    ),
-                                    bottom: BorderSide(
-                                      color: Colors.black,
-                                      width: 1.0,
-                                    ),
-                                  ),
-                                ),
-                                child: Center(
-                                  child: Text(
-                                    "${double.parse(ConverstStr(_wg.NumQuantity1)) * double.parse(ConverstStr(_wg.NumPackSize1)) + double.parse(ConverstStr(_wg.NumQuantity2)) * double.parse(ConverstStr(_wg.NumPackSize2)) + double.parse(ConverstStr(_wg.NumQuantity3)) * double.parse(ConverstStr(_wg.NumPackSize3))}",
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                          Row(
-                            children: [
-                              Container(
-                                height: 30,
-                                width: 100,
-                                // decoration: BoxDecoration(
-                                //   color: Colors.green.shade100,
-                                //   border: Border(
-                                //     top: BorderSide(
-                                //       color: Colors.black,
-                                //       width: 1.0,
-                                //     ),
-                                //     left: BorderSide(
-                                //       color: Colors.black,
-                                //       width: 1.0,
-                                //     ),
-                                //     bottom: BorderSide(
-                                //       color: Colors.black,
-                                //       width: 1.0,
-                                //     ),
-                                //   ),
-                                // ),
-                                child: Center(
-                                  child: Text(
-                                    '',
-                                    style:
-                                        TextStyle(fontWeight: FontWeight.bold),
-                                  ),
-                                ),
-                              ),
-                              Container(
-                                height: 30,
-                                width: 100,
-                                // decoration: BoxDecoration(
-                                //   color: Colors.green.shade100,
-                                //   border: Border(
-                                //     top: BorderSide(
-                                //       color: Colors.black,
-                                //       width: 1.0,
-                                //     ),
-                                //     left: BorderSide(
-                                //       color: Colors.black,
-                                //       width: 1.0,
-                                //     ),
-                                //     bottom: BorderSide(
-                                //       color: Colors.black,
-                                //       width: 1.0,
-                                //     ),
-                                //   ),
-                                // ),
-                                child: Center(
-                                    // child: Text(
-                                    //   _wg.NumPackSize3,
-                                    //   style: TextStyle(
-                                    //     fontWeight: FontWeight.bold,
-                                    //   ),
-                                    // ),
-                                    ),
-                              ),
-                              Container(
-                                height: 30,
-                                width: 100.5,
-                                decoration: BoxDecoration(
-                                  color: Colors.green.shade100,
-                                  border: Border(
-                                    top: BorderSide(
-                                      color: Colors.black,
-                                      width: 1.0,
-                                    ),
-                                    left: BorderSide(
-                                      color: Colors.black,
-                                      width: 1.0,
-                                    ),
-                                    right: BorderSide(
-                                      color: Colors.black,
-                                      width: 1.0,
-                                    ),
-                                    bottom: BorderSide(
-                                      color: Colors.black,
-                                      width: 1.0,
-                                    ),
-                                  ),
-                                ),
-                                child: Center(
-                                  child: Text(
-                                    "Remain",
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              Container(
-                                height: 30,
-                                width: 100.5,
-                                decoration: BoxDecoration(
-                                  color: Colors.green.shade100,
-                                  border: Border(
-                                    top: BorderSide(
-                                      color: Colors.black,
-                                      width: 1.0,
-                                    ),
-                                    left: BorderSide(
-                                      color: Colors.black,
-                                      width: 1.0,
-                                    ),
-                                    right: BorderSide(
-                                      color: Colors.black,
-                                      width: 1.0,
-                                    ),
-                                    bottom: BorderSide(
-                                      color: Colors.black,
-                                      width: 1.0,
-                                    ),
-                                  ),
-                                ),
-                                child: Center(
-                                  child: Text(
-                                    "${(double.parse(ConverstStr(totalActual.toStringAsFixed(1))) - (double.parse(ConverstStr(_wg.NumQuantity1)) * double.parse(ConverstStr(_wg.NumPackSize1)) + double.parse(ConverstStr(_wg.NumQuantity2)) * double.parse(ConverstStr(_wg.NumPackSize2)) + double.parse(ConverstStr(_wg.NumQuantity3)) * double.parse(ConverstStr(_wg.NumPackSize3)))).toStringAsFixed(1)}",
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
+                          //     Container(
+                          //       height: 30,
+                          //       width: 100.5,
+                          //       decoration: BoxDecoration(
+                          //         color: Colors.green.shade100,
+                          //         border: Border(
+                          //           top: BorderSide(
+                          //             color: Colors.black,
+                          //             width: 1.0,
+                          //           ),
+                          //           left: BorderSide(
+                          //             color: Colors.black,
+                          //             width: 1.0,
+                          //           ),
+                          //           right: BorderSide(
+                          //             color: Colors.black,
+                          //             width: 1.0,
+                          //           ),
+                          //           bottom: BorderSide(
+                          //             color: Colors.black,
+                          //             width: 1.0,
+                          //           ),
+                          //         ),
+                          //       ),
+                          //       child: Center(
+                          //         child: Text(
+                          //           "${double.parse(ConverstStr(_wg.NumQuantity1)) * double.parse(ConverstStr(_wg.NumPackSize1))}",
+                          //           style: TextStyle(
+                          //             fontWeight: FontWeight.bold,
+                          //           ),
+                          //         ),
+                          //       ),
+                          //     ),
+                          //   ],
+                          // ),
+                          // Row(
+                          //   children: [
+                          //     Container(
+                          //       height: 30,
+                          //       width: 100,
+                          //       decoration: BoxDecoration(
+                          //         color: Colors.green.shade100,
+                          //         border: Border(
+                          //           top: BorderSide(
+                          //             color: Colors.black,
+                          //             width: 1.0,
+                          //           ),
+                          //           left: BorderSide(
+                          //             color: Colors.black,
+                          //             width: 1.0,
+                          //           ),
+                          //           bottom: BorderSide(
+                          //             color: Colors.black,
+                          //             width: 1.0,
+                          //           ),
+                          //         ),
+                          //       ),
+                          //       child: Center(
+                          //         child: Text(
+                          //           '2',
+                          //           style:
+                          //               TextStyle(fontWeight: FontWeight.bold),
+                          //         ),
+                          //       ),
+                          //     ),
+                          //     Container(
+                          //       height: 30,
+                          //       width: 100,
+                          //       decoration: BoxDecoration(
+                          //         color: Colors.green.shade100,
+                          //         border: Border(
+                          //           top: BorderSide(
+                          //             color: Colors.black,
+                          //             width: 1.0,
+                          //           ),
+                          //           left: BorderSide(
+                          //             color: Colors.black,
+                          //             width: 1.0,
+                          //           ),
+                          //           bottom: BorderSide(
+                          //             color: Colors.black,
+                          //             width: 1.0,
+                          //           ),
+                          //         ),
+                          //       ),
+                          //       child: Center(
+                          //         child: Text(
+                          //           _wg.NumPackSize2,
+                          //           style: TextStyle(
+                          //             fontWeight: FontWeight.bold,
+                          //           ),
+                          //         ),
+                          //       ),
+                          //     ),
+                          //     Container(
+                          //       height: 30,
+                          //       width: 100.5,
+                          //       decoration: BoxDecoration(
+                          //         color: Colors.green.shade100,
+                          //         border: Border(
+                          //           top: BorderSide(
+                          //             color: Colors.black,
+                          //             width: 1.0,
+                          //           ),
+                          //           left: BorderSide(
+                          //             color: Colors.black,
+                          //             width: 1.0,
+                          //           ),
+                          //           right: BorderSide(
+                          //             color: Colors.black,
+                          //             width: 1.0,
+                          //           ),
+                          //           bottom: BorderSide(
+                          //             color: Colors.black,
+                          //             width: 1.0,
+                          //           ),
+                          //         ),
+                          //       ),
+                          //       child: Center(
+                          //         child: Text(
+                          //           _wg.NumQuantity2,
+                          //           style: TextStyle(
+                          //             fontWeight: FontWeight.bold,
+                          //           ),
+                          //         ),
+                          //       ),
+                          //     ),
+                          //     Container(
+                          //       height: 30,
+                          //       width: 100.5,
+                          //       decoration: BoxDecoration(
+                          //         color: Colors.green.shade100,
+                          //         border: Border(
+                          //           top: BorderSide(
+                          //             color: Colors.black,
+                          //             width: 1.0,
+                          //           ),
+                          //           left: BorderSide(
+                          //             color: Colors.black,
+                          //             width: 1.0,
+                          //           ),
+                          //           right: BorderSide(
+                          //             color: Colors.black,
+                          //             width: 1.0,
+                          //           ),
+                          //           bottom: BorderSide(
+                          //             color: Colors.black,
+                          //             width: 1.0,
+                          //           ),
+                          //         ),
+                          //       ),
+                          //       child: Center(
+                          //         child: Text(
+                          //           "${double.parse(ConverstStr(_wg.NumQuantity2)) * double.parse(ConverstStr(_wg.NumPackSize2))}",
+                          //           style: TextStyle(
+                          //             fontWeight: FontWeight.bold,
+                          //           ),
+                          //         ),
+                          //       ),
+                          //     ),
+                          //   ],
+                          // ),
+                          // Row(
+                          //   children: [
+                          //     Container(
+                          //       height: 30,
+                          //       width: 100,
+                          //       decoration: BoxDecoration(
+                          //         color: Colors.green.shade100,
+                          //         border: Border(
+                          //           top: BorderSide(
+                          //             color: Colors.black,
+                          //             width: 1.0,
+                          //           ),
+                          //           left: BorderSide(
+                          //             color: Colors.black,
+                          //             width: 1.0,
+                          //           ),
+                          //           bottom: BorderSide(
+                          //             color: Colors.black,
+                          //             width: 1.0,
+                          //           ),
+                          //         ),
+                          //       ),
+                          //       child: Center(
+                          //         child: Text(
+                          //           '3',
+                          //           style:
+                          //               TextStyle(fontWeight: FontWeight.bold),
+                          //         ),
+                          //       ),
+                          //     ),
+                          //     Container(
+                          //       height: 30,
+                          //       width: 100,
+                          //       decoration: BoxDecoration(
+                          //         color: Colors.green.shade100,
+                          //         border: Border(
+                          //           top: BorderSide(
+                          //             color: Colors.black,
+                          //             width: 1.0,
+                          //           ),
+                          //           left: BorderSide(
+                          //             color: Colors.black,
+                          //             width: 1.0,
+                          //           ),
+                          //           bottom: BorderSide(
+                          //             color: Colors.black,
+                          //             width: 1.0,
+                          //           ),
+                          //         ),
+                          //       ),
+                          //       child: Center(
+                          //         child: Text(
+                          //           _wg.NumPackSize3,
+                          //           style: TextStyle(
+                          //             fontWeight: FontWeight.bold,
+                          //           ),
+                          //         ),
+                          //       ),
+                          //     ),
+                          //     Container(
+                          //       height: 30,
+                          //       width: 100.5,
+                          //       decoration: BoxDecoration(
+                          //         color: Colors.green.shade100,
+                          //         border: Border(
+                          //           top: BorderSide(
+                          //             color: Colors.black,
+                          //             width: 1.0,
+                          //           ),
+                          //           left: BorderSide(
+                          //             color: Colors.black,
+                          //             width: 1.0,
+                          //           ),
+                          //           right: BorderSide(
+                          //             color: Colors.black,
+                          //             width: 1.0,
+                          //           ),
+                          //           bottom: BorderSide(
+                          //             color: Colors.black,
+                          //             width: 1.0,
+                          //           ),
+                          //         ),
+                          //       ),
+                          //       child: Center(
+                          //         child: Text(
+                          //           _wg.NumQuantity3,
+                          //           style: TextStyle(
+                          //             fontWeight: FontWeight.bold,
+                          //           ),
+                          //         ),
+                          //       ),
+                          //     ),
+                          //     Container(
+                          //       height: 30,
+                          //       width: 100.5,
+                          //       decoration: BoxDecoration(
+                          //         color: Colors.green.shade100,
+                          //         border: Border(
+                          //           top: BorderSide(
+                          //             color: Colors.black,
+                          //             width: 1.0,
+                          //           ),
+                          //           left: BorderSide(
+                          //             color: Colors.black,
+                          //             width: 1.0,
+                          //           ),
+                          //           right: BorderSide(
+                          //             color: Colors.black,
+                          //             width: 1.0,
+                          //           ),
+                          //           bottom: BorderSide(
+                          //             color: Colors.black,
+                          //             width: 1.0,
+                          //           ),
+                          //         ),
+                          //       ),
+                          //       child: Center(
+                          //         child: Text(
+                          //           "${double.parse(ConverstStr(_wg.NumQuantity3)) * double.parse(ConverstStr(_wg.NumPackSize3))}",
+                          //           style: TextStyle(
+                          //             fontWeight: FontWeight.bold,
+                          //           ),
+                          //         ),
+                          //       ),
+                          //     ),
+                          //   ],
+                          // ),
+                          // Row(
+                          //   children: [
+                          //     Container(
+                          //       height: 30,
+                          //       width: 100,
+                          //       // decoration: BoxDecoration(
+                          //       //   color: Colors.green.shade100,
+                          //       //   border: Border(
+                          //       //     top: BorderSide(
+                          //       //       color: Colors.black,
+                          //       //       width: 1.0,
+                          //       //     ),
+                          //       //     left: BorderSide(
+                          //       //       color: Colors.black,
+                          //       //       width: 1.0,
+                          //       //     ),
+                          //       //     bottom: BorderSide(
+                          //       //       color: Colors.black,
+                          //       //       width: 1.0,
+                          //       //     ),
+                          //       //   ),
+                          //       // ),
+                          //       child: Center(
+                          //         child: Text(
+                          //           '',
+                          //           style:
+                          //               TextStyle(fontWeight: FontWeight.bold),
+                          //         ),
+                          //       ),
+                          //     ),
+                          //     Container(
+                          //       height: 30,
+                          //       width: 100,
+                          //       // decoration: BoxDecoration(
+                          //       //   color: Colors.green.shade100,
+                          //       //   border: Border(
+                          //       //     top: BorderSide(
+                          //       //       color: Colors.black,
+                          //       //       width: 1.0,
+                          //       //     ),
+                          //       //     left: BorderSide(
+                          //       //       color: Colors.black,
+                          //       //       width: 1.0,
+                          //       //     ),
+                          //       //     bottom: BorderSide(
+                          //       //       color: Colors.black,
+                          //       //       width: 1.0,
+                          //       //     ),
+                          //       //   ),
+                          //       // ),
+                          //       child: Center(
+                          //           // child: Text(
+                          //           //   _wg.NumPackSize3,
+                          //           //   style: TextStyle(
+                          //           //     fontWeight: FontWeight.bold,
+                          //           //   ),
+                          //           // ),
+                          //           ),
+                          //     ),
+                          //     Container(
+                          //       height: 30,
+                          //       width: 100.5,
+                          //       decoration: BoxDecoration(
+                          //         color: Colors.green.shade100,
+                          //         border: Border(
+                          //           top: BorderSide(
+                          //             color: Colors.black,
+                          //             width: 1.0,
+                          //           ),
+                          //           left: BorderSide(
+                          //             color: Colors.black,
+                          //             width: 1.0,
+                          //           ),
+                          //           right: BorderSide(
+                          //             color: Colors.black,
+                          //             width: 1.0,
+                          //           ),
+                          //           bottom: BorderSide(
+                          //             color: Colors.black,
+                          //             width: 1.0,
+                          //           ),
+                          //         ),
+                          //       ),
+                          //       child: Center(
+                          //         child: Text(
+                          //           "TATAL",
+                          //           style: TextStyle(
+                          //             fontWeight: FontWeight.bold,
+                          //           ),
+                          //         ),
+                          //       ),
+                          //     ),
+                          //     Container(
+                          //       height: 30,
+                          //       width: 100.5,
+                          //       decoration: BoxDecoration(
+                          //         color: Colors.green.shade100,
+                          //         border: Border(
+                          //           top: BorderSide(
+                          //             color: Colors.black,
+                          //             width: 1.0,
+                          //           ),
+                          //           left: BorderSide(
+                          //             color: Colors.black,
+                          //             width: 1.0,
+                          //           ),
+                          //           right: BorderSide(
+                          //             color: Colors.black,
+                          //             width: 1.0,
+                          //           ),
+                          //           bottom: BorderSide(
+                          //             color: Colors.black,
+                          //             width: 1.0,
+                          //           ),
+                          //         ),
+                          //       ),
+                          //       child: Center(
+                          //         child: Text(
+                          //           "${double.parse(ConverstStr(_wg.NumQuantity1)) * double.parse(ConverstStr(_wg.NumPackSize1)) + double.parse(ConverstStr(_wg.NumQuantity2)) * double.parse(ConverstStr(_wg.NumPackSize2)) + double.parse(ConverstStr(_wg.NumQuantity3)) * double.parse(ConverstStr(_wg.NumPackSize3))}",
+                          //           style: TextStyle(
+                          //             fontWeight: FontWeight.bold,
+                          //           ),
+                          //         ),
+                          //       ),
+                          //     ),
+                          //   ],
+                          // ),
+                          // Row(
+                          //   children: [
+                          //     Container(
+                          //       height: 30,
+                          //       width: 100,
+                          //       // decoration: BoxDecoration(
+                          //       //   color: Colors.green.shade100,
+                          //       //   border: Border(
+                          //       //     top: BorderSide(
+                          //       //       color: Colors.black,
+                          //       //       width: 1.0,
+                          //       //     ),
+                          //       //     left: BorderSide(
+                          //       //       color: Colors.black,
+                          //       //       width: 1.0,
+                          //       //     ),
+                          //       //     bottom: BorderSide(
+                          //       //       color: Colors.black,
+                          //       //       width: 1.0,
+                          //       //     ),
+                          //       //   ),
+                          //       // ),
+                          //       child: Center(
+                          //         child: Text(
+                          //           '',
+                          //           style:
+                          //               TextStyle(fontWeight: FontWeight.bold),
+                          //         ),
+                          //       ),
+                          //     ),
+                          //     Container(
+                          //       height: 30,
+                          //       width: 100,
+                          //       // decoration: BoxDecoration(
+                          //       //   color: Colors.green.shade100,
+                          //       //   border: Border(
+                          //       //     top: BorderSide(
+                          //       //       color: Colors.black,
+                          //       //       width: 1.0,
+                          //       //     ),
+                          //       //     left: BorderSide(
+                          //       //       color: Colors.black,
+                          //       //       width: 1.0,
+                          //       //     ),
+                          //       //     bottom: BorderSide(
+                          //       //       color: Colors.black,
+                          //       //       width: 1.0,
+                          //       //     ),
+                          //       //   ),
+                          //       // ),
+                          //       child: Center(
+                          //           // child: Text(
+                          //           //   _wg.NumPackSize3,
+                          //           //   style: TextStyle(
+                          //           //     fontWeight: FontWeight.bold,
+                          //           //   ),
+                          //           // ),
+                          //           ),
+                          //     ),
+                          //     Container(
+                          //       height: 30,
+                          //       width: 100.5,
+                          //       decoration: BoxDecoration(
+                          //         color: Colors.green.shade100,
+                          //         border: Border(
+                          //           top: BorderSide(
+                          //             color: Colors.black,
+                          //             width: 1.0,
+                          //           ),
+                          //           left: BorderSide(
+                          //             color: Colors.black,
+                          //             width: 1.0,
+                          //           ),
+                          //           right: BorderSide(
+                          //             color: Colors.black,
+                          //             width: 1.0,
+                          //           ),
+                          //           bottom: BorderSide(
+                          //             color: Colors.black,
+                          //             width: 1.0,
+                          //           ),
+                          //         ),
+                          //       ),
+                          //       child: Center(
+                          //         child: Text(
+                          //           "Remain",
+                          //           style: TextStyle(
+                          //             fontWeight: FontWeight.bold,
+                          //           ),
+                          //         ),
+                          //       ),
+                          //     ),
+                          //     Container(
+                          //       height: 30,
+                          //       width: 100.5,
+                          //       decoration: BoxDecoration(
+                          //         color: Colors.green.shade100,
+                          //         border: Border(
+                          //           top: BorderSide(
+                          //             color: Colors.black,
+                          //             width: 1.0,
+                          //           ),
+                          //           left: BorderSide(
+                          //             color: Colors.black,
+                          //             width: 1.0,
+                          //           ),
+                          //           right: BorderSide(
+                          //             color: Colors.black,
+                          //             width: 1.0,
+                          //           ),
+                          //           bottom: BorderSide(
+                          //             color: Colors.black,
+                          //             width: 1.0,
+                          //           ),
+                          //         ),
+                          //       ),
+                          //       child: Center(
+                          //         child: Text(
+                          //           "${(double.parse(ConverstStr(totalActual.toStringAsFixed(1))) - (double.parse(ConverstStr(_wg.NumQuantity1)) * double.parse(ConverstStr(_wg.NumPackSize1)) + double.parse(ConverstStr(_wg.NumQuantity2)) * double.parse(ConverstStr(_wg.NumPackSize2)) + double.parse(ConverstStr(_wg.NumQuantity3)) * double.parse(ConverstStr(_wg.NumPackSize3)))).toStringAsFixed(1)}",
+                          //           style: TextStyle(
+                          //             fontWeight: FontWeight.bold,
+                          //           ),
+                          //         ),
+                          //       ),
+                          //     ),
+                          //   ],
+                          // ),
+
                           Row(
                             children: [
                               Padding(
@@ -1396,7 +1397,8 @@ class _P310CHEMTANKMAINState extends State<P310CHEMTANKMAIN> {
                                         "STGE_LOC": ordersemi.STGE_LOC,
                                         "BATCH": ordersemi.BATCH,
                                         "MOVE_TYPE": "101",
-                                        "ENTRY_QNT": orderfg.Yield,
+                                        // "ENTRY_QNT": orderfg.Yield,
+                                        "ENTRY_QNT": totalActual.toString(),
                                         "ENTRY_UOM": ordersemi.UOM,
                                         "MFG_DATE":
                                             // "${calendaset.day}.${calendaset.month}.${calendaset.year}",
@@ -1422,7 +1424,8 @@ class _P310CHEMTANKMAINState extends State<P310CHEMTANKMAIN> {
                                           "BATCH": "",
                                           "MOVE_TYPE":
                                               dataCOMPOdata[i].MVT_TYPE,
-                                          "ENTRY_QNT": orderfg.Yield,
+                                          // "ENTRY_QNT": orderfg.Yield,
+                                          "ENTRY_QNT": totalActual.toString(),
                                           // "ENTRY_QNT":
                                           //     "${double.parse(ConverstStr(_wg.NumQuantity1)) * double.parse(ConverstStr(_wg.NumPackSize1)) + double.parse(ConverstStr(_wg.NumQuantity2)) * double.parse(ConverstStr(_wg.NumPackSize2)) + double.parse(ConverstStr(_wg.NumQuantity3)) * double.parse(ConverstStr(_wg.NumPackSize3))}",
                                           "ENTRY_UOM": dataCOMPOdata[i].UOM,
@@ -1437,7 +1440,8 @@ class _P310CHEMTANKMAINState extends State<P310CHEMTANKMAIN> {
                                         "TIMECONF": {
                                           "ORDERID": ordersemi.PROCESS_ORDER,
                                           "PHASE": "0020",
-                                          "YIELD": orderfg.Yield,
+                                          // "YIELD": orderfg.Yield,
+                                          "YIELD": totalActual.toString(),
                                           "CONF_QUAN_UNIT": ordersemi.UOM,
                                           // "POSTG_DATE":
                                           //     "${calendaset.day}.${calendaset.month}.${calendaset.year}",
@@ -1453,36 +1457,37 @@ class _P310CHEMTANKMAINState extends State<P310CHEMTANKMAIN> {
                                     ).then((v) {
                                       //
                                       print(v.data);
-                                      Timer(Duration(seconds: 4), () {
-                                        Dio().post(
-                                          "${server2}03iPPGETDATACHEM/SETI005DATA",
-                                          data: {
-                                            "TIMECONF": {
-                                              "ORDERID": orderfg.PROCESS_ORDER,
-                                              "PHASE": "0020",
-                                              // "YIELD": orderfg.Yield,
-                                              "YIELD":
-                                                  "${double.parse(ConverstStr(_wg.NumQuantity1)) * double.parse(ConverstStr(_wg.NumPackSize1)) + double.parse(ConverstStr(_wg.NumQuantity2)) * double.parse(ConverstStr(_wg.NumPackSize2)) + double.parse(ConverstStr(_wg.NumQuantity3)) * double.parse(ConverstStr(_wg.NumPackSize3))}",
-                                              "CONF_QUAN_UNIT": orderfg.UOM,
-                                              // "POSTG_DATE":
-                                              //     "${calendaset.day}.${calendaset.month}.${calendaset.year}",
-                                              // "EXEC_START_DATE":
-                                              //     "${calendaset.day}.${calendaset.month}.${calendaset.year}",
-                                              "POSTG_DATE":
-                                                  "${P221PRODUCTIONCONFIRMATIONSMVAR.day_next}.${P221PRODUCTIONCONFIRMATIONSMVAR.month_next}.${P221PRODUCTIONCONFIRMATIONSMVAR.year_next}",
-                                              "EXEC_START_DATE":
-                                                  "${P221PRODUCTIONCONFIRMATIONSMVAR.day_next}.${P221PRODUCTIONCONFIRMATIONSMVAR.month_next}.${P221PRODUCTIONCONFIRMATIONSMVAR.year_next}",
-                                            },
-                                            "T_GOODSMOVEMENT": dataout2,
-                                          },
-                                        ).then((v) {
-                                          //
-                                          print(v.data);
-                                        });
-                                        Navigator.pop(context);
-                                        Navigator.pop(
-                                            P221PRODUCTIONCONFIRMATIONSMcontext);
-                                      });
+
+                                      // Timer(Duration(seconds: 4), () {
+                                      //   Dio().post(
+                                      //     "${server2}03iPPGETDATACHEM/SETI005DATA",
+                                      //     data: {
+                                      //       "TIMECONF": {
+                                      //         "ORDERID": orderfg.PROCESS_ORDER,
+                                      //         "PHASE": "0020",
+                                      //         // "YIELD": orderfg.Yield,
+                                      //         "YIELD":
+                                      //             "${double.parse(ConverstStr(_wg.NumQuantity1)) * double.parse(ConverstStr(_wg.NumPackSize1)) + double.parse(ConverstStr(_wg.NumQuantity2)) * double.parse(ConverstStr(_wg.NumPackSize2)) + double.parse(ConverstStr(_wg.NumQuantity3)) * double.parse(ConverstStr(_wg.NumPackSize3))}",
+                                      //         "CONF_QUAN_UNIT": orderfg.UOM,
+                                      //         // "POSTG_DATE":
+                                      //         //     "${calendaset.day}.${calendaset.month}.${calendaset.year}",
+                                      //         // "EXEC_START_DATE":
+                                      //         //     "${calendaset.day}.${calendaset.month}.${calendaset.year}",
+                                      //         "POSTG_DATE":
+                                      //             "${P221PRODUCTIONCONFIRMATIONSMVAR.day_next}.${P221PRODUCTIONCONFIRMATIONSMVAR.month_next}.${P221PRODUCTIONCONFIRMATIONSMVAR.year_next}",
+                                      //         "EXEC_START_DATE":
+                                      //             "${P221PRODUCTIONCONFIRMATIONSMVAR.day_next}.${P221PRODUCTIONCONFIRMATIONSMVAR.month_next}.${P221PRODUCTIONCONFIRMATIONSMVAR.year_next}",
+                                      //       },
+                                      //       "T_GOODSMOVEMENT": dataout2,
+                                      //     },
+                                      //   ).then((v) {
+                                      //     //
+                                      //     print(v.data);
+                                      //   });
+                                      Navigator.pop(context);
+                                      Navigator.pop(
+                                          P221PRODUCTIONCONFIRMATIONSMcontext);
+                                      // });
                                     });
                                   },
                                   child: Container(

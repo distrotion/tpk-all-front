@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../data/global.dart';
 
+import '../../page/P302QMMASTERHS/P302QMMASTERHSMAIN.dart';
 import '../../page/P302QMMASTERHS/P302QMMASTERHSVAR.dart';
 import '../../widget/common/Loading.dart';
 //-------------------------------------------------
@@ -38,6 +39,7 @@ class P302QMMASTERHSget_Bloc
   Future<void> _P302QMMASTERHSget_GET(List<P302QMMASTERHSgetclass> toAdd,
       Emitter<List<P302QMMASTERHSgetclass>> emit) async {
     // FreeLoadingTan(CONTEXTFORUSEPAGE19TO25.LOADINGcontext);
+    FreeLoading(P302QMMASTERHSMAINcontext);
     List<P302QMMASTERHSgetclass> output = [];
     //-------------------------------------------------------------------------------------
     final response = await Dio().post(
@@ -66,72 +68,157 @@ class P302QMMASTERHSget_Bloc
 //INSP_LOT
       if (databuff['INSP_LOT'].length > 0) {
         for (var i = 0; i < databuff['INSP_LOT'].length; i++) {
-          output.add(P302QMMASTERHSgetclass(
-            INSP_LOT: databuff['INSP_LOT'][i]['INSP_LOT'].toString(),
-            INSP_LOT_STATUS:
-                databuff['INSP_LOT'][i]['INSP_LOT_STATUS'].toString(),
-            INSP_LOT_ORIGIN:
-                databuff['INSP_LOT'][i]['INSP_LOT_ORIGIN'].toString(),
-            PLANT: databuff['INSP_LOT'][i]['PLANT'].toString(),
-            INSPTYPE: databuff['INSP_LOT'][i]['INSPTYPE'].toString(),
-            CREATED_ON: databuff['INSP_LOT'][i]['CREATED_ON'].toString(),
-            CREATED_TIME: databuff['INSP_LOT'][i]['CREATED_TIME'].toString(),
-            CREATED_BY: databuff['INSP_LOT'][i]['CREATED_BY'].toString(),
-            MATERIAL: databuff['INSP_LOT'][i]['MATERIAL'].toString(),
-            MAT_DESC: databuff['INSP_LOT'][i]['MAT_DESC'].toString(),
-            OLD_MAT: databuff['INSP_LOT'][i]['OLD_MAT'].toString(),
-            TTSL: databuff['INSP_LOT'][i]['TTSL'].toString(),
-            TTSL_PERIOD: databuff['INSP_LOT'][i]['TTSL_PERIOD'].toString(),
-            MIN_TTSL: databuff['INSP_LOT'][i]['MIN_TTSL'].toString(),
-            INSP_QTY: databuff['INSP_LOT'][i]['INSP_QTY'].toString(),
-            INSP_UOM: databuff['INSP_LOT'][i]['INSP_UOM'].toString(),
-            BATCH: databuff['INSP_LOT'][i]['BATCH'].toString(),
-            STORAGE: databuff['INSP_LOT'][i]['STORAGE'].toString(),
-            BATCH_IND: databuff['INSP_LOT'][i]['BATCH_IND'].toString(),
-            TASK_LIST_TYPE:
-                databuff['INSP_LOT'][i]['TASK_LIST_TYPE'].toString(),
-            GROUP: databuff['INSP_LOT'][i]['GROUP'].toString(),
-            USAGE: databuff['INSP_LOT'][i]['USAGE'].toString(),
-            GROUP_COUNTER: databuff['INSP_LOT'][i]['GROUP_COUNTER'].toString(),
-            INSP_POINT: databuff['INSP_LOT'][i]['INSP_POINT'].toString(),
-            KEY_DATE: databuff['INSP_LOT'][i]['KEY_DATE'].toString(),
-            PROCESS_ORDER: databuff['INSP_LOT'][i]['PROCESS_ORDER'].toString(),
-            CUSTOMER: databuff['INSP_LOT'][i]['CUSTOMER'].toString(),
-            CUST_NAME1: databuff['INSP_LOT'][i]['CUST_NAME1'].toString(),
-            CUST_NAME2: databuff['INSP_LOT'][i]['CUST_NAME2'].toString(),
-            SUPPLIER: databuff['INSP_LOT'][i]['SUPPLIER'].toString(),
-            SUPPLIER_NAME1:
-                databuff['INSP_LOT'][i]['SUPPLIER_NAME1'].toString(),
-            SUPPLIER_NAME2:
-                databuff['INSP_LOT'][i]['SUPPLIER_NAME2'].toString(),
-            PUR_ORG: databuff['INSP_LOT'][i]['PUR_ORG'].toString(),
-            PUR_DOC: databuff['INSP_LOT'][i]['PUR_DOC'].toString(),
-            PUR_ITEM: databuff['INSP_LOT'][i]['PUR_ITEM'].toString(),
-            MATDOC_YEAR: databuff['INSP_LOT'][i]['MATDOC_YEAR'].toString(),
-            MATDOC: databuff['INSP_LOT'][i]['MATDOC'].toString(),
-            MATDOC_ITEM: databuff['INSP_LOT'][i]['MATDOC_ITEM'].toString(),
-            POSTING_DATE: databuff['INSP_LOT'][i]['POSTING_DATE'].toString(),
-            MVT: databuff['INSP_LOT'][i]['MVT'].toString(),
-            SHORT_TEXT: databuff['INSP_LOT'][i]['SHORT_TEXT'].toString(),
-            UD_PLANT: databuff['INSP_LOT'][i]['UD_PLANT'].toString(),
-            UD_SELECTEDSET:
-                databuff['INSP_LOT'][i]['UD_SELECTEDSET'].toString(),
-            UD_CODEGROUP: databuff['INSP_LOT'][i]['UD_CODEGROUP'].toString(),
-            UD_CODE: databuff['INSP_LOT'][i]['UD_CODE'].toString(),
-            VALUATION: databuff['INSP_LOT'][i]['VALUATION'].toString(),
-            UD_MADEBY: databuff['INSP_LOT'][i]['UD_MADEBY'].toString(),
-            UD_MADEON: databuff['INSP_LOT'][i]['UD_MADEON'].toString(),
-            UD_MADETIME: databuff['INSP_LOT'][i]['UD_MADETIME'].toString(),
-            UD_MADE: databuff['INSP_LOT'][i]['UD_MADE'].toString(),
-            UD_POSTINGCOMP:
-                databuff['INSP_LOT'][i]['UD_POSTINGCOMP'].toString(),
-            UD_POSTQTY: databuff['INSP_LOT'][i]['UD_POSTQTY'].toString(),
-            UD_POSTUR: databuff['INSP_LOT'][i]['UD_POSTUR'].toString(),
-            UD_POSTBLOCK: databuff['INSP_LOT'][i]['UD_POSTBLOCK'].toString(),
-            UD_POSTSUPPLIER:
-                databuff['INSP_LOT'][i]['UD_POSTSUPPLIER'].toString(),
-            UD_MASTER: databuff['INSP_LOT'][i]['UD_MASTER'].toString(),
-          ));
+          String datastore = '';
+
+          if (BRANCHNUMBER.PLANT1 != '') {
+            if (databuff['INSP_LOT'][i]['STORAGE'].toString().length > 2) {
+              datastore =
+                  databuff['INSP_LOT'][i]['STORAGE'].toString().substring(0, 2);
+            }
+            if (datastore == BRANCHNUMBER.PLANT1) {
+              output.add(P302QMMASTERHSgetclass(
+                INSP_LOT: databuff['INSP_LOT'][i]['INSP_LOT'].toString(),
+                INSP_LOT_STATUS:
+                    databuff['INSP_LOT'][i]['INSP_LOT_STATUS'].toString(),
+                INSP_LOT_ORIGIN:
+                    databuff['INSP_LOT'][i]['INSP_LOT_ORIGIN'].toString(),
+                PLANT: databuff['INSP_LOT'][i]['PLANT'].toString(),
+                INSPTYPE: databuff['INSP_LOT'][i]['INSPTYPE'].toString(),
+                CREATED_ON: databuff['INSP_LOT'][i]['CREATED_ON'].toString(),
+                CREATED_TIME:
+                    databuff['INSP_LOT'][i]['CREATED_TIME'].toString(),
+                CREATED_BY: databuff['INSP_LOT'][i]['CREATED_BY'].toString(),
+                MATERIAL: databuff['INSP_LOT'][i]['MATERIAL'].toString(),
+                MAT_DESC: databuff['INSP_LOT'][i]['MAT_DESC'].toString(),
+                OLD_MAT: databuff['INSP_LOT'][i]['OLD_MAT'].toString(),
+                TTSL: databuff['INSP_LOT'][i]['TTSL'].toString(),
+                TTSL_PERIOD: databuff['INSP_LOT'][i]['TTSL_PERIOD'].toString(),
+                MIN_TTSL: databuff['INSP_LOT'][i]['MIN_TTSL'].toString(),
+                INSP_QTY: databuff['INSP_LOT'][i]['INSP_QTY'].toString(),
+                INSP_UOM: databuff['INSP_LOT'][i]['INSP_UOM'].toString(),
+                BATCH: databuff['INSP_LOT'][i]['BATCH'].toString(),
+                STORAGE: databuff['INSP_LOT'][i]['STORAGE'].toString(),
+                BATCH_IND: databuff['INSP_LOT'][i]['BATCH_IND'].toString(),
+                TASK_LIST_TYPE:
+                    databuff['INSP_LOT'][i]['TASK_LIST_TYPE'].toString(),
+                GROUP: databuff['INSP_LOT'][i]['GROUP'].toString(),
+                USAGE: databuff['INSP_LOT'][i]['USAGE'].toString(),
+                GROUP_COUNTER:
+                    databuff['INSP_LOT'][i]['GROUP_COUNTER'].toString(),
+                INSP_POINT: databuff['INSP_LOT'][i]['INSP_POINT'].toString(),
+                KEY_DATE: databuff['INSP_LOT'][i]['KEY_DATE'].toString(),
+                PROCESS_ORDER:
+                    databuff['INSP_LOT'][i]['PROCESS_ORDER'].toString(),
+                CUSTOMER: databuff['INSP_LOT'][i]['CUSTOMER'].toString(),
+                CUST_NAME1: databuff['INSP_LOT'][i]['CUST_NAME1'].toString(),
+                CUST_NAME2: databuff['INSP_LOT'][i]['CUST_NAME2'].toString(),
+                SUPPLIER: databuff['INSP_LOT'][i]['SUPPLIER'].toString(),
+                SUPPLIER_NAME1:
+                    databuff['INSP_LOT'][i]['SUPPLIER_NAME1'].toString(),
+                SUPPLIER_NAME2:
+                    databuff['INSP_LOT'][i]['SUPPLIER_NAME2'].toString(),
+                PUR_ORG: databuff['INSP_LOT'][i]['PUR_ORG'].toString(),
+                PUR_DOC: databuff['INSP_LOT'][i]['PUR_DOC'].toString(),
+                PUR_ITEM: databuff['INSP_LOT'][i]['PUR_ITEM'].toString(),
+                MATDOC_YEAR: databuff['INSP_LOT'][i]['MATDOC_YEAR'].toString(),
+                MATDOC: databuff['INSP_LOT'][i]['MATDOC'].toString(),
+                MATDOC_ITEM: databuff['INSP_LOT'][i]['MATDOC_ITEM'].toString(),
+                POSTING_DATE:
+                    databuff['INSP_LOT'][i]['POSTING_DATE'].toString(),
+                MVT: databuff['INSP_LOT'][i]['MVT'].toString(),
+                SHORT_TEXT: databuff['INSP_LOT'][i]['SHORT_TEXT'].toString(),
+                UD_PLANT: databuff['INSP_LOT'][i]['UD_PLANT'].toString(),
+                UD_SELECTEDSET:
+                    databuff['INSP_LOT'][i]['UD_SELECTEDSET'].toString(),
+                UD_CODEGROUP:
+                    databuff['INSP_LOT'][i]['UD_CODEGROUP'].toString(),
+                UD_CODE: databuff['INSP_LOT'][i]['UD_CODE'].toString(),
+                VALUATION: databuff['INSP_LOT'][i]['VALUATION'].toString(),
+                UD_MADEBY: databuff['INSP_LOT'][i]['UD_MADEBY'].toString(),
+                UD_MADEON: databuff['INSP_LOT'][i]['UD_MADEON'].toString(),
+                UD_MADETIME: databuff['INSP_LOT'][i]['UD_MADETIME'].toString(),
+                UD_MADE: databuff['INSP_LOT'][i]['UD_MADE'].toString(),
+                UD_POSTINGCOMP:
+                    databuff['INSP_LOT'][i]['UD_POSTINGCOMP'].toString(),
+                UD_POSTQTY: databuff['INSP_LOT'][i]['UD_POSTQTY'].toString(),
+                UD_POSTUR: databuff['INSP_LOT'][i]['UD_POSTUR'].toString(),
+                UD_POSTBLOCK:
+                    databuff['INSP_LOT'][i]['UD_POSTBLOCK'].toString(),
+                UD_POSTSUPPLIER:
+                    databuff['INSP_LOT'][i]['UD_POSTSUPPLIER'].toString(),
+                UD_MASTER: databuff['INSP_LOT'][i]['UD_MASTER'].toString(),
+              ));
+            }
+          } else {
+            output.add(P302QMMASTERHSgetclass(
+              INSP_LOT: databuff['INSP_LOT'][i]['INSP_LOT'].toString(),
+              INSP_LOT_STATUS:
+                  databuff['INSP_LOT'][i]['INSP_LOT_STATUS'].toString(),
+              INSP_LOT_ORIGIN:
+                  databuff['INSP_LOT'][i]['INSP_LOT_ORIGIN'].toString(),
+              PLANT: databuff['INSP_LOT'][i]['PLANT'].toString(),
+              INSPTYPE: databuff['INSP_LOT'][i]['INSPTYPE'].toString(),
+              CREATED_ON: databuff['INSP_LOT'][i]['CREATED_ON'].toString(),
+              CREATED_TIME: databuff['INSP_LOT'][i]['CREATED_TIME'].toString(),
+              CREATED_BY: databuff['INSP_LOT'][i]['CREATED_BY'].toString(),
+              MATERIAL: databuff['INSP_LOT'][i]['MATERIAL'].toString(),
+              MAT_DESC: databuff['INSP_LOT'][i]['MAT_DESC'].toString(),
+              OLD_MAT: databuff['INSP_LOT'][i]['OLD_MAT'].toString(),
+              TTSL: databuff['INSP_LOT'][i]['TTSL'].toString(),
+              TTSL_PERIOD: databuff['INSP_LOT'][i]['TTSL_PERIOD'].toString(),
+              MIN_TTSL: databuff['INSP_LOT'][i]['MIN_TTSL'].toString(),
+              INSP_QTY: databuff['INSP_LOT'][i]['INSP_QTY'].toString(),
+              INSP_UOM: databuff['INSP_LOT'][i]['INSP_UOM'].toString(),
+              BATCH: databuff['INSP_LOT'][i]['BATCH'].toString(),
+              STORAGE: databuff['INSP_LOT'][i]['STORAGE'].toString(),
+              BATCH_IND: databuff['INSP_LOT'][i]['BATCH_IND'].toString(),
+              TASK_LIST_TYPE:
+                  databuff['INSP_LOT'][i]['TASK_LIST_TYPE'].toString(),
+              GROUP: databuff['INSP_LOT'][i]['GROUP'].toString(),
+              USAGE: databuff['INSP_LOT'][i]['USAGE'].toString(),
+              GROUP_COUNTER:
+                  databuff['INSP_LOT'][i]['GROUP_COUNTER'].toString(),
+              INSP_POINT: databuff['INSP_LOT'][i]['INSP_POINT'].toString(),
+              KEY_DATE: databuff['INSP_LOT'][i]['KEY_DATE'].toString(),
+              PROCESS_ORDER:
+                  databuff['INSP_LOT'][i]['PROCESS_ORDER'].toString(),
+              CUSTOMER: databuff['INSP_LOT'][i]['CUSTOMER'].toString(),
+              CUST_NAME1: databuff['INSP_LOT'][i]['CUST_NAME1'].toString(),
+              CUST_NAME2: databuff['INSP_LOT'][i]['CUST_NAME2'].toString(),
+              SUPPLIER: databuff['INSP_LOT'][i]['SUPPLIER'].toString(),
+              SUPPLIER_NAME1:
+                  databuff['INSP_LOT'][i]['SUPPLIER_NAME1'].toString(),
+              SUPPLIER_NAME2:
+                  databuff['INSP_LOT'][i]['SUPPLIER_NAME2'].toString(),
+              PUR_ORG: databuff['INSP_LOT'][i]['PUR_ORG'].toString(),
+              PUR_DOC: databuff['INSP_LOT'][i]['PUR_DOC'].toString(),
+              PUR_ITEM: databuff['INSP_LOT'][i]['PUR_ITEM'].toString(),
+              MATDOC_YEAR: databuff['INSP_LOT'][i]['MATDOC_YEAR'].toString(),
+              MATDOC: databuff['INSP_LOT'][i]['MATDOC'].toString(),
+              MATDOC_ITEM: databuff['INSP_LOT'][i]['MATDOC_ITEM'].toString(),
+              POSTING_DATE: databuff['INSP_LOT'][i]['POSTING_DATE'].toString(),
+              MVT: databuff['INSP_LOT'][i]['MVT'].toString(),
+              SHORT_TEXT: databuff['INSP_LOT'][i]['SHORT_TEXT'].toString(),
+              UD_PLANT: databuff['INSP_LOT'][i]['UD_PLANT'].toString(),
+              UD_SELECTEDSET:
+                  databuff['INSP_LOT'][i]['UD_SELECTEDSET'].toString(),
+              UD_CODEGROUP: databuff['INSP_LOT'][i]['UD_CODEGROUP'].toString(),
+              UD_CODE: databuff['INSP_LOT'][i]['UD_CODE'].toString(),
+              VALUATION: databuff['INSP_LOT'][i]['VALUATION'].toString(),
+              UD_MADEBY: databuff['INSP_LOT'][i]['UD_MADEBY'].toString(),
+              UD_MADEON: databuff['INSP_LOT'][i]['UD_MADEON'].toString(),
+              UD_MADETIME: databuff['INSP_LOT'][i]['UD_MADETIME'].toString(),
+              UD_MADE: databuff['INSP_LOT'][i]['UD_MADE'].toString(),
+              UD_POSTINGCOMP:
+                  databuff['INSP_LOT'][i]['UD_POSTINGCOMP'].toString(),
+              UD_POSTQTY: databuff['INSP_LOT'][i]['UD_POSTQTY'].toString(),
+              UD_POSTUR: databuff['INSP_LOT'][i]['UD_POSTUR'].toString(),
+              UD_POSTBLOCK: databuff['INSP_LOT'][i]['UD_POSTBLOCK'].toString(),
+              UD_POSTSUPPLIER:
+                  databuff['INSP_LOT'][i]['UD_POSTSUPPLIER'].toString(),
+              UD_MASTER: databuff['INSP_LOT'][i]['UD_MASTER'].toString(),
+            ));
+          }
         }
       }
 
@@ -139,7 +226,7 @@ class P302QMMASTERHSget_Bloc
     } else {
       print("where is my server");
     }
-
+    Navigator.pop(P302QMMASTERHSMAINcontext);
     emit(output);
   }
 

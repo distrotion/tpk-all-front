@@ -53,16 +53,16 @@ class _P231FINISHEDGOODTRANFERState extends State<P231FINISHEDGOODTRANFER> {
     P231FINISHEDGOODTRANFERVAR.month = DateFormat('MM').format(now);
     P231FINISHEDGOODTRANFERVAR.year = DateFormat('yyyy').format(now);
 
-    // P231FINISHEDGOODTRANFERVAR.day_next = DateFormat('dd').format(now);
-    // P231FINISHEDGOODTRANFERVAR.month_next = DateFormat('MM').format(now);
-    // P231FINISHEDGOODTRANFERVAR.year_next = DateFormat('yyyy').format(now);
+    P231FINISHEDGOODTRANFERVAR.day_next = DateFormat('dd').format(now);
+    P231FINISHEDGOODTRANFERVAR.month_next = DateFormat('MM').format(now);
+    P231FINISHEDGOODTRANFERVAR.year_next = DateFormat('yyyy').format(now);
 
     // P231FINISHEDGOODTRANFERVAR.day = "03";
     // P231FINISHEDGOODTRANFERVAR.month = "03";
     // P231FINISHEDGOODTRANFERVAR.year = "2025";
-    P231FINISHEDGOODTRANFERVAR.day_next = "05";
-    P231FINISHEDGOODTRANFERVAR.month_next = "04";
-    P231FINISHEDGOODTRANFERVAR.year_next = "2025";
+    // P231FINISHEDGOODTRANFERVAR.day_next = "05";
+    // P231FINISHEDGOODTRANFERVAR.month_next = "04";
+    // P231FINISHEDGOODTRANFERVAR.year_next = "2025";
 
     P231FINISHEDGOODTRANFERVAR.iscontrol = true;
     P231FINISHEDGOODTRANFERVAR.SEARCH = '';
