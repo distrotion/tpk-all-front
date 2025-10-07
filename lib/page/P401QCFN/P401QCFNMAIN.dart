@@ -362,6 +362,28 @@ class _P401QCFNMAINState extends State<P401QCFNMAIN> {
                                 width: 100,
                               ),
                             ),
+                            SizedBox(
+                              child: Column(
+                                children: [
+                                  ElevatedButton(
+                                    onPressed: () {
+                                      context
+                                          .read<P401QCFNget_Bloc>()
+                                          .add(P401QCFNget_GET());
+                                    },
+                                    style: ElevatedButton.styleFrom(
+                                      shape: const CircleBorder(),
+                                      padding: const EdgeInsets.all(10),
+                                    ),
+                                    child: const Icon(
+                                      Icons.refresh_rounded,
+                                      color: Colors.white,
+                                      size: 30,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
                           ],
                         ),
                       ),
