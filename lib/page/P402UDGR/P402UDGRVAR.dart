@@ -29,6 +29,9 @@ class P402UDGRVAR {
   static String SELECTEDSETset = '';
   static String PROCESS_ORDERset = '';
   static String PROCESS_ORDERset2 = '';
+  static String SAPSTATUS = '';
+
+  static String INSP_LOT_STATUS = '';
 
   static List<PINSP_SPECHSclass> INSP_SPECdata = [];
   static PINSP_SPECHSclass iINSP_SPECdata = PINSP_SPECHSclass();

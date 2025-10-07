@@ -442,7 +442,16 @@ class _P402UDGRMAINState extends State<P402UDGRMAIN> {
 
                                   P402UDGRVAR.page = 0;
 
+                                  P402UDGRVAR.SAPSTATUS =
+                                      _data_exp[i].SAPSTATUS;
+
+                                  P402UDGRVAR.SAPSTATUS =
+                                      _data_exp[i].SAPSTATUS;
+
                                   // _QMI003POP(context);
+
+                                  P402UDGRVAR.INSP_LOT_STATUS =
+                                      _data_exp[i].INSP_LOT_STATUS;
                                   _FORCEGR(context);
                                   // }
                                 },
@@ -1524,9 +1533,30 @@ class __FORCEGRsetState extends State<_FORCEGRset> {
                 },
               ).then((v) {
                 Navigator.pop(context);
-
-                //
-                // print(v.data);
+                var ans = v.data;
+                print(ans);
+                if (ans != null) {
+                  //
+                  if (v.data['TYPE'] != null) {
+                    if (v.data['TYPE'].toString() == 'E') {
+                      showErrorPopup(P402UDGRMAINcontext, v.data.toString());
+                    } else {
+                      showGoodPopup(P402UDGRMAINcontext, v.data.toString());
+                    }
+                  } else {
+                    if (P402UDGRVAR.INSP_LOT_STATUS.contains("UD")) {
+                      if (P402UDGRVAR.SAPSTATUS.contains("PCNF")) {
+                        showErrorPopup(P402UDGRMAINcontext, "Waitting pack");
+                      } else {
+                        showGoodPopup(P402UDGRMAINcontext, "Already complete");
+                      }
+                    } else {
+                      showErrorPopup(P402UDGRMAINcontext, "Waitting UD");
+                    }
+                  }
+                } else {
+                  showErrorPopup(P402UDGRMAINcontext, "error");
+                }
               });
             },
             child: Container(
